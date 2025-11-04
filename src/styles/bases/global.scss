@@ -1,0 +1,60 @@
+// Import variables
+
+@import "variables";
+
+// Import polices
+
+@import url("https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=Sora:wght@100..800&display=swap");
+
+// Uniformisation
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+h1 {
+  font-family: $font-title;
+  font-size: $h1;
+  font-weight: 600;
+  color: $dark-text
+}
+
+h2 {
+  font-family: $font-title;
+  font-size: $h2;
+  font-weight: 600;
+  color: $dark-text
+}
+
+h3 {
+  font-family: $font-title;
+  font-size: $h3;
+  font-weight: 600;
+  color: $dark-text
+}
+
+p,
+label,
+input,
+button,
+a,
+li {
+  font-family: $font-text;
+  color: $dark-text
+}
+
+input::placeholder{
+  color: $grey-text
+}
+
+img{
+  width: 100%;
+}
+
+body{
+  background: $light-bg;
+}

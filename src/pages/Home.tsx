@@ -1,5 +1,5 @@
 const Home = () => {
-  return <h1>Accueil</h1>;
+  return <h1>Bienvenue sur WIMF</h1>;
 };
 
 export default Home;
