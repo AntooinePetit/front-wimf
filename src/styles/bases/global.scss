@@ -49,6 +49,10 @@ li {
   font-size: 30px;
 }
 
+input {
+  width: 100%;
+}
+
 input::placeholder {
   color: $grey-text;
 }
@@ -89,4 +93,5 @@ svg {
 
   font-size: 32px;
   font-weight: bold;
+  border: none;
 }

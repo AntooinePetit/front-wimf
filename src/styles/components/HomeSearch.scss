@@ -1,0 +1,52 @@
+// Import variables
+
+@import "../bases/variables";
+
+#home-search {
+  margin-bottom: 150px;
+
+  h2 {
+    margin-bottom: 50px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      gap: 20px;
+
+      padding: 30px;
+
+      background: $white;
+      border: 3px solid $grey-border;
+      border-radius: 30px;
+
+      label{
+        font-size: 0;
+
+        svg {
+          color: $grey-text;
+        }
+      }
+
+      input {
+        border: none;
+
+        &:focus{
+          outline: none;
+
+
+        }
+      }
+
+      &:focus-within{
+        border-color: $main;
+      }
+    }
+  }
+}
