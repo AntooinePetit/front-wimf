@@ -5,7 +5,7 @@ const Home = () => {
     <>
       <h1>Bienvenue sur WIMF</h1>
 
-      <NavBar />
+      <NavBar active="home"/>
     </>
   );
 };
