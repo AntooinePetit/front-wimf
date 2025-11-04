@@ -20,21 +20,22 @@ h1 {
   font-family: $font-title;
   font-size: $h1;
   font-weight: 600;
-  color: $dark-text
+  color: $dark-text;
+  text-align: center;
 }
 
 h2 {
   font-family: $font-title;
   font-size: $h2;
   font-weight: 600;
-  color: $dark-text
+  color: $dark-text;
 }
 
 h3 {
   font-family: $font-title;
   font-size: $h3;
   font-weight: 600;
-  color: $dark-text
+  color: $dark-text;
 }
 
 p,
@@ -44,17 +45,22 @@ button,
 a,
 li {
   font-family: $font-text;
-  color: $dark-text
+  color: $dark-text;
 }
 
-input::placeholder{
-  color: $grey-text
+input::placeholder {
+  color: $grey-text;
 }
 
-img{
+img {
   width: 100%;
 }
 
-body{
+body {
   background: $light-bg;
+}
+
+svg {
+  stroke-width: 2px;
+  color: $dark-text;
 }

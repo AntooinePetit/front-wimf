@@ -1,0 +1,47 @@
+// Import variables
+
+@import "../bases/variables";
+
+nav{
+  width: 100%;
+
+  position: fixed;
+  bottom: 0;
+
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+  box-shadow: 0 -6px 30px 6px #00000010;
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    .is-active {
+      background: $main;
+    }
+
+    li:nth-child(1) a{
+      border-top-left-radius: 15px;
+    }
+
+    li:nth-child(4) a{
+      border-top-right-radius: 15px;
+    }
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+
+      padding: 40px 0;
+
+      svg{
+        height: 37px;
+        width: 100%;
+      }
+    }
+
+  }
+}
