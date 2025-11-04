@@ -46,6 +46,7 @@ a,
 li {
   font-family: $font-text;
   color: $dark-text;
+  font-size: 30px;
 }
 
 input::placeholder {
@@ -73,4 +74,19 @@ svg {
 
 .container {
   padding: 0 30px;
+}
+
+.button {
+  width: 100%;
+  background: $main;
+
+  height: 100px;
+
+  border-radius: 30px;
+
+  text-align: center;
+  align-content: center;
+
+  font-size: 32px;
+  font-weight: bold;
 }

@@ -1,0 +1,21 @@
+// Import variables
+
+@import "../bases/variables";
+
+#scanner-discovery {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 250px;
+
+  gap: 20px;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

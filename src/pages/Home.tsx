@@ -1,12 +1,14 @@
 import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
-import "../styles/pages/Home.scss";
+import ScannerDiscovery from "../components/ScannerDiscovery";
 
 const Home = () => {
   return (
     <>
       <main id="home">
         <Hero />
+
+        <ScannerDiscovery />
       </main>
 
       <NavBar active="home" />
