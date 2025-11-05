@@ -1,0 +1,8 @@
+.mobile-bg {
+  background: url("/src/assets/Fraise.svg"), url("/src/assets/Banane.svg"),
+    url("/src/assets/Avocat.svg"), url("/src/assets/Pastèque\ entière.svg"),
+    url("/src/assets/Prune.svg");
+  background-repeat: no-repeat;
+  background-size: 189px, 225px, 249px, 250px, 304px;
+  background-position-x: -61px, calc(100% + 71px);
+}

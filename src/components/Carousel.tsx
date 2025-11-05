@@ -48,7 +48,7 @@ interface CarouselProps {
 const Carousel = ({ recipes }: CarouselProps) => {
   const url = config.apiUrl;
 
-  if (recipes.length <= 0) return <p>Aucune recette trouvée</p>;
+  if (recipes.length < 1) return <p>Aucune recette trouvée</p>;
 
   return (
     <div id="container-swiper">
