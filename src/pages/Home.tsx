@@ -1,6 +1,7 @@
 import Hero from "../components/Hero";
 import HomeSearch from "../components/HomeSearch";
 import NavBar from "../components/NavBar";
+import RecommendedRecipes from "../components/RecommendedRecipes";
 import ScannerDiscovery from "../components/ScannerDiscovery";
 
 const Home = () => {
@@ -12,6 +13,8 @@ const Home = () => {
         <ScannerDiscovery />
 
         <HomeSearch />
+
+        <RecommendedRecipes />
       </main>
 
       <NavBar active="home" />
