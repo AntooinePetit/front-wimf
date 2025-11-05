@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { config } from "../config";
 import "../styles/components/RecommendedRecipes.scss";
-import Carousel from "./Carousel";
+
 import { Link } from "react-router-dom";
+import Carousel from "./Carousel";
 
 const RecommendedRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -27,8 +28,10 @@ const RecommendedRecipes = () => {
   return (
     <section id="recommended-recipes" className="container">
       <h2>Recettes recommandées</h2>
-      <Carousel recipes={recipes}/>
-      <Link to={"/recipes"} className="button">Voir plus de recettes</Link>
+      <Carousel recipes={recipes} />
+      <Link to={"/recipes"} className="button">
+        Voir plus de recettes
+      </Link>
     </section>
   );
 };

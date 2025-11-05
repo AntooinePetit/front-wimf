@@ -1,3 +1,10 @@
+// Import Swiper React components
+import { Link } from "react-router-dom";
+import { Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { config } from "../config";
+import "../styles/components/Carousel2.scss";
+
 interface Nutrient {
   name: string;
   quantity: number;
@@ -39,7 +46,40 @@ interface CarouselProps {
 }
 
 const Carousel = ({ recipes }: CarouselProps) => {
-  return <p>Carousel</p>;
+  const url = config.apiUrl;
+
+  if (recipes.length <= 0) return <p>Aucune recette trouvée</p>;
+
+  return (
+    <div id="container-swiper">
+      <Swiper
+        modules={[Scrollbar]}
+        spaceBetween={20}
+        slidesPerView={1.8}
+        scrollbar={{
+          draggable: true,
+          dragClass: "swiper-scrollbar-drag",
+          dragSize: 140,
+        }}
+      >
+        {recipes.map((recipe) => {
+          return (
+            <SwiperSlide key={recipe.id_recipe}>
+              <Link to={`/recipes/${recipe.id_recipe}`}>
+                <article>
+                  <img
+                    src={`${url}uploads/recipes/${recipe.image_recipe}`}
+                    alt={`Photo de ${recipe.name_recipe.toLowerCase()}`}
+                  />
+                  <h3>{recipe.name_recipe}</h3>
+                </article>
+              </Link>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+  );
 };
 
 export default Carousel;

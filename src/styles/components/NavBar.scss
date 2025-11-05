@@ -14,6 +14,8 @@ nav{
 
   box-shadow: 0 -6px 30px 6px #00000010;
 
+  z-index: 1000000;
+
   ul {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
