@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { config } from "../config";
-import "../styles/components/Carousel2.scss";
+import "../styles/components/Carousel.scss";
 
 interface Nutrient {
   name: string;

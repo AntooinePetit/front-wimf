@@ -11,13 +11,17 @@ const RecommendedRecipes = () => {
   const url = config.apiUrl;
 
   const getRecipes = async () => {
-    const req = await fetch(`${url}api/v1/recipes/random`);
+    try {
+      const req = await fetch(`${url}/api/v1/recipes/random`);
 
-    if (!req.ok) throw new Error("Erreur de chargement des recettes");
+      if (!req.ok) throw new Error("Erreur de chargement des recettes");
 
-    const res = await req.json();
+      const res = await req.json();
 
-    setRecipes(res);
+      setRecipes(res);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
