@@ -1,10 +1,11 @@
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import IngredientsRecipe from "../components/IngredientsRecipe";
 import NavBar from "../components/NavBar";
 import RecipeHead from "../components/RecipeHead";
-import { config } from "../config";
 import TimeRecipe from "../components/TimeRecipe";
+import { config } from "../config";
 
 /*
 cooking_time: 80
@@ -73,7 +74,8 @@ const Recipe = () => {
       </>
     );
 
-  if (reqError)
+  if (reqError) {
+    document.title = "Erreur";
     return (
       <>
         <main className="error-screen">
@@ -87,6 +89,9 @@ const Recipe = () => {
         <NavBar active={"recipes"} />
       </>
     );
+  }
+
+  document.title = recipe.name_recipe;
 
   return (
     <>
@@ -94,10 +99,16 @@ const Recipe = () => {
         <button className="orange-return-button" onClick={goBack}>
           <ChevronLeft size={100} />
         </button>
-        
+
         <RecipeHead name={recipe.name_recipe} image={recipe.image_recipe} />
 
-        <TimeRecipe prep={recipe.preparation_time} cook={recipe.cooking_time} rest={recipe.resting_time} />
+        <TimeRecipe
+          prep={recipe.preparation_time}
+          cook={recipe.cooking_time}
+          rest={recipe.resting_time}
+        />
+
+        <IngredientsRecipe id={recipe.id_recipe} servings={recipe.servings_recipe}/>
       </main>
 
       <NavBar active={"recipes"} />
