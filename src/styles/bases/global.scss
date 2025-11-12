@@ -1,6 +1,8 @@
-// Import variables
+// Import variables & mixins & animations
 
 @import "variables";
+@import "mixins";
+@import "animations";
 
 // Import polices
 
@@ -96,4 +98,30 @@ svg {
   font-size: 32px;
   font-weight: bold;
   border: none;
+}
+
+.orange-return-button {
+  @include return-button($main, $dark-text);
+  position: absolute;
+  left: 30px;
+  top: 30px;
+}
+
+.error-screen {
+  height: 100vh;
+  align-content: center;
+}
+
+.loader {
+  position: absolute;
+  left: calc(50% - 75px);
+  top: calc(50% - 75px);
+  width: 150px;
+  height: 150px;
+  border: 10px solid $dark-text;
+  border-bottom-color: $main;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }

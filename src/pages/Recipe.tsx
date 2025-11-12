@@ -1,5 +1,6 @@
+import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import RecipeHead from "../components/RecipeHead";
 import { config } from "../config";
@@ -34,15 +35,17 @@ const Recipe = () => {
       console.log(res);
 
       if (res.message && res.message == "Recette introuvable") {
-        throw new Error(res.message);
+        setReqError(res.message);
+        setIsLoading(false);
+        return;
       }
 
       setRecipe(res);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
-      console.log(error);
-      setReqError("yes");
+      setIsLoading(false);
+      setReqError("Erreur serveur");
     }
   };
 
@@ -51,18 +54,50 @@ const Recipe = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  if (isLoading)
+    return (
+      <>
+        <main className="loading-screen">
+          <button className="orange-return-button" onClick={goBack}>
+            <ChevronLeft size={100} />
+          </button>
+          <span className="loader"></span>
+        </main>
+
+        <NavBar active={"recipes"} />
+      </>
+    );
+
+  if (reqError)
+    return (
+      <>
+        <main className="error-screen">
+          <button className="orange-return-button" onClick={goBack}>
+            <ChevronLeft size={100} />
+          </button>
+
+          <h1 className="error">{reqError}</h1>
+        </main>
+
+        <NavBar active={"recipes"} />
+      </>
+    );
+
   return (
     <>
       <main>
-        {/* TODO: Ajouter bouton retour */}
+        <button className="orange-return-button" onClick={goBack}>
+          <ChevronLeft size={100} />
+        </button>
         {/* TODO: Gérer l'affichage d'erreur selon erreur réseau ou recette introuvable */}
-        {isLoading ? (
-          ""
-        ) : reqError ? (
-          <h1 className="error"></h1>
-        ) : (
-          <RecipeHead name={recipe.name_recipe} image={recipe.image_recipe} />
-        )}
+
+        <RecipeHead name={recipe.name_recipe} image={recipe.image_recipe} />
       </main>
 
       <NavBar active={"recipes"} />

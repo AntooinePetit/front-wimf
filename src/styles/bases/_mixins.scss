@@ -1,0 +1,16 @@
+// Import variables
+
+@import "variables";
+
+@mixin return-button($bg-color, $chev-color) {
+  border: none;
+  background: $bg-color;
+  border-radius: 10000px;
+  width: 100px;
+  height: 100px;
+
+  svg {
+    color: $chev-color;
+    stroke-width: 1px;
+  }
+}
