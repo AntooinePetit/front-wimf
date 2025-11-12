@@ -1,0 +1,14 @@
+// Import variables
+
+@import "../bases/variables";
+
+#recipe-head {
+  img {
+    height: 400px;
+    object-fit: cover;
+  }
+
+  h1 {
+    padding: 50px 30px;
+  }
+}

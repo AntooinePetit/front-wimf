@@ -68,7 +68,7 @@ const Carousel = ({ recipes }: CarouselProps) => {
               <Link to={`/recipes/${recipe.id_recipe}`}>
                 <article>
                   <img
-                    src={`${url}uploads/recipes/${recipe.image_recipe}`}
+                    src={`${url}/uploads/recipes/${recipe.image_recipe}`}
                     alt={`Photo de ${recipe.name_recipe.toLowerCase()}`}
                   />
                   <h3>{recipe.name_recipe}</h3>

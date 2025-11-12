@@ -1,4 +1,5 @@
 import { config } from "../config";
+import "../styles/components/RecipeHead.scss";
 
 interface RecipeHeadProps {
   name: string;
