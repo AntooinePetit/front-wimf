@@ -1,17 +1,29 @@
-import "../styles/components/StepsRecipe.scss"
+import "../styles/components/StepsRecipe.scss";
 
 interface StepsRecipeProps {
   steps: string[];
 }
 
-const StepsRecipe = ({steps}: StepsRecipeProps) => {
-  console.log(steps)
+const StepsRecipe = ({ steps }: StepsRecipeProps) => {
+  let i = 0;
 
-  return(
+  return (
     <section id="steps">
       <h2>Préparation</h2>
+      <article>
+        {steps.map((step) => {
+          i++;
+          console.log(i);
+          return (
+            <div key={i}>
+              <span className="step-number">{i}</span>
+              <p>{step}</p>
+            </div>
+          );
+        })}
+      </article>
     </section>
-  )
-}
+  );
+};
 
-export default StepsRecipe
+export default StepsRecipe;

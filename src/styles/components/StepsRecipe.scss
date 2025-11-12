@@ -1,0 +1,37 @@
+// Import variables
+
+@import "../bases/variables";
+
+#steps {
+  padding: 0 20px;
+  margin-bottom: 50px;
+
+  article {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    div {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 40px;
+
+      .step-number {
+        align-content: center;
+        text-align: center;
+        font-family: $font-text;
+        font-weight: bold;
+        font-size: 36px;
+        background: $main;
+        border-radius: 10000px;
+        height: 60px;
+        width: 60px;
+      }
+
+      p{
+        width: 90%;
+      }
+    }
+  }
+}
