@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import IngredientsRecipe from "../components/IngredientsRecipe";
 import NavBar from "../components/NavBar";
 import RecipeHead from "../components/RecipeHead";
+import StepsRecipe from "../components/StepsRecipe";
 import TimeRecipe from "../components/TimeRecipe";
 import { config } from "../config";
 
@@ -108,7 +109,12 @@ const Recipe = () => {
           rest={recipe.resting_time}
         />
 
-        <IngredientsRecipe id={recipe.id_recipe} servings={recipe.servings_recipe}/>
+        <IngredientsRecipe
+          id={recipe.id_recipe}
+          servings={recipe.servings_recipe}
+        />
+
+        <StepsRecipe steps={recipe.instructions.steps} />
       </main>
 
       <NavBar active={"recipes"} />
