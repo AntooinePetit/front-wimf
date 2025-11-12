@@ -8,8 +8,22 @@ interface IngredientsRecipeProps {
   servings: number;
 }
 
+/*
+id_ingredient: 1
+mesurements: "g"
+name_ingredient: "Chapelure"
+quantity: 60
+*/
+
 const IngredientsRecipe = ({ id, servings }: IngredientsRecipeProps) => {
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState<
+    {
+      id_ingredient: number;
+      name_ingredient: string;
+      mesurements: string;
+      quantity: number;
+    }[]
+  >([]);
   const [wantedServings, setWantedServings] = useState(servings);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,6 +42,7 @@ const IngredientsRecipe = ({ id, servings }: IngredientsRecipeProps) => {
       const req = await fetch(`${url}/api/v1/ingredients/${id}`);
 
       const res = await req.json();
+      console.log(res);
 
       setIngredients(res);
     } catch (error) {
@@ -54,7 +69,7 @@ const IngredientsRecipe = ({ id, servings }: IngredientsRecipeProps) => {
             className={isOpen ? "button-open" : ""}
             onClick={() => setIsOpen(!isOpen)}
           >
-            <ChevronDown size={30}/>
+            <ChevronDown size={30} />
             <span>
               Pour {wantedServings} portion{wantedServings > 1 ? "s" : ""}
             </span>
@@ -88,6 +103,15 @@ const IngredientsRecipe = ({ id, servings }: IngredientsRecipeProps) => {
           ))}
         </select>
       </div>
+
+      <article id="ingredients-list">
+        {ingredients.map((ingredient) => (
+          <div key={ingredient.id_ingredient ?? ingredient.name_ingredient} className="ingredient">
+            <p>{ingredient.name_ingredient}</p>
+            <p className="ingredient-quantity">{ingredient.quantity / servings * wantedServings} {ingredient.mesurements}</p>
+          </div>
+        ))}
+      </article>
     </section>
   );
 };

@@ -3,10 +3,12 @@
 @import "../bases/variables";
 
 #ingredients-recipe {
-  padding: 0 30px;
+  padding: 0 20px;
   #section-head {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 
     select {
       position: absolute;
@@ -52,6 +54,27 @@
             background-color: $main;
           }
         }
+      }
+    }
+  }
+
+  #ingredients-list {
+    background: #fff;
+    border: 1px solid $main;
+    border-radius: 30px;
+    padding: 20px 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .ingredient {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .ingredient-quantity {
+        color: $grey-text;
       }
     }
   }
