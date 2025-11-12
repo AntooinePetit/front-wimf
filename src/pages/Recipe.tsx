@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import RecipeHead from "../components/RecipeHead";
 import { config } from "../config";
+import TimeRecipe from "../components/TimeRecipe";
 
 /*
 cooking_time: 80
@@ -19,7 +20,7 @@ total_time: 100
 */
 
 const Recipe = () => {
-  const [recipe, setRecipe] = useState(null);
+  const [recipe, setRecipe] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [reqError, setReqError] = useState<string | null>(null);
   const { id } = useParams();
@@ -32,8 +33,6 @@ const Recipe = () => {
 
       const res = await req.json();
 
-      console.log(res);
-
       if (res.message && res.message == "Recette introuvable") {
         setReqError(res.message);
         setIsLoading(false);
@@ -45,7 +44,7 @@ const Recipe = () => {
     } catch (error) {
       console.error(error);
       setIsLoading(false);
-      setReqError("Erreur serveur");
+      setReqError("Une erreur est survenue, réessaie plus tard !");
     }
   };
 
@@ -91,13 +90,14 @@ const Recipe = () => {
 
   return (
     <>
-      <main>
+      <main className="testing">
         <button className="orange-return-button" onClick={goBack}>
           <ChevronLeft size={100} />
         </button>
-        {/* TODO: Gérer l'affichage d'erreur selon erreur réseau ou recette introuvable */}
-
+        
         <RecipeHead name={recipe.name_recipe} image={recipe.image_recipe} />
+
+        <TimeRecipe prep={recipe.preparation_time} cook={recipe.cooking_time} rest={recipe.resting_time} />
       </main>
 
       <NavBar active={"recipes"} />
