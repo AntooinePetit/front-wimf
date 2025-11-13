@@ -48,7 +48,7 @@ a,
 li {
   font-family: $font-text;
   color: $dark-text;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 input {
@@ -68,7 +68,7 @@ body {
 }
 
 svg {
-  stroke-width: 2px;
+  stroke-width: 1px;
   color: $dark-text;
 }
 
@@ -79,7 +79,7 @@ svg {
 }
 
 .container {
-  padding: 0 30px;
+  padding: 0 20px;
 }
 
 .button {
@@ -88,7 +88,7 @@ svg {
   width: 100%;
   background: $main;
 
-  height: 100px;
+  height: 70px;
 
   border-radius: 30px;
 

@@ -8,7 +8,7 @@ const StepsRecipe = ({ steps }: StepsRecipeProps) => {
   let i = 0;
 
   return (
-    <section id="steps">
+    <section id="steps" className="container">
       <h2>Préparation</h2>
       <article>
         {steps.map((step) => {

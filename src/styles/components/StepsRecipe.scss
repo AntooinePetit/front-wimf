@@ -3,7 +3,6 @@
 @import "../bases/variables";
 
 #steps {
-  padding: 0 20px;
   margin-bottom: 50px;
 
   article {
@@ -22,7 +21,7 @@
         text-align: center;
         font-family: $font-text;
         font-weight: bold;
-        font-size: 36px;
+        font-size: 30px;
         background: $main;
         border-radius: 10000px;
         height: 60px;

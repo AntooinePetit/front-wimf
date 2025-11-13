@@ -46,14 +46,14 @@ const SearchResult = ({ search }: SearchResultProps) => {
 
   if (isLoading)
     return (
-      <section id="result">
+      <section id="result" className="container">
         <span className="loader" />
       </section>
     );
 
   if (reqError) {
     return (
-      <section id="result">
+      <section id="result" className="container">
         <h1 className="error">{reqError}</h1>
       </section>
     );
@@ -61,14 +61,14 @@ const SearchResult = ({ search }: SearchResultProps) => {
 
   if (recipes.length === 0) {
     return (
-      <section id="result">
+      <section id="result" className="container">
         <h2>Aucun résultat pour "{search}"</h2>
       </section>
     );
   }
 
   return (
-    <section id="result">
+    <section id="result" className="container">
       <h2>Résultats pour "{search}"</h2>
       <div>
         {recipes.slice(0, recipesShown).map((recipe) => (

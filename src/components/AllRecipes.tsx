@@ -41,18 +41,21 @@ const AllRecipes = () => {
 
   if (isLoading)
     return (
-      <section id="result">
+      <section id="result" className="container">
         <span className="loader" />
       </section>
     );
 
   if (reqError) {
-    document.title = "Erreur";
-    return <h2 className="error">{reqError}</h2>;
+    return (
+      <section id="result" className="container">
+        <h2 className="error">{reqError}</h2>
+      </section>
+    );
   }
 
   return (
-    <section id="result">
+    <section id="result" className="container">
       <h2>Toutes les recettes</h2>
       <div>
         {recipes.slice(0, recipesShown).map((recipe) => (
@@ -73,7 +76,9 @@ const AllRecipes = () => {
       {recipesShown < recipes.length && (
         <button
           className="button"
-          onClick={() => setRecipesShown((prev) => Math.min(prev + 8, recipes.length))}
+          onClick={() =>
+            setRecipesShown((prev) => Math.min(prev + 8, recipes.length))
+          }
         >
           Afficher plus de résultats
         </button>

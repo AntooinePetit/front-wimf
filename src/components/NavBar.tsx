@@ -12,25 +12,25 @@ const NavBar = ({ active }: NavBarProps) => {
       <ul>
         <li>
           <Link to={"/"} className={active == "home" ? "is-active" : ""}>
-            <Home height={37} />
+            <Home height={25} />
             Accueil
           </Link>
         </li>
         <li>
           <Link to={"/recipes"} className={active == "recipes" ? "is-active" : ""}>
-            <Utensils height={37} />
+            <Utensils height={25} />
             Recettes
           </Link>
         </li>
         <li>
           <Link to={"/scanner"} className={active == "scanner" ? "is-active" : ""}>
-            <Camera height={37} />
+            <Camera height={25} />
             Scanner
           </Link>
         </li>
         <li>
           <Link to={"/"} className={active == "profile" ? "is-active" : ""}>
-            <User height={37} />
+            <User height={25} />
             Profil
           </Link>
         </li>

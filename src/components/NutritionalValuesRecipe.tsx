@@ -28,7 +28,7 @@ const NutritionalValuesRecipe = ({
   const [showValues, setShowValues] = useState(false);
 
   return (
-    <section id="nutritional-values">
+    <section id="nutritional-values" className="container">
       <div>
         <div
           id="section-head-nutritional-values"

@@ -7,7 +7,7 @@
   margin-bottom: 50px;
 
   > div {
-    padding: 30px 40px;
+    padding: 20px 30px;
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
@@ -23,8 +23,8 @@
       .time-svg {
         background: $light-bg;
         border-radius: 10000px;
-        height: 100px;
-        width: 100px;
+        height: 60px;
+        width: 60px;
         margin-bottom: 15px;
 
         align-self: center;
