@@ -17,7 +17,7 @@ const NavBar = ({ active }: NavBarProps) => {
           </Link>
         </li>
         <li>
-          <Link to={"/"} className={active == "recipes" ? "is-active" : ""}>
+          <Link to={"/recipes"} className={active == "recipes" ? "is-active" : ""}>
             <Utensils height={37} />
             Recettes
           </Link>

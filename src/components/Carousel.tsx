@@ -65,7 +65,7 @@ const Carousel = ({ recipes }: CarouselProps) => {
         {recipes.map((recipe) => {
           return (
             <SwiperSlide key={recipe.id_recipe}>
-              <Link to={`/recipes/${recipe.id_recipe}`}>
+              <Link to={`/recipes/recipe/${recipe.id_recipe}`}>
                 <article>
                   <img
                     src={`${url}/uploads/recipes/${recipe.image_recipe}`}

@@ -33,7 +33,7 @@ const RecommendedRecipes = () => {
     <section id="recommended-recipes" className="container">
       <h2>Recettes recommandées</h2>
       <Carousel recipes={recipes} />
-      <Link to={"/recipes"} className="button">
+      <Link to={"/recipes/"} className="button">
         Voir plus de recettes
       </Link>
     </section>
