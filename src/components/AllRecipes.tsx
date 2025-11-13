@@ -52,7 +52,7 @@ const AllRecipes = () => {
   }
 
   return (
-    <section id="result" className="testing">
+    <section id="result">
       <h2>Toutes les recettes</h2>
       <div>
         {recipes.slice(0, recipesShown).map((recipe) => (

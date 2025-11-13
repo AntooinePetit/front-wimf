@@ -23,7 +23,7 @@ const NavBar = ({ active }: NavBarProps) => {
           </Link>
         </li>
         <li>
-          <Link to={"/"} className={active == "scanner" ? "is-active" : ""}>
+          <Link to={"/scanner"} className={active == "scanner" ? "is-active" : ""}>
             <Camera height={37} />
             Scanner
           </Link>
