@@ -26,7 +26,7 @@
       border: 3px solid $grey-border;
       border-radius: 30px;
 
-      label{
+      label {
         font-size: 0;
 
         svg {
@@ -37,14 +37,12 @@
       input {
         border: none;
 
-        &:focus{
+        &:focus {
           outline: none;
-
-
         }
       }
 
-      &:focus-within{
+      &:focus-within {
         border-color: $main;
       }
     }

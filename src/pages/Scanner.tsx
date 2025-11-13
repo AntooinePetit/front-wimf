@@ -1,9 +1,12 @@
+import CameraScanner from "../components/CameraScanner";
 import NavBar from "../components/NavBar";
 
 const Scanner = () => {
   return (
     <>
-      <main></main>
+      <main>
+        <CameraScanner />
+      </main>
 
       <NavBar active="scanner" />
     </>
