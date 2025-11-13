@@ -13,7 +13,6 @@ const StepsRecipe = ({ steps }: StepsRecipeProps) => {
       <article>
         {steps.map((step) => {
           i++;
-          console.log(i);
           return (
             <div key={i}>
               <span className="step-number">{i}</span>

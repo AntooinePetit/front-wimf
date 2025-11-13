@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import IngredientsRecipe from "../components/IngredientsRecipe";
 import NavBar from "../components/NavBar";
+import NutritionalValuesRecipe from "../components/NutritionalValuesRecipe";
 import RecipeHead from "../components/RecipeHead";
 import StepsRecipe from "../components/StepsRecipe";
 import TimeRecipe from "../components/TimeRecipe";
@@ -96,7 +97,7 @@ const Recipe = () => {
 
   return (
     <>
-      <main className="testing">
+      <main>
         <button className="orange-return-button" onClick={goBack}>
           <ChevronLeft size={100} />
         </button>
@@ -115,6 +116,11 @@ const Recipe = () => {
         />
 
         <StepsRecipe steps={recipe.instructions.steps} />
+
+        {/* TODO: Section valeurs nutritionnelles */}
+        <NutritionalValuesRecipe
+          nutritional={recipe.nutritional_values_recipe}
+        />
       </main>
 
       <NavBar active={"recipes"} />

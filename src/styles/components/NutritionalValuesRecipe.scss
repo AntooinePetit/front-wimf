@@ -1,0 +1,48 @@
+// Import variables
+
+@import "../bases/variables";
+
+#nutritional-values {
+  padding: 0 20px;
+  margin-bottom: 250px;
+
+  > div {
+    border: 1px solid $main;
+    border-radius: 30px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    #section-head-nutritional-values {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      align-items: center;
+
+      &.active .icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .active ul {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      li {
+        font-size: 28px;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+    }
+  }
+}

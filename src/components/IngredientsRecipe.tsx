@@ -47,7 +47,7 @@ const IngredientsRecipe = ({ id, servings }: IngredientsRecipeProps) => {
 
   return (
     <section id="ingredients-recipe">
-      <div id="section-head">
+      <div id="section-head-ingredient">
         <h2>Ingrédients</h2>
 
         <div id="quantity-select">
