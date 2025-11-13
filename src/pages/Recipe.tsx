@@ -23,7 +23,8 @@ total_time: 100
 */
 
 const Recipe = () => {
-  const [recipe, setRecipe] = useState([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [recipe, setRecipe] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
   const [reqError, setReqError] = useState<string | null>(null);
   const { id } = useParams();
@@ -117,7 +118,6 @@ const Recipe = () => {
 
         <StepsRecipe steps={recipe.instructions.steps} />
 
-        {/* TODO: Section valeurs nutritionnelles */}
         <NutritionalValuesRecipe
           nutritional={recipe.nutritional_values_recipe}
         />
