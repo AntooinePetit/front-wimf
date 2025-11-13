@@ -1,7 +1,11 @@
 import { Search } from "lucide-react";
 import "../styles/components/SearchRecipes.scss";
 
-const SearchRecipes = () => {
+interface SearchRecipesProps {
+  search: string | null;
+}
+
+const SearchRecipes = ({search}: SearchRecipesProps) => {
   return (
     <section id="head-recipes">
       <div>
@@ -16,6 +20,7 @@ const SearchRecipes = () => {
               name="search"
               id="search"
               placeholder="Ex : Oeufs Mimosas"
+              defaultValue={search ?? ""}
             />
           </div>
           <button type="submit" className="button">

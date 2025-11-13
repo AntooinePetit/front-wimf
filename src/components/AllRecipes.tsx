@@ -12,7 +12,7 @@ interface Recipe {
 const AllRecipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [i, setI] = useState(0);
+  const [recipesShown, setRecipesShown] = useState(0);
 
   const [reqError, setReqError] = useState<string | null>(null);
 
@@ -26,7 +26,7 @@ const AllRecipes = () => {
 
       setRecipes(res);
       setIsLoading(false);
-      setI(8);
+      setRecipesShown(8);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -55,7 +55,7 @@ const AllRecipes = () => {
     <section id="result" className="testing">
       <h2>Toutes les recettes</h2>
       <div>
-        {recipes.slice(0, i).map((recipe) => (
+        {recipes.slice(0, recipesShown).map((recipe) => (
           <Link
             to={`/recipes/recipe/${recipe.id_recipe}`}
             key={recipe.id_recipe}
@@ -70,10 +70,10 @@ const AllRecipes = () => {
           </Link>
         ))}
       </div>
-      {i < recipes.length && (
+      {recipesShown < recipes.length && (
         <button
           className="button"
-          onClick={() => setI((prev) => Math.min(prev + 8, recipes.length))}
+          onClick={() => setRecipesShown((prev) => Math.min(prev + 8, recipes.length))}
         >
           Afficher plus de résultats
         </button>
