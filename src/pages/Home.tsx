@@ -12,20 +12,16 @@ const Home = () => {
         <div className={window.innerWidth < 768 ? "mobile-bg" : "desktop-bg"}>
           <img src="/assets/Fraise.svg" className="bg-icon fraise" alt="" />
           <img src="/assets/Banane.svg" className="bg-icon banane" alt="" />
-          <img src="/assets/Avocat.svg" className="bg-icon avocat" alt="" />
           <img
-            src="/assets/Pastèque_entière.svg"
-            className="bg-icon pasteque"
+            src="/assets/Avocat.svg"
+            className="bg-icon avocat"
             alt=""
-          />
+          />{" "}
           <img src="/assets/Prune.svg" className="bg-icon prune" alt="" />
-
+          
           <Hero />
-
           <ScannerDiscovery />
-
           <HomeSearch />
-
           <RecommendedRecipes />
         </div>
       </main>
