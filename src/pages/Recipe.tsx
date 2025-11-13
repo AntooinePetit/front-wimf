@@ -70,7 +70,7 @@ const Recipe = () => {
           <button className="orange-return-button" onClick={goBack}>
             <ChevronLeft size={100} />
           </button>
-          <span className="loader"></span>
+          <span className="loader" />
         </main>
 
         <NavBar active={"recipes"} />

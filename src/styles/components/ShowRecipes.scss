@@ -4,4 +4,24 @@
 
 #result {
   padding: 0 20px;
+  margin-bottom: 350px;
+  min-height: 60vh;
+  position: relative;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 50px;
+
+    img {
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+
 }

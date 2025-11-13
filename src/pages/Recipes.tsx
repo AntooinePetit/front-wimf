@@ -1,19 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import AllRecipes from "../components/AllRecipes";
 import NavBar from "../components/NavBar";
 import SearchRecipes from "../components/SearchRecipes";
 import SearchResult from "../components/SearchResult";
 
 const Recipes = () => {
-  const queryParameters = new URLSearchParams(window.location.search);
+  const location = useLocation(); // 👈 change d’objet quand l’URL change
 
-  const [search, setSearch] = useState<string | null>(
-    queryParameters.get("search") ?? null
-  );
-  
+  const [search, setSearch] = useState<string | null>(null);
+
+  useEffect(() => {
+    const queryParameters = new URLSearchParams(location.search);
+    const searchParam = queryParameters.get("search");
+
+    if (!searchParam || searchParam.trim() === "") {
+      setSearch(null);
+    } else {
+      setSearch(searchParam);
+    }
+  }, [location.search]);
+
   return (
     <>
-      <main>
+      <main id="recipes">
         <SearchRecipes />
 
         {search == null ? <AllRecipes /> : <SearchResult search={search} />}
