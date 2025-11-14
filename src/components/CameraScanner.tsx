@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import "../styles/components/CameraScanner.scss";
+import { config } from "../config";
 
 const videoConstraints = {
   facingMode: { exact: "environment" },
@@ -31,7 +32,7 @@ const CameraScanner = ({ setShowCamera }: CameraScannerProps) => {
     if (!capturedImage) return;
 
     try {
-      const res = await fetch("/api/analyze", {
+      const res = await fetch(`${config.apiUrl}/api/v1/ai`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image: capturedImage }),
