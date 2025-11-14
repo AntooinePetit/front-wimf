@@ -14,7 +14,7 @@ const Scanner = () => {
           Scanner mon frigo
         </button>
 
-        <Link to={"/"} className="button">
+        <Link to={"/scanner/ingredients"} className="button">
           Entrer mes ingrédients manuellement
         </Link>
 

@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Recipe from "./pages/Recipe";
 import Recipes from "./pages/Recipes";
 import Scanner from "./pages/Scanner";
+import UserIngredients from "./pages/UserIngredients";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/recipes/recipe/:id" element={<Recipe />} />
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/scanner" element={<Scanner />} />
+      <Route path="/scanner/ingredients" element={<UserIngredients />} />
     </Routes>
   );
 }
