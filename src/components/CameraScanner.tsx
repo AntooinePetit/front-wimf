@@ -1,4 +1,5 @@
-import { useState, useRef, useCallback } from "react";
+import { X } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import "../styles/components/CameraScanner.scss";
 
@@ -8,7 +9,11 @@ const videoConstraints = {
   height: { ideal: 720 },
 };
 
-export default function CameraScanner() {
+interface CameraScannerProps {
+  setShowCamera: (value: boolean) => void;
+}
+
+const CameraScanner = ({ setShowCamera }: CameraScannerProps) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const webcamRef = useRef<any>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -41,6 +46,10 @@ export default function CameraScanner() {
 
   return (
     <div className="camera-wrapper">
+      <button id="close-camera" onClick={() => setShowCamera(false)}>
+        <X size={50}/>
+      </button>
+
       {!capturedImage && (
         <Webcam
           ref={webcamRef}
@@ -57,16 +66,24 @@ export default function CameraScanner() {
 
       <div className="controls">
         {!capturedImage && (
-          <button className="take" onClick={takePhoto}>Prendre une photo</button>
+          <button className="take" onClick={takePhoto}>
+            Prendre une photo
+          </button>
         )}
 
         {capturedImage && (
           <>
-            <button className="retry" onClick={retryPhoto}>Reprendre</button>
-            <button className="validate" onClick={validatePhoto}>Valider</button>
+            <button className="retry" onClick={retryPhoto}>
+              Reprendre
+            </button>
+            <button className="validate" onClick={validatePhoto}>
+              Valider
+            </button>
           </>
         )}
       </div>
     </div>
   );
-}
+};
+
+export default CameraScanner;
