@@ -1,0 +1,54 @@
+.camera-wrapper {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.camera-view {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.preview {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  background: #000;
+}
+
+.controls {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.take {
+  background: #ffffff;
+}
+
+.retry {
+  background: #ff5959;
+  color: #fff;
+}
+
+.validate {
+  background: #4caf50;
+  color: #fff;
+}
