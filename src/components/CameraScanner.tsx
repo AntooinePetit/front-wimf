@@ -47,7 +47,7 @@ const CameraScanner = ({ setShowCamera }: CameraScannerProps) => {
   return (
     <div className="camera-wrapper">
       <button id="close-camera" onClick={() => setShowCamera(false)}>
-        <X size={50}/>
+        <X size={30}/>
       </button>
 
       {!capturedImage && (
