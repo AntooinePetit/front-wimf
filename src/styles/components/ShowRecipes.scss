@@ -4,8 +4,11 @@
 
 #result {
   margin-bottom: 350px;
-  min-height: 60vh;
   position: relative;
+
+  .loader {
+    margin-top: 150px;
+  }
 
   h2 {
     margin-bottom: 20px;
