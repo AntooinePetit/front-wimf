@@ -1,8 +1,8 @@
 import { X } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import "../styles/components/CameraScanner.scss";
 import { config } from "../config";
+import "../styles/components/CameraScanner.scss";
 
 const videoConstraints = {
   facingMode: { exact: "environment" },
@@ -11,12 +11,20 @@ const videoConstraints = {
 };
 
 interface CameraScannerProps {
-  setShowCamera: (value: boolean) => void,
-  setIngredients: (ingredients: unknown) => void,
-  setShowIngredients: (value: boolean) => void
+  setShowCamera: (value: boolean) => void;
+  setIngredients: (ingredients: []) => void;
+  setIsScanned: (value: boolean) => void;
+  setShowIngredients: (value: boolean) => void;
+  setScanError: (value: boolean) => void;
 }
 
-const CameraScanner = ({ setShowCamera, setIngredients, setShowIngredients }: CameraScannerProps) => {
+const CameraScanner = ({
+  setShowCamera,
+  setIngredients,
+  setShowIngredients,
+  setIsScanned,
+  setScanError,
+}: CameraScannerProps) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const webcamRef = useRef<any>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -44,19 +52,20 @@ const CameraScanner = ({ setShowCamera, setIngredients, setShowIngredients }: Ca
 
       console.log("Réponse backend:", data);
 
-      setIngredients(data.ingredients)
-      setShowIngredients(true)
-      setShowCamera(false)
-
+      setIngredients(data.ingredients);
     } catch (err) {
       console.error("Erreur upload:", err);
+      setScanError(true);
     }
+    setIsScanned(true);
+    setShowIngredients(true);
+    setShowCamera(false);
   };
 
   return (
     <div className="camera-wrapper">
       <button id="close-camera" onClick={() => setShowCamera(false)}>
-        <X size={30}/>
+        <X size={30} />
       </button>
 
       {!capturedImage && (

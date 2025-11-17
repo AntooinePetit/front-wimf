@@ -1,0 +1,11 @@
+// Import variables
+
+@import "../bases/variables";
+
+#scanner-ingredients {
+  #section-ingredients-head {
+    background: $main;
+    padding: 40px 0;
+    align-items: center;
+  }
+}

@@ -1,11 +1,14 @@
 import "../styles/components/ScannerDefault.scss";
 
 interface ScannerDefaultProps {
-  setShowCamera: (value: boolean) => void,
-  setShowIngredients: (value: boolean) => void
+  setShowCamera: (value: boolean) => void;
+  setShowIngredients: (value: boolean) => void;
 }
 
-const ScannerDefault = ({ setShowCamera, setShowIngredients }: ScannerDefaultProps) => {
+const ScannerDefault = ({
+  setShowCamera,
+  setShowIngredients,
+}: ScannerDefaultProps) => {
   return (
     <section id="scanner-default">
       <h1>Scanner</h1>

@@ -99,7 +99,7 @@ const Recipe = () => {
   return (
     <>
       <main>
-        <button className="orange-return-button" onClick={goBack}>
+        <button className="orange-return-button return-button" onClick={goBack}>
           <ChevronLeft size={100} />
         </button>
 

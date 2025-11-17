@@ -7,8 +7,9 @@ import ScannerIngredients from "../components/ScannerIngredients";
 const Scanner = () => {
   const [showCamera, setShowCamera] = useState(false);
   const [showIngredients, setShowIngredients] = useState(false);
-  const [isScanned, setIsScanned] = useState(false)
+  const [isScanned, setIsScanned] = useState(false);
   const [ingredients, setIngredients] = useState([]);
+  const [scanError, setScanError] = useState(false);
 
   return (
     <>
@@ -20,9 +21,24 @@ const Scanner = () => {
           />
         )}
 
-        {showCamera && <CameraScanner setShowCamera={setShowCamera} />}
+        {showCamera && (
+          <CameraScanner
+            setShowCamera={setShowCamera}
+            setIngredients={setIngredients}
+            setShowIngredients={setShowIngredients}
+            setIsScanned={setIsScanned}
+            setScanError={setScanError}
+          />
+        )}
 
-        {showIngredients && <ScannerIngredients isScanned={isScanned} />}
+        {showIngredients && (
+          <ScannerIngredients
+            isScanned={isScanned}
+            ingredients={ingredients}
+            scanError={scanError}
+            setShowIngredients={setShowIngredients}
+          />
+        )}
       </main>
 
       <NavBar active="scanner" />
