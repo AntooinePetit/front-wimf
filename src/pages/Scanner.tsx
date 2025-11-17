@@ -1,24 +1,28 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import CameraScanner from "../components/CameraScanner";
 import NavBar from "../components/NavBar";
-import "../styles/pages/Scanner.scss";
+import ScannerDefault from "../components/ScannerDefault";
+import ScannerIngredients from "../components/ScannerIngredients";
 
 const Scanner = () => {
   const [showCamera, setShowCamera] = useState(false);
+  const [showIngredients, setShowIngredients] = useState(false);
+  const [isScanned, setIsScanned] = useState(false)
+  const [ingredients, setIngredients] = useState([]);
 
   return (
     <>
-      <main id="scanner" className="container">
-        <button className="button" onClick={() => setShowCamera(true)}>
-          Scanner mon frigo
-        </button>
-
-        <Link to={"/scanner/ingredients"} className="button">
-          Entrer mes ingrédients manuellement
-        </Link>
+      <main id="scanner">
+        {!showIngredients && (
+          <ScannerDefault
+            setShowCamera={setShowCamera}
+            setShowIngredients={setShowIngredients}
+          />
+        )}
 
         {showCamera && <CameraScanner setShowCamera={setShowCamera} />}
+
+        {showIngredients && <ScannerIngredients isScanned={isScanned} />}
       </main>
 
       <NavBar active="scanner" />

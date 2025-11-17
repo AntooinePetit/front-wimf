@@ -11,10 +11,12 @@ const videoConstraints = {
 };
 
 interface CameraScannerProps {
-  setShowCamera: (value: boolean) => void;
+  setShowCamera: (value: boolean) => void,
+  setIngredients: (ingredients: unknown) => void,
+  setShowIngredients: (value: boolean) => void
 }
 
-const CameraScanner = ({ setShowCamera }: CameraScannerProps) => {
+const CameraScanner = ({ setShowCamera, setIngredients, setShowIngredients }: CameraScannerProps) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const webcamRef = useRef<any>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -35,11 +37,17 @@ const CameraScanner = ({ setShowCamera }: CameraScannerProps) => {
       const res = await fetch(`${config.apiUrl}/api/v1/ai`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image: capturedImage }),
+        body: JSON.stringify({ picture: capturedImage }),
       });
 
       const data = await res.json();
+
       console.log("Réponse backend:", data);
+
+      setIngredients(data.ingredients)
+      setShowIngredients(true)
+      setShowCamera(false)
+
     } catch (err) {
       console.error("Erreur upload:", err);
     }
