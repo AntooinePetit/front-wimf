@@ -10,4 +10,25 @@
 
     margin-bottom: 50px;
   }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      li {
+        padding: 15px;
+        background: $main;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 100000px;
+      }
+    }
+  }
 }

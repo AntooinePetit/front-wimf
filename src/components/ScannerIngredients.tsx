@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { config } from "../config";
@@ -19,7 +20,10 @@ const ScannerIngredients = ({
 }: ScannerIngredientsProps) => {
   const ingredientTest = ["bacon", "boeuf haché", "cassonade", "eau"];
 
-  const [ingredientsIds, setIngredientsIds] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  const [ingredientsIds, setIngredientsIds] = useState<any[]>([]);
 
   const getIngredientsIds = async () => {
     try {
@@ -40,14 +44,17 @@ const ScannerIngredients = ({
 
       setIngredientsIds(list);
 
-      console.log(ingredientTest);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+      setIsError(true);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    getIngredientsIds();
+    if (ingredientTest.length > 0) getIngredientsIds();
+    else setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -66,7 +73,13 @@ const ScannerIngredients = ({
       {scanError ? (
         <p className="error">Une erreur est survenue lors du scan</p>
       ) : (
-        <ScannerIngredientsList ingredientList={ingredientsIds} />
+        <ScannerIngredientsList
+          ingredientList={ingredientsIds}
+          isLoading={isLoading}
+          isError={isError}
+          isScanned={isScanned}
+          setIngredientList={(value: any[]) => setIngredientsIds(value)}
+        />
       )}
     </section>
   );
