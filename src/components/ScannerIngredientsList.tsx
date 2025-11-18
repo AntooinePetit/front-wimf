@@ -78,6 +78,13 @@ const ScannerIngredientsList = ({
           </ul>
         </>
       )}
+
+      <form>
+        <label htmlFor="">Ajouter un ingrédient</label>
+        <input type="text" name="ingredient-search" id="ingredient-search" placeholder="Oignon, boeuf, saumon..." />
+        <input type="submit" value="Rechercher l'ingrédient" className="button" />
+      </form>
+
     </div>
   );
 };

@@ -14,7 +14,7 @@ interface ScannerIngredientsProps {
 
 const ScannerIngredients = ({
   isScanned,
-  ingredients,
+  // ingredients,
   scanError,
   setShowIngredients,
 }: ScannerIngredientsProps) => {
