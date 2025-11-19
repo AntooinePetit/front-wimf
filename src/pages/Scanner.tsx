@@ -29,30 +29,34 @@ const Scanner = () => {
   return (
     <>
       <main id="scanner">
-        {!showIngredients && (
-          <ScannerDefault
-            setShowCamera={setShowCamera}
-            setShowIngredients={setShowIngredients}
-          />
-        )}
+        {!search && (
+          <>
+            {!showIngredients && (
+              <ScannerDefault
+                setShowCamera={setShowCamera}
+                setShowIngredients={setShowIngredients}
+              />
+            )}
 
-        {showCamera && (
-          <CameraScanner
-            setShowCamera={setShowCamera}
-            setIngredients={setIngredients}
-            setShowIngredients={setShowIngredients}
-            setIsScanned={setIsScanned}
-            setScanError={setScanError}
-          />
-        )}
+            {showCamera && (
+              <CameraScanner
+                setShowCamera={setShowCamera}
+                setIngredients={setIngredients}
+                setShowIngredients={setShowIngredients}
+                setIsScanned={setIsScanned}
+                setScanError={setScanError}
+              />
+            )}
 
-        {showIngredients && (
-          <ScannerIngredients
-            isScanned={isScanned}
-            ingredients={ingredients}
-            scanError={scanError}
-            setShowIngredients={setShowIngredients}
-          />
+            {showIngredients && (
+              <ScannerIngredients
+                isScanned={isScanned}
+                ingredients={ingredients}
+                scanError={scanError}
+                setShowIngredients={setShowIngredients}
+              />
+            )}
+          </>
         )}
       </main>
 
