@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import CameraScanner from "../components/CameraScanner";
 import NavBar from "../components/NavBar";
 import ScannerDefault from "../components/ScannerDefault";
@@ -10,6 +11,20 @@ const Scanner = () => {
   const [isScanned, setIsScanned] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [scanError, setScanError] = useState(false);
+  const [search, setSearch] = useState<string | null>(null);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const urlSearch = new URLSearchParams(location.search);
+    const searchParam = urlSearch.get("search");
+
+    if (!searchParam || searchParam.trim() == "") {
+      setSearch(null);
+    } else {
+      setSearch(searchParam);
+    }
+  }, [location.search]);
 
   return (
     <>

@@ -63,7 +63,7 @@ const ScannerIngredientSearch = ({
   };
 
   return (
-    <div id="ingredient-search-list" className="container testing">
+    <div id="ingredient-search-list" className="container">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -97,9 +97,12 @@ const ScannerIngredientSearch = ({
           ))}
         </ul>
       )}
+    
+      <hr />
+      <hr />
 
       <Link
-        to={`/scanner?s=${ingredientList.map((e) => e.id).join("+")}`}
+        to={`/scanner?search=${ingredientList.map((e) => e.id).join("+")}`}
         className="button"
       >
         Rechercher des recettes
