@@ -1,5 +1,6 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { config } from "../config";
 import "../styles/components/ScannerIngredientSearch.scss";
 
@@ -96,6 +97,13 @@ const ScannerIngredientSearch = ({
           ))}
         </ul>
       )}
+
+      <Link
+        to={`/scanner?s=${ingredientList.map((e) => e.id).join("+")}`}
+        className="button"
+      >
+        Rechercher des recettes
+      </Link>
 
       {notification && <div className="notification">{notification}</div>}
     </div>
