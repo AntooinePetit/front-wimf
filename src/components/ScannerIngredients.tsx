@@ -34,8 +34,6 @@ const ScannerIngredients = ({
 
       const res = await req.json();
 
-      console.log(res);
-
       const list = res.map(
         (ingredient: { id_ingredient: number; name_ingredient: string }) => ({
           id: ingredient.id_ingredient,
@@ -44,11 +42,10 @@ const ScannerIngredients = ({
       );
 
       setIngredientsIds(list);
-
-      setIsLoading(false);
     } catch (error) {
       console.error(error);
       setIsError(true);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -83,10 +80,12 @@ const ScannerIngredients = ({
             setIngredientList={(value: any[]) => setIngredientsIds(value)}
           />
 
-          <ScannerIngredientSearch
-            ingredientList={ingredientsIds}
-            setIngredientList={setIngredientsIds}
-          />
+          {!isLoading && (
+            <ScannerIngredientSearch
+              ingredientList={ingredientsIds}
+              setIngredientList={setIngredientsIds}
+            />
+          )}
         </>
       )}
     </section>

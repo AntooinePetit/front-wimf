@@ -22,6 +22,8 @@ const ScannerIngredientSearch = ({
   const [searchResults, setSearchResults] = useState<Ingredient[]>([]);
   const [search, setSearch] = useState("");
 
+  const [notification, setNotification] = useState<string | null>(null);
+
   const getSearchResults = async () => {
     try {
       const req = await fetch(
@@ -35,6 +37,30 @@ const ScannerIngredientSearch = ({
       console.error(error);
     }
   };
+
+  const updateIngredientList = (ingredient: Ingredient) => {
+    if (
+      ingredientList.find(
+        (existingIngredient) =>
+          existingIngredient.id == ingredient.id_ingredient
+      )
+    ) {
+      setNotification("Ingrédient déjà dans la liste !");
+      setTimeout(() => {
+        setNotification(null);
+      }, 3000);
+      return;
+    }
+    const updatedList = [
+      ...ingredientList,
+      {
+        id: ingredient.id_ingredient,
+        name: ingredient.name_ingredient,
+      },
+    ];
+    setIngredientList(updatedList);
+  };
+
   return (
     <div id="ingredient-search-list" className="container testing">
       <form
@@ -63,22 +89,15 @@ const ScannerIngredientSearch = ({
           {searchResults.map((ingredient: Ingredient) => (
             <li
               key={ingredient.id_ingredient}
-              onClick={() => {
-                const updatedList = [
-                  ...ingredientList,
-                  {
-                    id: ingredient.id_ingredient,
-                    name: ingredient.name_ingredient,
-                  },
-                ];
-                setIngredientList(updatedList);
-              }}
+              onClick={() => updateIngredientList(ingredient)}
             >
               {ingredient.name_ingredient} <Plus />
             </li>
           ))}
         </ul>
       )}
+
+      {notification && <div className="notification">{notification}</div>}
     </div>
   );
 };
