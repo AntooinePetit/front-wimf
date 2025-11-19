@@ -1,0 +1,26 @@
+// Import variables
+
+@import "../bases/variables";
+
+#ingredient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    margin-bottom: 30px;
+
+    li {
+      padding: 15px;
+      background: $main;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 100000px;
+    }
+  }
+}

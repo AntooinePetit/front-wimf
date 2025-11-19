@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import "../styles/components/ScannerIngredientList.scss"
 
 interface ScannerIngredientsListProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,11 +18,12 @@ const ScannerIngredientsList = ({
   isScanned,
   setIngredientList,
 }: ScannerIngredientsListProps) => {
-  // TODO: Style vignette tag + croix/moins pour retirer l'élément
+  
+  
 
   if (isLoading)
     return (
-      <div className="container">
+      <div id="ingredient-list" className="container">
         {isScanned && (
           <p>
             La liste suivante peut contenir des erreurs, n'hésite pas à
@@ -35,7 +37,7 @@ const ScannerIngredientsList = ({
 
   if (isError)
     return (
-      <div className="container">
+      <div id="ingredient-list" className="container">
         {isScanned && (
           <p>
             La liste suivante peut contenir des erreurs, n'hésite pas à
@@ -48,7 +50,7 @@ const ScannerIngredientsList = ({
     );
 
   return (
-    <div className="container">
+    <div id="ingredient-list" className="container">
       {ingredientList.length === 0 && <p>Aucun ingrédient pour l'instant</p>}
 
       {ingredientList.length > 0 && (
@@ -79,11 +81,7 @@ const ScannerIngredientsList = ({
         </>
       )}
 
-      <form>
-        <label htmlFor="">Ajouter un ingrédient</label>
-        <input type="text" name="ingredient-search" id="ingredient-search" placeholder="Oignon, boeuf, saumon..." />
-        <input type="submit" value="Rechercher l'ingrédient" className="button" />
-      </form>
+      
 
     </div>
   );

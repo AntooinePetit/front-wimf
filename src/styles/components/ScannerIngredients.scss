@@ -11,46 +11,25 @@
     margin-bottom: 50px;
   }
 
-  .container {
+
+
+  form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
 
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+    gap: 10px;
 
-      margin-bottom: 30px;
+    #ingredient-search {
+      padding: 20px;
+      border-radius: 30px;
 
-      li {
-        padding: 15px;
-        background: $main;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        border-radius: 100000px;
-      }
-    }
+      border: 3px solid $grey-border;
 
-    form {
-      display: flex;
-      flex-direction: column;
+      width: auto;
 
-      gap: 10px;
-
-      #ingredient-search {
-        padding: 20px;
-        border-radius: 30px;
-
-        border: 3px solid $grey-border;
-
-        width: auto;
-
-        &:focus {
-          border-color: $main;
-          outline: none;
-        }
+      &:focus {
+        border-color: $main;
+        outline: none;
       }
     }
   }

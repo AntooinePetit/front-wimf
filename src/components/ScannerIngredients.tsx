@@ -3,6 +3,7 @@ import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { config } from "../config";
 import "../styles/components/ScannerIngredients.scss";
+import ScannerIngredientSearch from "./ScannerIngredientSearch";
 import ScannerIngredientsList from "./ScannerIngredientsList";
 
 interface ScannerIngredientsProps {
@@ -73,13 +74,20 @@ const ScannerIngredients = ({
       {scanError ? (
         <p className="error">Une erreur est survenue lors du scan</p>
       ) : (
-        <ScannerIngredientsList
-          ingredientList={ingredientsIds}
-          isLoading={isLoading}
-          isError={isError}
-          isScanned={isScanned}
-          setIngredientList={(value: any[]) => setIngredientsIds(value)}
-        />
+        <>
+          <ScannerIngredientsList
+            ingredientList={ingredientsIds}
+            isLoading={isLoading}
+            isError={isError}
+            isScanned={isScanned}
+            setIngredientList={(value: any[]) => setIngredientsIds(value)}
+          />
+
+          <ScannerIngredientSearch
+            ingredientList={ingredientsIds}
+            setIngredientList={setIngredientsIds}
+          />
+        </>
       )}
     </section>
   );
