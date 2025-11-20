@@ -5,7 +5,7 @@ interface SearchRecipesProps {
   search: string | null;
 }
 
-const SearchRecipes = ({search}: SearchRecipesProps) => {
+const SearchRecipes = ({ search }: SearchRecipesProps) => {
   return (
     <section id="head-recipes">
       <div>

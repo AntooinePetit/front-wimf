@@ -36,7 +36,7 @@ const NutritionalValuesRecipe = ({
           className={showValues ? "active" : ""}
         >
           <h2>Valeurs nutritionnelles</h2>
-          <ChevronDown size={44} className="icon"/>
+          <ChevronDown size={44} className="icon" />
         </div>
 
         <article className={showValues ? "active" : "hidden"}>

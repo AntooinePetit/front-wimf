@@ -27,7 +27,9 @@ const TimeRecipe = ({ prep, cook, rest }: timeRecipeProps) => {
       <div>
         {prep != null && prep > 0 ? (
           <div>
-            <div className="time-svg"><ChefHat size={30} /></div>
+            <div className="time-svg">
+              <ChefHat size={30} />
+            </div>
             <p>Préparation</p>
             <p>{prepTime}</p>
           </div>
@@ -37,7 +39,9 @@ const TimeRecipe = ({ prep, cook, rest }: timeRecipeProps) => {
 
         {cook != null && cook > 0 ? (
           <div>
-            <div className="time-svg"><CookingPot size={30} /></div>
+            <div className="time-svg">
+              <CookingPot size={30} />
+            </div>
             <p>Cuisson</p>
             <p>{cookTime}</p>
           </div>
@@ -47,7 +51,9 @@ const TimeRecipe = ({ prep, cook, rest }: timeRecipeProps) => {
 
         {rest != null && rest > 0 ? (
           <div>
-            <div className="time-svg"><Hourglass size={30} /></div>
+            <div className="time-svg">
+              <Hourglass size={30} />
+            </div>
             <p>Repos</p>
             <p>{restTime}</p>
           </div>

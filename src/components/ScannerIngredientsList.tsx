@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import "../styles/components/ScannerIngredientList.scss"
+import "../styles/components/ScannerIngredientList.scss";
 
 interface ScannerIngredientsListProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,9 +18,6 @@ const ScannerIngredientsList = ({
   isScanned,
   setIngredientList,
 }: ScannerIngredientsListProps) => {
-  
-  
-
   if (isLoading)
     return (
       <div id="ingredient-list" className="container">
@@ -80,9 +77,6 @@ const ScannerIngredientsList = ({
           </ul>
         </>
       )}
-
-      
-
     </div>
   );
 };

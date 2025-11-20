@@ -6,10 +6,12 @@ interface Ingredient {
 }
 
 interface ScannerRecipesIngredientsProps {
-  ingredients: Ingredient[]
+  ingredients: Ingredient[];
 }
 
-const ScannerRecipesIngredients = ({ingredients}: ScannerRecipesIngredientsProps) => {
+const ScannerRecipesIngredients = ({
+  ingredients,
+}: ScannerRecipesIngredientsProps) => {
   return (
     <article id="scanner-recipes-ingredients">
       <h2>Recettes incluant (un ou plusieurs) :</h2>
@@ -19,7 +21,7 @@ const ScannerRecipesIngredients = ({ingredients}: ScannerRecipesIngredientsProps
         ))}
       </ul>
     </article>
-  )
-}
+  );
+};
 
-export default ScannerRecipesIngredients
+export default ScannerRecipesIngredients;

@@ -15,12 +15,10 @@ interface ScannerIngredientsProps {
 
 const ScannerIngredients = ({
   isScanned,
-  // ingredients,
+  ingredients,
   scanError,
   setShowIngredients,
 }: ScannerIngredientsProps) => {
-  const ingredientTest = ["bacon", "boeuf haché", "cassonade", "eau"];
-
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -29,11 +27,10 @@ const ScannerIngredients = ({
   const getIngredientsIds = async () => {
     try {
       const req = await fetch(
-        `${config.apiUrl}/api/v1/ingredients/search/${ingredientTest.join("+")}`
+        `${config.apiUrl}/api/v1/ingredients/search/${ingredients.join("+")}`
       );
 
       const res = await req.json();
-
 
       const list = res.map(
         (ingredient: { id_ingredient: number; name_ingredient: string }) => ({
@@ -43,17 +40,16 @@ const ScannerIngredients = ({
       );
 
       setIngredientsIds(list);
-
     } catch (error) {
       console.error(error);
       setIsError(true);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    if (ingredientTest.length > 0) getIngredientsIds();
+    if (ingredients.length > 0) getIngredientsIds();
     else setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -82,10 +78,12 @@ const ScannerIngredients = ({
             setIngredientList={(value: any[]) => setIngredientsIds(value)}
           />
 
-          {!isLoading && <ScannerIngredientSearch
-            ingredientList={ingredientsIds}
-            setIngredientList={setIngredientsIds}
-          />}
+          {!isLoading && (
+            <ScannerIngredientSearch
+              ingredientList={ingredientsIds}
+              setIngredientList={setIngredientsIds}
+            />
+          )}
         </>
       )}
     </section>

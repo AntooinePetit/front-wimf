@@ -18,7 +18,6 @@ const Home = () => {
             alt=""
           />{" "}
           <img src="/assets/Prune.svg" className="bg-icon prune" alt="" />
-          
           <Hero />
           <ScannerDiscovery />
           <HomeSearch />

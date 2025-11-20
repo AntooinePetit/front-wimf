@@ -68,7 +68,7 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
   }, []);
 
   return (
-    <section id="scanner-recipes" className="testing">
+    <section id="scanner-recipes">
       <div id="section-scanner-recipes-head">
         <button
           className="white-return-button return-button"
@@ -93,7 +93,7 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
 
       {!isLoading && !isError && (
         <div className="container">
-          <ScannerRecipesIngredients ingredients={ingredients}/>
+          <ScannerRecipesIngredients ingredients={ingredients} />
 
           <ScannerRecipesResults recipes={recipes} />
         </div>

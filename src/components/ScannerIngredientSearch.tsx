@@ -97,7 +97,7 @@ const ScannerIngredientSearch = ({
           ))}
         </ul>
       )}
-    
+
       <hr />
       <hr />
 

@@ -17,13 +17,19 @@ const NavBar = ({ active }: NavBarProps) => {
           </Link>
         </li>
         <li>
-          <Link to={"/recipes"} className={active == "recipes" ? "is-active" : ""}>
+          <Link
+            to={"/recipes"}
+            className={active == "recipes" ? "is-active" : ""}
+          >
             <Utensils height={25} />
             Recettes
           </Link>
         </li>
         <li>
-          <Link to={"/scanner"} className={active == "scanner" ? "is-active" : ""}>
+          <Link
+            to={"/scanner"}
+            className={active == "scanner" ? "is-active" : ""}
+          >
             <Camera height={25} />
             Scanner
           </Link>

@@ -24,7 +24,7 @@ const Recipes = () => {
   return (
     <>
       <main id="recipes">
-        <SearchRecipes search={search}/>
+        <SearchRecipes search={search} />
 
         {search == null ? <AllRecipes /> : <SearchResult search={search} />}
       </main>
