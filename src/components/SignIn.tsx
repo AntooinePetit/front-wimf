@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { config } from "../config";
 import "../styles/components/SignIn.scss";
 
 const SignIn = () => {
@@ -8,6 +9,7 @@ const SignIn = () => {
   const [errorConfirmPassword, setErrorConfirmPassword] =
     useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [registered, setRegistered] = useState<string | null>(null);
 
   const sendForm = async () => {
     setIsError(false);
@@ -55,7 +57,24 @@ const SignIn = () => {
 
     if (isError) return;
 
-    // Envoi du formulaire
+    try {
+      const req = await fetch(`${config.apiUrl}/api/v1/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      const res = await req.json();
+
+      console.log(res);
+
+      setRegistered("Inscription réussie ! Bienvenue !")
+    } catch (error) {
+      console.error(error);
+      setRegistered("Une erreur est survenue lors de l'inscription. Réessaie plus tard !")
+    }
   };
 
   return (
@@ -121,6 +140,8 @@ const SignIn = () => {
           S'inscrire
         </button>
       </form>
+
+      {registered && <p style={{ color: "green", textAlign: "center" }}>{registered}</p>}
     </section>
   );
 };
