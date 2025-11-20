@@ -4,6 +4,7 @@ import CameraScanner from "../components/CameraScanner";
 import NavBar from "../components/NavBar";
 import ScannerDefault from "../components/ScannerDefault";
 import ScannerIngredients from "../components/ScannerIngredients";
+import ScannerRecipes from "../components/ScannerRecipes";
 
 const Scanner = () => {
   const [showCamera, setShowCamera] = useState(false);
@@ -58,6 +59,8 @@ const Scanner = () => {
             )}
           </>
         )}
+
+        {search && <ScannerRecipes search={search} />}
       </main>
 
       <NavBar active="scanner" />

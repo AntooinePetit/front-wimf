@@ -1,0 +1,13 @@
+// Import variables
+
+@import "../bases/variables";
+
+#scanner-recipes {
+  #section-scanner-recipes-head {
+    background: $main;
+    padding: 40px 0;
+    align-items: center;
+
+    margin-bottom: 50px;
+  }
+}
