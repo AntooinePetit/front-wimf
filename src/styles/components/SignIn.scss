@@ -33,4 +33,16 @@
       }
     }
   }
+
+  .validation-message {
+    text-align: center;
+  }
+
+  .success {
+    color: green;
+  }
+
+  .failed {
+    color: red;
+  }
 }

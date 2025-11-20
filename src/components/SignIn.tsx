@@ -9,7 +9,7 @@ const SignIn = () => {
   const [errorConfirmPassword, setErrorConfirmPassword] =
     useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [registered, setRegistered] = useState<string | null>(null);
+  const [isRegistered, setIsRegistered] = useState<boolean | null>(null);
 
   const sendForm = async () => {
     setIsError(false);
@@ -70,10 +70,10 @@ const SignIn = () => {
 
       console.log(res);
 
-      setRegistered("Inscription réussie ! Bienvenue !")
+      setIsRegistered(true);
     } catch (error) {
       console.error(error);
-      setRegistered("Une erreur est survenue lors de l'inscription. Réessaie plus tard !")
+      setIsRegistered(false);
     }
   };
 
@@ -81,67 +81,75 @@ const SignIn = () => {
     <section id="sign-in">
       <h1>Créer un compte</h1>
 
-      <form
-        className="container"
-        onSubmit={(e) => {
-          e.preventDefault();
-          sendForm();
-        }}
-      >
-        <div>
-          <label htmlFor="username">Nom d'utilisateur</label>
-          <input type="text" id="username" name="username" required />
-          {errorUsername && (
-            <>
-              <p>Le nom d'utilisateur doit :</p>
-              <ul>
-                <li>Faire entre 3 et 20 caractères</li>
-                <li>
-                  Ne contenir que des lettres, chiffres, underscores ou tirets
-                </li>
-              </ul>
-            </>
-          )}
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" required />
-          {errorEmail && <p>Adresse mail invalide</p>}
-        </div>
-        <div>
-          <label htmlFor="password">Mot de passe</label>
-          <input type="password" id="password" name="password" required />
-          {errorPassword && (
-            <>
-              <p>Le mot de passe doit :</p>
-              <ul>
-                <li>Faire au moins 8 caractères</li>
-                <li>Contenir au moins une lettre majuscule</li>
-                <li>Contenir au moins une lettre minuscule</li>
-                <li>Contenir au moins un chiffre</li>
-                <li>Contenir au moins un caractère spécial (@$!%*?&)</li>
-              </ul>
-            </>
-          )}
-        </div>
-        <div>
-          <label htmlFor="confirm-password">Confirmer le mot de passe</label>
-          <input
-            type="password"
-            id="confirm-password"
-            name="confirm-password"
-            required
-          />
-          {errorConfirmPassword && (
-            <p>Les deux mots de passe doivent être identiques</p>
-          )}
-        </div>
-        <button type="submit" className="button">
-          S'inscrire
-        </button>
-      </form>
+      <div>
+        <form
+          className="container"
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendForm();
+          }}
+        >
+          <div>
+            <label htmlFor="username">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" required />
+            {errorUsername && (
+              <>
+                <p>Le nom d'utilisateur doit :</p>
+                <ul>
+                  <li>Faire entre 3 et 20 caractères</li>
+                  <li>
+                    Ne contenir que des lettres, chiffres, underscores ou tirets
+                  </li>
+                </ul>
+              </>
+            )}
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" name="email" required />
+            {errorEmail && <p>Adresse mail invalide</p>}
+          </div>
+          <div>
+            <label htmlFor="password">Mot de passe</label>
+            <input type="password" id="password" name="password" required />
+            {errorPassword && (
+              <>
+                <p>Le mot de passe doit :</p>
+                <ul>
+                  <li>Faire au moins 8 caractères</li>
+                  <li>Contenir au moins une lettre majuscule</li>
+                  <li>Contenir au moins une lettre minuscule</li>
+                  <li>Contenir au moins un chiffre</li>
+                  <li>Contenir au moins un caractère spécial (@$!%*?&)</li>
+                </ul>
+              </>
+            )}
+          </div>
+          <div>
+            <label htmlFor="confirm-password">Confirmer le mot de passe</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              required
+            />
+            {errorConfirmPassword && (
+              <p>Les deux mots de passe doivent être identiques</p>
+            )}
+          </div>
+          <button type="submit" className="button">
+            S'inscrire
+          </button>
+        </form>
 
-      {registered && <p style={{ color: "green", textAlign: "center" }}>{registered}</p>}
+        {isRegistered != null && (
+          <p className={`validation-message ${isRegistered == true ? "success" : "failed"}`}>
+            {isRegistered == true
+              ? "Inscription réussie ! Bienvenue !"
+              : "Une erreur est survenue lors de l'inscription. Réessaie plus tard !"}
+          </p>
+        )}
+      </div>
     </section>
   );
 };
