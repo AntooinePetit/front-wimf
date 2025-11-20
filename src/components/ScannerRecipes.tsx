@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { config } from "../config";
 import "../styles/components/ScannerRecipes.scss";
+import ScannerRecipesIngredients from "./ScannerRecipesIngredients";
+import ScannerRecipesResults from "./ScannerRecipesResult";
 
 interface ScannerRecipesProps {
   search: string;
@@ -66,7 +68,7 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
   }, []);
 
   return (
-    <section id="scanner-recipes">
+    <section id="scanner-recipes" className="testing">
       <div id="section-scanner-recipes-head">
         <button
           className="white-return-button return-button"
@@ -89,22 +91,12 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
         </div>
       )}
 
-      {(!isLoading && !isError) && (
-        <>
-          <div>
-            <h2>Ingrédients</h2>
-            {ingredients.map((ingredient) => (
-              <p>test</p>
-            ))}
-          </div>
+      {!isLoading && !isError && (
+        <div className="container">
+          <ScannerRecipesIngredients ingredients={ingredients}/>
 
-          <div>
-            <h2>Recettes</h2>
-            {recipes.map((recipe) => (
-              <p>test recette</p>
-            ))}
-          </div>
-        </>
+          <ScannerRecipesResults />
+        </div>
       )}
     </section>
   );
