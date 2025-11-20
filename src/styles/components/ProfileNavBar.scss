@@ -1,0 +1,43 @@
+// Import variables
+
+@import "../bases/variables";
+
+#profile-nav-bar {
+  position: absolute;
+  bottom: 73px;
+  padding: 20px;
+
+  > div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    align-items: stretch;
+
+    border: 1px solid $main;
+    border-radius: 30px;
+    background-color: #FFF;
+
+    a {
+      min-height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:nth-child(1) {
+        border-right: 1px solid $main;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+      }
+
+      &:nth-child(3) {
+        border-left: 1px solid $main;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+      }
+    }
+
+    .active {
+      background: $main;
+    }
+  }
+}

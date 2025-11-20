@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import Recipe from "./pages/Recipe";
 import Recipes from "./pages/Recipes";
 import Scanner from "./pages/Scanner";
@@ -11,6 +12,7 @@ function App() {
       <Route path="/recipes/recipe/:id" element={<Recipe />} />
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/scanner" element={<Scanner />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }

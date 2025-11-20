@@ -35,7 +35,7 @@ const NavBar = ({ active }: NavBarProps) => {
           </Link>
         </li>
         <li>
-          <Link to={"/"} className={active == "profile" ? "is-active" : ""}>
+          <Link to={"/profile"} className={active == "profile" ? "is-active" : ""}>
             <User height={25} />
             Profil
           </Link>
