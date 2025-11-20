@@ -1,0 +1,10 @@
+#scanner-recipes-result {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  img {
+    height: 150px;
+    object-fit: cover;
+  }
+}

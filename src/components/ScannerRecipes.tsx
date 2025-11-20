@@ -95,7 +95,7 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
         <div className="container">
           <ScannerRecipesIngredients ingredients={ingredients}/>
 
-          <ScannerRecipesResults />
+          <ScannerRecipesResults recipes={recipes} />
         </div>
       )}
     </section>
