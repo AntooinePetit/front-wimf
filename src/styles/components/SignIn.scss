@@ -1,0 +1,36 @@
+// Import variables
+
+@import "../bases/variables";
+
+#sign-in {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  min-height: calc(100vh - (73px + 116px));
+  justify-content: center;
+  margin-bottom: calc(73px + 116px);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      input {
+        padding: 10px 20px;
+        width: auto;
+        border-radius: 20px;
+        border: 3px solid $grey-border;
+
+        &:focus {
+          outline: none;
+          border-color: $main;
+        }
+      }
+    }
+  }
+}

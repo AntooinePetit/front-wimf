@@ -3,7 +3,7 @@
 @import "../bases/variables";
 
 #profile-nav-bar {
-  position: absolute;
+  position: fixed;
   bottom: 73px;
   padding: 20px;
 
@@ -18,7 +18,7 @@
     background-color: #FFF;
 
     a {
-      min-height: 100px;
+      min-height: 75px;
       display: flex;
       justify-content: center;
       align-items: center;

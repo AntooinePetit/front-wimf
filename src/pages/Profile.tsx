@@ -1,14 +1,13 @@
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
+import SignIn from "../components/SignIn";
 
 const Profile = () => {
   return (
     <>
-      <div>
-        <h1>Profil</h1>
-      </div>
+      <SignIn />
 
-      <ProfileNavBar active="legals"/>
+      <ProfileNavBar active="none"/>
       <NavBar active="profile" />
     </>
   );
