@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import Login from "../components/Login";
+import LogIn from "../components/Login";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 import SignIn from "../components/SignIn";
 import { useAuthStore } from "../store/authStore";
+import "../styles/pages/Profile.scss";
 
 const Profile = () => {
   const token = useAuthStore((state) => state.token);
@@ -21,13 +22,13 @@ const Profile = () => {
   }, [token]);
 
   return (
-    <>
+    <main id="profile">
       {token ? (
         <ProfileNavBar active="none" />
       ) : (
         <>
           {showButtons && (
-            <div id="connection-buttons">
+            <div id="connection-buttons" className="container">
               <button
                 className="button"
                 onClick={() => {
@@ -49,16 +50,20 @@ const Profile = () => {
             </div>
           )}
 
-          {showSignIn && <SignIn />}
+          {showSignIn && (
+            <SignIn setShowLogIn={setShowLogIn} setShowSignIn={setShowSignIn} />
+          )}
 
-          {showLogIn && <Login />}
+          {showLogIn && (
+            <LogIn setShowLogIn={setShowLogIn} setShowSignIn={setShowSignIn} />
+          )}
 
           <ProfileNavBar active="none" />
         </>
       )}
 
       <NavBar active="profile" />
-    </>
+    </main>
   );
 };
 

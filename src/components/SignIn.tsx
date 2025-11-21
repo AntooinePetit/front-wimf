@@ -4,7 +4,12 @@ import { config } from "../config";
 import { useAuthStore } from "../store/authStore";
 import "../styles/components/SignIn.scss";
 
-const SignIn = () => {
+interface SignInProps {
+  setShowSignIn: (value: boolean) => void;
+  setShowLogIn: (value: boolean) => void;
+}
+
+const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
   const setToken = useAuthStore((state) => state.setToken);
   const [errorUsername, setErrorUsername] = useState<boolean>(false);
   const [errorEmail, setErrorEmail] = useState<boolean>(false);
@@ -80,7 +85,7 @@ const SignIn = () => {
       const res = await req.json();
 
       if (res.token) {
-        setToken(res.token);
+        setToken(res.token, true);
         setIsRegistered(true);
       } else {
         setIsRegistered(false);
@@ -95,9 +100,8 @@ const SignIn = () => {
     <section id="sign-in">
       <h1>Créer un compte</h1>
 
-      <div>
+      <div className="container">
         <form
-          className="container"
           onSubmit={(e) => {
             e.preventDefault();
             sendForm();
@@ -151,7 +155,7 @@ const SignIn = () => {
               <p>Les deux mots de passe doivent être identiques</p>
             )}
           </div>
-          <div>
+          <div className="check">
             <input type="checkbox" name="rgpd" id="rgpd" required />
             <label htmlFor="rgpd">
               J’accepte le traitement de mes données personnelles conformément à
@@ -178,6 +182,18 @@ const SignIn = () => {
               : "Une erreur est survenue lors de l'inscription. Réessaie plus tard !"}
           </p>
         )}
+
+        <p>
+          Tu as déjà un compte ?{" "}
+          <span
+            onClick={() => {
+              setShowLogIn(true);
+              setShowSignIn(false);
+            }}
+          >
+            Connecte toi !
+          </span>
+        </p>
       </div>
     </section>
   );

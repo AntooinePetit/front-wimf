@@ -1,1 +1,83 @@
-// TODO: style buttons connexion
+// Import variables
+
+@import "../bases/variables";
+
+#profile {
+  #connection-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: calc(100vh - (73px + 116px));
+    justify-content: center;
+    margin-bottom: calc(73px + 116px);
+  }
+
+  #sign-in,
+  #login {
+    h1 {
+      padding: 20px 0;
+      background: $main;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: calc(100vh - (73px + 116px + 100px));
+      justify-content: center;
+      margin-bottom: calc(73px + 116px);
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          input {
+            padding: 10px 20px;
+            width: auto;
+            border-radius: 20px;
+            border: 3px solid $grey-border;
+
+            &:focus {
+              outline: none;
+              border-color: $main;
+            }
+          }
+        }
+
+        .check {
+          flex-direction: row;
+          align-items: baseline;
+
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      span {
+        text-decoration: underline;
+      }
+
+      .validation-message {
+        text-align: center;
+      }
+
+      .success {
+        color: green;
+      }
+
+      .failed {
+        color: red;
+      }
+    }
+  }
+
+  #sign-in h1 {
+    margin-bottom: 50px;
+  }
+}
