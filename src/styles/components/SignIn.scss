@@ -10,6 +10,11 @@
   justify-content: center;
   margin-bottom: calc(73px + 116px);
 
+  h1 {
+    padding: 20px 0;
+    background: $main;
+  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -29,6 +34,15 @@
         &:focus {
           outline: none;
           border-color: $main;
+        }
+      }
+
+      &:nth-child(5) {
+        flex-direction: row;
+        align-items: baseline;
+
+        a {
+          text-decoration: underline;
         }
       }
     }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { config } from "../config";
 import "../styles/components/SignIn.scss";
 
@@ -8,6 +9,7 @@ const SignIn = () => {
   const [errorPassword, setErrorPassword] = useState<boolean>(false);
   const [errorConfirmPassword, setErrorConfirmPassword] =
     useState<boolean>(false);
+  const [errorRgpd, setErrorRgpd] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [isRegistered, setIsRegistered] = useState<boolean | null>(null);
 
@@ -17,6 +19,7 @@ const SignIn = () => {
     setErrorEmail(false);
     setErrorPassword(false);
     setErrorConfirmPassword(false);
+    setErrorRgpd(false);
 
     const form = document.querySelector("form") as HTMLFormElement;
     const username = (form.elements.namedItem("username") as HTMLInputElement)
@@ -27,6 +30,7 @@ const SignIn = () => {
     const confirmPassword = (
       form.elements.namedItem("confirm-password") as HTMLInputElement
     ).value;
+    const rgpd = (form.elements.namedItem("rgpd") as HTMLInputElement).checked;
 
     // Regex
     const usernameRegex = /^[a-zA-Z0-9_-]{3,20}$/;
@@ -52,6 +56,11 @@ const SignIn = () => {
 
     if (password !== confirmPassword) {
       setErrorConfirmPassword(true);
+      setIsError(true);
+    }
+
+    if (!rgpd) {
+      setErrorRgpd(true);
       setIsError(true);
     }
 
@@ -137,13 +146,28 @@ const SignIn = () => {
               <p>Les deux mots de passe doivent être identiques</p>
             )}
           </div>
+          <div>
+            <input type="checkbox" name="rgpd" id="rgpd" required />
+            <label htmlFor="rgpd">
+              J’accepte le traitement de mes données personnelles conformément à
+              la Politique de confidentialité et aux finalités indiquées{" "}
+              <Link to={"/profile/legals/rgpd"}>ici</Link>.
+            </label>
+            {errorRgpd && (
+              <p>Vous devez accepter la politique de confidentialité</p>
+            )}
+          </div>
           <button type="submit" className="button">
             S'inscrire
           </button>
         </form>
 
         {isRegistered != null && (
-          <p className={`validation-message ${isRegistered == true ? "success" : "failed"}`}>
+          <p
+            className={`validation-message ${
+              isRegistered == true ? "success" : "failed"
+            }`}
+          >
             {isRegistered == true
               ? "Inscription réussie ! Bienvenue !"
               : "Une erreur est survenue lors de l'inscription. Réessaie plus tard !"}
