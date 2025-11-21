@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { config } from "../config";
 
 interface LogInProps {
   setShowLogIn: (value: boolean) => void;
@@ -15,7 +16,7 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
     return emailRegex.test(email);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = { email: "", password: "" };
 
@@ -28,13 +29,36 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
     if (!password) {
       newErrors.password = "Le mot de passe est requis";
     } else if (password.length < 8) {
-      newErrors.password = "Le mot de passe doit contenir au moins 8 caractères";
+      newErrors.password =
+        "Le mot de passe doit contenir au moins 8 caractères";
     }
 
     setErrors(newErrors);
 
     if (!newErrors.email && !newErrors.password) {
-      // Fetch ici
+      try {
+        const req = await fetch(`${config.apiUrl}/api/v1/auth/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+
+        const res = await req.json();
+
+        if (req.ok && res.token) {
+          localStorage.setItem("authToken", res.token);
+          setShowLogIn(false);
+        } else {
+          setErrors({ ...errors, password: res.message || "Erreur de connexion" });
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -53,7 +77,11 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && <span style={{ color: "red", fontSize: "0.875rem" }}>{errors.email}</span>}
+            {errors.email && (
+              <p style={{ color: "red", fontSize: "0.875rem" }}>
+                {errors.email}
+              </p>
+            )}
           </div>
           <div>
             <label htmlFor="password">Mot de passe</label>
@@ -64,7 +92,11 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errors.password && <span style={{ color: "red", fontSize: "0.875rem" }}>{errors.password}</span>}
+            {errors.password && (
+              <p style={{ color: "red", fontSize: "0.875rem" }}>
+                {errors.password}
+              </p>
+            )}
           </div>
           <div className="check">
             <input
