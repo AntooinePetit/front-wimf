@@ -7,8 +7,8 @@ interface ProfileNavBarProps {
 
 const ProfileNavBar = ({ active }: ProfileNavBarProps) => {
   return (
-    <div id="profile-nav-bar" className="container">
-      <div >
+    <div id="profile-nav-bar">
+      <div>
         <Link
           to={"/profile/infos"}
           className={active == "my-infos" ? "active" : ""}

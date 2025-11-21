@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../config";
+import { useAuthStore } from "../store/authStore";
 import "../styles/components/SignIn.scss";
 
 const SignIn = () => {
+  const setToken = useAuthStore((state) => state.setToken);
   const [errorUsername, setErrorUsername] = useState<boolean>(false);
   const [errorEmail, setErrorEmail] = useState<boolean>(false);
   const [errorPassword, setErrorPassword] = useState<boolean>(false);
@@ -77,9 +79,12 @@ const SignIn = () => {
 
       const res = await req.json();
 
-      console.log(res);
-
-      setIsRegistered(true);
+      if (res.token) {
+        setToken(res.token);
+        setIsRegistered(true);
+      } else {
+        setIsRegistered(false);
+      }
     } catch (error) {
       console.error(error);
       setIsRegistered(false);
