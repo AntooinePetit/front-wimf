@@ -28,4 +28,5 @@
   padding: 12px 20px;
   border-radius: 30px;
   animation: fadeout 0.3s ease-in-out forwards, hide 3s forwards;
+  z-index: 100000;
 }

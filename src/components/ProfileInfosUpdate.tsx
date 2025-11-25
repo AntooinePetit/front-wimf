@@ -213,15 +213,14 @@ const ProfileInfosUpdate = () => {
             {successMessage}
           </p>
         )}
-
-        <button
-          className="button logout-button"
-          onClick={handleLogout}
-          style={{ marginTop: "2rem" }}
-        >
-          Se déconnecter
-        </button>
       </div>
+      <button
+        className="logout-button"
+        onClick={handleLogout}
+        style={{ marginTop: "2rem" }}
+      >
+        Déconnexion
+      </button>
     </section>
   );
 };

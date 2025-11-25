@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { config } from "../config";
+import { useAuthStore } from "../store/authStore";
 
 interface LogInProps {
   setShowLogIn: (value: boolean) => void;
@@ -7,9 +9,13 @@ interface LogInProps {
 }
 
 const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
+  const navigate = useNavigate();
+  const setToken = useAuthStore((state) => state.setToken);
+  const [remainConnected, setRemainConnected] = useState<boolean>(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const [notification, setNotification] = useState<string | null>(null);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -50,11 +56,13 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
 
         const res = await req.json();
 
-        if (req.ok && res.token) {
-          localStorage.setItem("authToken", res.token);
+        if (req.ok && res) {
+          setToken(res, remainConnected);
           setShowLogIn(false);
+          navigate("/profile/infos");
         } else {
-          setErrors({ ...errors, password: res.message || "Erreur de connexion" });
+          setNotification(res.message || "Erreur de connexion");
+          setTimeout(() => setNotification(null), 3000);
         }
       } catch (error) {
         console.error(error);
@@ -103,6 +111,7 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
               type="checkbox"
               name="remain-connected"
               id="remain-connected"
+              onChange={(e) => setRemainConnected(e.target.checked)}
             />
             <label htmlFor="remain-connected">Rester connecté</label>
           </div>
@@ -121,6 +130,9 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
             Crées-en un !
           </span>
         </p>
+        {notification && (
+          <div className="notification-error">{notification}</div>
+        )}
       </div>
     </section>
   );
