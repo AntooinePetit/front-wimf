@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../config";
 import { useAuthStore } from "../store/authStore";
-import "../styles/components/SignIn.scss";
 
 interface SignInProps {
   setShowSignIn: (value: boolean) => void;

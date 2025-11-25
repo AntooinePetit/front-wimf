@@ -108,7 +108,7 @@ const ScannerIngredientSearch = ({
         Rechercher des recettes
       </Link>
 
-      {notification && <div className="notification">{notification}</div>}
+      {notification && <div className="notification-error">{notification}</div>}
     </div>
   );
 };

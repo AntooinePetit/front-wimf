@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LogIn from "../components/Login";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
@@ -11,15 +12,17 @@ const Profile = () => {
   const [showSignIn, setShowSignIn] = useState<boolean>(false);
   const [showLogIn, setShowLogIn] = useState<boolean>(false);
   const [showButtons, setShowButtons] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
+      navigate("/profile/infos");
       return;
     }
     setShowButtons(true);
     setShowLogIn(false);
     setShowSignIn(false);
-  }, [token]);
+  }, [token, navigate]);
 
   return (
     <main id="profile">

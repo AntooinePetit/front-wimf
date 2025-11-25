@@ -139,17 +139,10 @@ svg {
   margin-bottom: 400px;
 }
 
-.notification {
-  font-family: $font-text;
-  font-size: 20px;
-  text-align: center;
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #e63946;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 30px;
-  animation: fadeout 0.3s ease-in-out forwards, hide 3s forwards;
+.notification-success {
+  @include notification(#28a745);
+}
+
+.notification-error {
+  @include notification(#e63946);
 }
