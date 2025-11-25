@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { config } from "../config";
 import { useAuthStore } from "../store/authStore";
 import "../styles/components/ProfilePreferences.scss";
 
 const ProfilePreferencesUpdates = () => {
+  const navigate = useNavigate();
   const token = useAuthStore((state) => state.token);
   const [nutritionalValues, setNutritionalValues] = useState(false);
   const [calories, setCalories] = useState(false);
@@ -33,8 +35,10 @@ const ProfilePreferencesUpdates = () => {
 
     if (token) {
       fetchPreferences();
+    } else {
+      navigate("/profile");
     }
-  }, [token]);
+  }, [token, navigate]);
 
   const updatePreferences = async (field: string, value: boolean) => {
     try {
