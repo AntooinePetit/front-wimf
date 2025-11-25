@@ -9,24 +9,26 @@ const ProfileNavBar = ({ active }: ProfileNavBarProps) => {
   return (
     <div id="profile-nav-bar">
       <div>
-        <Link
-          to={"/profile/infos"}
-          className={active == "my-infos" ? "active" : ""}
-        >
-          Mes informations
-        </Link>
-        <Link
-          to={"/profile/preferences"}
-          className={active == "preferences" ? "active" : ""}
-        >
-          Préférences
-        </Link>
-        <Link
-          to={"/profile/legals"}
-          className={active == "legals" ? "active" : ""}
-        >
-          Informations légales
-        </Link>
+        <div>
+          <Link
+            to={"/profile/infos"}
+            className={active == "my-infos" ? "active" : ""}
+          >
+            Mes informations
+          </Link>
+          <Link
+            to={"/profile/preferences"}
+            className={active == "preferences" ? "active" : ""}
+          >
+            Préférences
+          </Link>
+          <Link
+            to={"/profile/legals"}
+            className={active == "legals" ? "active" : ""}
+          >
+            Informations légales
+          </Link>
+        </div>
       </div>
     </div>
   );
