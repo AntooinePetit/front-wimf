@@ -3,7 +3,7 @@
 @import "../bases/variables";
 
 #profile-nav-bar {
-  background: #ffffffd4;
+  background: rgba($light-bg, 0.8);
   backdrop-filter: blur(1px);
   position: fixed;
   bottom: 73px;
