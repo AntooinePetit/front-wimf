@@ -1,0 +1,67 @@
+@import "../bases/variables";
+
+#profile-preferences {
+  min-height: calc(100vh - (73px + 116px + 100px));
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-bottom: calc(73px + 116px);
+
+  h1 {
+    padding: 20px 0;
+    background: $main;
+  }
+
+  #preferences-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .setting {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      font-family: $font-text;
+      color: $dark-text;
+
+      .toggle {
+        appearance: none;
+        width: 46px;
+        height: 23px;
+        background: $white;
+        border: 2px solid $main;
+        border-radius: 15px;
+        position: relative;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: $grey-border;
+          top: 50%;
+          left: 2px;
+          transform: translateY(-50%);
+          transition: 0.3s;
+        }
+
+        &:checked {
+          background: rgba($main, 0.1);
+
+          &::before {
+            left: 24px;
+            background: $main;
+          }
+        }
+
+        &:not(:checked) {
+          border-color: $grey-border;
+        }
+      }
+    }
+  }
+}
