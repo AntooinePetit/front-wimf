@@ -115,6 +115,8 @@ const ProfileInfosUpdate = () => {
 
         if (req.ok) {
           setSuccessMessage("Informations mises à jour avec succès");
+          setPassword("");
+          setConfirmPassword("");
           setTimeout(() => setSuccessMessage(""), 3000);
         } else {
           const res = await req.json();
@@ -139,6 +141,11 @@ const ProfileInfosUpdate = () => {
       <h1>Mes informations</h1>
 
       <div className="container">
+        <div id="infos">
+          <h2>{username}</h2>
+          <p>{email}</p>
+        </div>
+
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username">Nom d'utilisateur</label>
@@ -207,11 +214,7 @@ const ProfileInfosUpdate = () => {
         </form>
 
         {successMessage && (
-          <p
-            style={{ color: "green", fontSize: "0.875rem", marginTop: "1rem" }}
-          >
-            {successMessage}
-          </p>
+          <p className="notification-success">{successMessage}</p>
         )}
       </div>
       <button

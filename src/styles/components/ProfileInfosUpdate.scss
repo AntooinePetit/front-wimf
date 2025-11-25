@@ -6,6 +6,9 @@
   min-height: calc(100vh - (73px + 116px + 100px));
   justify-content: center;
   margin-bottom: calc(73px + 116px);
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 
   h1 {
     padding: 20px 0;
@@ -15,7 +18,18 @@
   .container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
+
+    #infos {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+
+      p {
+        color: $grey-text;
+      }
+    }
 
     form {
       display: flex;
