@@ -17,6 +17,7 @@ nav {
   z-index: 100;
 
   ul {
+    list-style: none;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 

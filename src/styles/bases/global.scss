@@ -148,7 +148,7 @@ svg {
   @include notification(#e63946);
 }
 
-.legal-section {
+.legal-main {
   margin-bottom: calc(73px + 116px);
 
   h1 {
@@ -171,6 +171,13 @@ svg {
 
     address {
       margin-bottom: 20px;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style: disc;
+      list-style-position: outside;
+      
     }
   }
 }

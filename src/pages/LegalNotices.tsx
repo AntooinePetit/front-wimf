@@ -3,7 +3,7 @@ import ProfileNavBar from "../components/ProfileNavBar";
 
 const LegalNotices = () => {
   return (
-    <main className="legal-section">
+    <main className="legal-main">
       <h1>Mentions légales</h1>
 
       <section>

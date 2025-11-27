@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import GeneralTermsOfUse from "./pages/GeneralTermsOfUse";
 import Home from "./pages/Home";
 import LegalNotices from "./pages/LegalNotices";
 import Legals from "./pages/Legals";
@@ -21,6 +22,7 @@ function App() {
       <Route path="/profile/preferences" element={<ProfilePreferences />} />
       <Route path="/legals" element={<Legals />} />
       <Route path="/legals/notices" element={<LegalNotices />} />
+      <Route path="/legals/gtu" element={<GeneralTermsOfUse />} />
     </Routes>
   );
 }
