@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { config } from "../config";
+import { login } from "../services/api";
 import { useAuthStore } from "../store/authStore";
 
 interface LogInProps {
@@ -43,20 +43,8 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
 
     if (!newErrors.email && !newErrors.password) {
       try {
-        const req = await fetch(`${config.apiUrl}/api/v1/auth/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        });
-
-        const res = await req.json();
-
-        if (req.ok && res) {
+        const res = await login(email, password);
+        if (res.token || res) {
           setToken(res, remainConnected);
           setShowLogIn(false);
           navigate("/profile/infos");

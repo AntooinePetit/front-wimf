@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import { config } from "../config";
+import { scanImage } from "../services/api";
 import "../styles/components/CameraScanner.scss";
 
 const videoConstraints = {
@@ -42,16 +42,7 @@ const CameraScanner = ({
     if (!capturedImage) return;
 
     try {
-      const res = await fetch(`${config.apiUrl}/api/v1/ai`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ picture: capturedImage }),
-      });
-
-      const data = await res.json();
-
-      console.log("Réponse backend:", data);
-
+      const data = await scanImage(capturedImage);
       setIngredients(data.ingredients);
     } catch (err) {
       console.error("Erreur upload:", err);

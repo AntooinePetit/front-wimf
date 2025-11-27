@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
-import { config } from "../config";
+import { searchIngredients } from "../services/api";
 import "../styles/components/ScannerIngredients.scss";
 import ScannerIngredientSearch from "./ScannerIngredientSearch";
 import ScannerIngredientsList from "./ScannerIngredientsList";
@@ -26,19 +26,13 @@ const ScannerIngredients = ({
 
   const getIngredientsIds = async () => {
     try {
-      const req = await fetch(
-        `${config.apiUrl}/api/v1/ingredients/search/${ingredients.join("+")}`
-      );
-
-      const res = await req.json();
-
+      const res = await searchIngredients(ingredients.join("+"));
       const list = res.map(
         (ingredient: { id_ingredient: number; name_ingredient: string }) => ({
           id: ingredient.id_ingredient,
           name: ingredient.name_ingredient,
         })
       );
-
       setIngredientsIds(list);
     } catch (error) {
       console.error(error);

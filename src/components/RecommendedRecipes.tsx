@@ -1,23 +1,16 @@
 import { useEffect, useState } from "react";
-import { config } from "../config";
-import "../styles/components/RecommendedRecipes.scss";
-
 import { Link } from "react-router-dom";
+import { getRandomRecipes } from "../services/api";
+import "../styles/components/RecommendedRecipes.scss";
 import Carousel from "./Carousel";
 
 const RecommendedRecipes = () => {
   const [recipes, setRecipes] = useState([]);
 
-  const url = config.apiUrl;
 
   const getRecipes = async () => {
     try {
-      const req = await fetch(`${url}/api/v1/recipes/random`);
-
-      if (!req.ok) throw new Error("Erreur de chargement des recettes");
-
-      const res = await req.json();
-
+      const res = await getRandomRecipes();
       setRecipes(res);
     } catch (error) {
       console.error(error);
@@ -26,7 +19,6 @@ const RecommendedRecipes = () => {
 
   useEffect(() => {
     getRecipes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

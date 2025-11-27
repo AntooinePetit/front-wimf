@@ -1,6 +1,6 @@
 import { Minus, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { config } from "../config";
+import { getIngredientsByRecipeId } from "../services/api";
 import "../styles/components/IngredientsRecipe.scss";
 
 interface IngredientsRecipeProps {
@@ -26,14 +26,9 @@ const IngredientsRecipe = ({ id, servings }: IngredientsRecipeProps) => {
   >([]);
   const [wantedServings, setWantedServings] = useState(servings);
 
-  const url = config.apiUrl;
-
   const getIngredients = async () => {
     try {
-      const req = await fetch(`${url}/api/v1/ingredients/${id}`);
-
-      const res = await req.json();
-
+      const res = await getIngredientsByRecipeId(id);
       setIngredients(res);
     } catch (error) {
       console.error(error);

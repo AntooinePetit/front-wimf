@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { config } from "../config";
+import { getUserById, updateUser } from "../services/api";
 import { useAuthStore } from "../store/authStore";
 import "../styles/components/ProfilePreferences.scss";
 
@@ -16,18 +16,9 @@ const ProfilePreferencesUpdates = () => {
       try {
         const payload = JSON.parse(atob(token!.split(".")[1]));
         const userId = payload.id;
-
-        const req = await fetch(`${config.apiUrl}/api/v1/users/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const res = await req.json();
-
-        if (req.ok) {
-          setNutritionalValues(res.nutritional_values_user || false);
-          setCalories(res.calories_user || false);
-        }
+        const res = await getUserById(userId, token!);
+        setNutritionalValues(res.nutritional_values_user || false);
+        setCalories(res.calories_user || false);
       } catch (error) {
         console.error(error);
       }
@@ -44,20 +35,9 @@ const ProfilePreferencesUpdates = () => {
     try {
       const payload = JSON.parse(atob(token!.split(".")[1]));
       const userId = payload.id;
-
-      const req = await fetch(`${config.apiUrl}/api/v1/users/${userId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ [field]: value }),
-      });
-
-      if (req.ok) {
-        setNotification("Préférences mises à jour");
-        setTimeout(() => setNotification(null), 3000);
-      }
+      await updateUser(userId, token!, { [field]: value });
+      setNotification("Préférences mises à jour");
+      setTimeout(() => setNotification(null), 3000);
     } catch (error) {
       console.error(error);
     }

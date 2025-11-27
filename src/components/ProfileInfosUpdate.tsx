@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { config } from "../config";
+import { getUserById, updateUser } from "../services/api";
 import { useAuthStore } from "../store/authStore";
 import "../styles/components/ProfileInfosUpdate.scss";
 
@@ -25,18 +25,9 @@ const ProfileInfosUpdate = () => {
       try {
         const payload = JSON.parse(atob(token!.split(".")[1]));
         const userId = payload.id;
-
-        const req = await fetch(`${config.apiUrl}/api/v1/users/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const res = await req.json();
-
-        if (req.ok) {
-          setUsername(res.username_user || "");
-          setEmail(res.email_user || "");
-        }
+        const res = await getUserById(userId, token!);
+        setUsername(res.username_user || "");
+        setEmail(res.email_user || "");
       } catch (error) {
         console.error(error);
       }
@@ -104,29 +95,17 @@ const ProfileInfosUpdate = () => {
           body.password = password;
         }
 
-        const req = await fetch(`${config.apiUrl}/api/v1/users/${userId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(body),
-        });
-
-        if (req.ok) {
-          setSuccessMessage("Informations mises à jour avec succès");
-          setPassword("");
-          setConfirmPassword("");
-          setTimeout(() => setSuccessMessage(""), 3000);
-        } else {
-          const res = await req.json();
-          setErrors({
-            ...errors,
-            email: res.message || "Erreur de mise à jour",
-          });
-        }
+        await updateUser(userId, token!, body);
+        setSuccessMessage("Informations mises à jour avec succès");
+        setPassword("");
+        setConfirmPassword("");
+        setTimeout(() => setSuccessMessage(""), 3000);
       } catch (error) {
         console.error(error);
+        setErrors({
+          ...errors,
+          email: "Erreur de mise à jour",
+        });
       }
     }
   };

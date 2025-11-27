@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../config";
+import { searchRecipes } from "../services/api";
 import "../styles/components/ShowRecipes.scss";
 
 interface SearchResultProps {
@@ -24,12 +25,7 @@ const SearchResult = ({ search }: SearchResultProps) => {
 
   const getSearchedRecipes = async () => {
     try {
-      const req = await fetch(
-        `${config.apiUrl}/api/v1/recipes/search/${reqSearch}`
-      );
-
-      const res = await req.json();
-
+      const res = await searchRecipes(reqSearch);
       setRecipes(res);
       setIsLoading(false);
       setRecipesShown(8);

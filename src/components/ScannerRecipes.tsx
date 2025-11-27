@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { config } from "../config";
+import { getIngredientsByIds, searchRecipesByIngredients } from "../services/api";
 import "../styles/components/ScannerRecipes.scss";
 import ScannerRecipesIngredients from "./ScannerRecipesIngredients";
 import ScannerRecipesResults from "./ScannerRecipesResult";
@@ -28,22 +28,11 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
 
   const fetchData = async () => {
     try {
-      const [reqIngredients, reqRecipes] = await Promise.all([
-        fetch(
-          `${config.apiUrl}/api/v1/ingredients/ingredient/${search.replaceAll(
-            " ",
-            "+"
-          )}`
-        ),
-        fetch(
-          `${
-            config.apiUrl
-          }/api/v1/recipes/search/ingredients/${search.replaceAll(" ", "+")}`
-        ),
+      const searchQuery = search.replaceAll(" ", "+");
+      const [ingredientsRes, recipesRes] = await Promise.all([
+        getIngredientsByIds(searchQuery),
+        searchRecipesByIngredients(searchQuery),
       ]);
-
-      const ingredientsRes = await reqIngredients.json();
-      const recipesRes = await reqRecipes.json();
 
       const list = ingredientsRes.map(
         (ingredient: { id_ingredient: number; name_ingredient: string }) => ({

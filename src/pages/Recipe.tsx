@@ -7,42 +7,27 @@ import NutritionalValuesRecipe from "../components/NutritionalValuesRecipe";
 import RecipeHead from "../components/RecipeHead";
 import StepsRecipe from "../components/StepsRecipe";
 import TimeRecipe from "../components/TimeRecipe";
-import { config } from "../config";
-
-/*
-cooking_time: 80
-id_recipe: 1
-image_recipe: "boulettes-aperitives.png"
-instructions: {steps: Array(4)}
-name_recipe: "Boulettes apéritives au cocktail"
-nutritional_values_recipe: {totalFat: {…}, saturatedFat: {…}, cholesterol: {…}, sodium: {…}, totalCarbohydrate: {…}, …}
-preparation_time: 20
-resting_time: 0
-servings_recipe: 10
-total_time: 100
-*/
+import { getRecipeById, getUserById } from "../services/api";
+import { useAuthStore } from "../store/authStore";
 
 const Recipe = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [recipe, setRecipe] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
   const [reqError, setReqError] = useState<string | null>(null);
+  const [userPreferences, setUserPreferences] = useState<{ nutritional_values_user: boolean; calories_user: boolean } | null>(null);
   const { id } = useParams();
+  const token = useAuthStore((state) => state.token);
 
-  const url = config.apiUrl;
 
   const getRecipe = async () => {
     try {
-      const req = await fetch(`${url}/api/v1/recipes/${id}`);
-
-      const res = await req.json();
-
+      const res = await getRecipeById(id!);
       if (res.message && res.message == "Recette introuvable") {
         setReqError(res.message);
         setIsLoading(false);
         return;
       }
-
       setRecipe(res);
       setIsLoading(false);
     } catch (error) {
@@ -52,8 +37,25 @@ const Recipe = () => {
     }
   };
 
+  const getUserPreferences = async () => {
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        const userId = payload.id;
+        const res = await getUserById(userId, token);
+        setUserPreferences({
+          nutritional_values_user: res.nutritional_values_user,
+          calories_user: res.calories_user,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   useEffect(() => {
     getRecipe();
+    getUserPreferences();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -118,9 +120,13 @@ const Recipe = () => {
 
         <StepsRecipe steps={recipe.instructions.steps} />
 
-        <NutritionalValuesRecipe
-          nutritional={recipe.nutritional_values_recipe}
-        />
+        {(!userPreferences || userPreferences.nutritional_values_user || userPreferences.calories_user) && (
+          <NutritionalValuesRecipe
+            nutritional={recipe.nutritional_values_recipe}
+            showCaloriesOnly={userPreferences?.calories_user && !userPreferences?.nutritional_values_user}
+            hideCalories={userPreferences?.nutritional_values_user && !userPreferences?.calories_user}
+          />
+        )}
       </main>
 
       <NavBar active={"recipes"} />

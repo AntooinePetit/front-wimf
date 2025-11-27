@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../config";
+import { getAllRecipes } from "../services/api";
 import "../styles/components/ShowRecipes.scss";
 
 interface Recipe {
@@ -20,10 +21,7 @@ const AllRecipes = () => {
 
   const getRecipes = async () => {
     try {
-      const req = await fetch(`${url}/api/v1/recipes`);
-
-      const res = await req.json();
-
+      const res = await getAllRecipes();
       setRecipes(res);
       setIsLoading(false);
       setRecipesShown(8);
@@ -36,7 +34,6 @@ const AllRecipes = () => {
 
   useEffect(() => {
     getRecipes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading)

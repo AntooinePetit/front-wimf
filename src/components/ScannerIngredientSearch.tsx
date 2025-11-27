@@ -1,7 +1,7 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { config } from "../config";
+import { searchIngredients } from "../services/api";
 import "../styles/components/ScannerIngredientSearch.scss";
 
 interface Ingredient {
@@ -27,12 +27,7 @@ const ScannerIngredientSearch = ({
 
   const getSearchResults = async () => {
     try {
-      const req = await fetch(
-        `${config.apiUrl}/api/v1/ingredients/search/${search}`
-      );
-
-      const res = (await req.json()) as Ingredient[];
-
+      const res = (await searchIngredients(search)) as Ingredient[];
       setSearchResults(res);
     } catch (error) {
       console.error(error);

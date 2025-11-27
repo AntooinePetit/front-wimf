@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { config } from "../config";
+import { register } from "../services/api";
 import { useAuthStore } from "../store/authStore";
 
 interface SignInProps {
@@ -73,16 +73,7 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
     if (isError) return;
 
     try {
-      const req = await fetch(`${config.apiUrl}/api/v1/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
-
-      const res = await req.json();
-
+      const res = await register(username, email, password);
       if (res.token) {
         setToken(res.token, true);
         setIsRegistered(true);
