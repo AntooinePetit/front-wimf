@@ -135,10 +135,6 @@ svg {
   animation: rotation 1s linear infinite;
 }
 
-.testing {
-  margin-bottom: 400px;
-}
-
 .notification-success {
   @include notification(#28a745);
 }
