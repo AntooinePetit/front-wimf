@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import GDPR from "./pages/GDPR";
 import GeneralTermsOfUse from "./pages/GeneralTermsOfUse";
 import Home from "./pages/Home";
 import LegalNotices from "./pages/LegalNotices";
@@ -25,6 +26,7 @@ function App() {
       <Route path="/legals/notices" element={<LegalNotices />} />
       <Route path="/legals/gtu" element={<GeneralTermsOfUse />} />
       <Route path="/legals/privacy" element={<PrivacyPolicy />} />
+      <Route path="/legals/gdpr" element={<GDPR />} />
     </Routes>
   );
 }
