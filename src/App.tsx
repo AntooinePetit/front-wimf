@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Legals from "./pages/Legals";
 import Profile from "./pages/Profile";
 import ProfileInfos from "./pages/ProfileInfos";
 import ProfilePreferences from "./pages/ProfilePreferences";
@@ -17,6 +18,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile/infos" element={<ProfileInfos />} />
       <Route path="/profile/preferences" element={<ProfilePreferences />} />
+      <Route path="/legals" element={<Legals />} />
     </Routes>
   );
 }

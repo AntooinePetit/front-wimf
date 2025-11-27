@@ -1,0 +1,27 @@
+// Import variables
+
+@import "../bases/variables";
+
+#legals {
+  h1 {
+    background: $main;
+    padding: 20px 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      border-bottom: 1px solid $grey-border;
+
+      a {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  }
+}

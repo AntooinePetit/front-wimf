@@ -23,7 +23,7 @@ const ProfileNavBar = ({ active }: ProfileNavBarProps) => {
             Préférences
           </Link>
           <Link
-            to={"/profile/legals"}
+            to={"/legals"}
             className={active == "legals" ? "active" : ""}
           >
             Informations légales
