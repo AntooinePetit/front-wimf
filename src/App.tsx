@@ -3,6 +3,7 @@ import GeneralTermsOfUse from "./pages/GeneralTermsOfUse";
 import Home from "./pages/Home";
 import LegalNotices from "./pages/LegalNotices";
 import Legals from "./pages/Legals";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Profile from "./pages/Profile";
 import ProfileInfos from "./pages/ProfileInfos";
 import ProfilePreferences from "./pages/ProfilePreferences";
@@ -23,6 +24,7 @@ function App() {
       <Route path="/legals" element={<Legals />} />
       <Route path="/legals/notices" element={<LegalNotices />} />
       <Route path="/legals/gtu" element={<GeneralTermsOfUse />} />
+      <Route path="/legals/privacy" element={<PrivacyPolicy />} />
     </Routes>
   );
 }

@@ -13,7 +13,6 @@
 * {
   margin: 0;
   padding: 0;
-  list-style: none;
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -165,11 +164,9 @@ svg {
       margin-bottom: 10px;
     }
 
-    p {
-      margin-bottom: 20px;
-    }
-
-    address {
+    p,
+    address,
+    ul {
       margin-bottom: 20px;
     }
 
@@ -177,7 +174,6 @@ svg {
       padding-left: 20px;
       list-style: disc;
       list-style-position: outside;
-      
     }
   }
 }
