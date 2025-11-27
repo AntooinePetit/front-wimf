@@ -45,7 +45,8 @@ label,
 input,
 button,
 a,
-li {
+li,
+address {
   font-family: $font-text;
   color: $dark-text;
   font-size: 20px;
@@ -145,4 +146,31 @@ svg {
 
 .notification-error {
   @include notification(#e63946);
+}
+
+.legal-section {
+  margin-bottom: calc(73px + 116px);
+
+  h1 {
+    background: $main;
+    padding: 20px 0;
+  }
+
+  section {
+    padding: 20px;
+    border-radius: 20px;
+
+    h2,
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    address {
+      margin-bottom: 20px;
+    }
+  }
 }

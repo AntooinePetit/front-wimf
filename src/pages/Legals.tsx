@@ -12,25 +12,25 @@ const Legals = () => {
 
         <ul>
           <li>
-            <Link to={"/legals/mentions"}>
+            <Link to={"/legals/notices"}>
               <span>Mentions légales</span>
               <ChevronRight />
             </Link>
           </li>
           <li>
-            <Link to={"/legals/cgu"}>
+            <Link to={"/legals/gtu"}>
               <span>Conditions générales d'utilisation</span>
               <ChevronRight />
             </Link>
           </li>
           <li>
-            <Link to={"/legals/confidentiality"}>
+            <Link to={"/legals/privacy"}>
               <span>Politique de confidentialité</span>
               <ChevronRight />
             </Link>
           </li>
           <li>
-            <Link to={"/legals/rgpd"}>
+            <Link to={"/legals/gdpr"}>
               <span>Consentement RGPD/Utilisation de tes données</span>{" "}
               <ChevronRight />
             </Link>

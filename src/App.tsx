@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import LegalNotices from "./pages/LegalNotices";
 import Legals from "./pages/Legals";
 import Profile from "./pages/Profile";
 import ProfileInfos from "./pages/ProfileInfos";
@@ -19,6 +20,7 @@ function App() {
       <Route path="/profile/infos" element={<ProfileInfos />} />
       <Route path="/profile/preferences" element={<ProfilePreferences />} />
       <Route path="/legals" element={<Legals />} />
+      <Route path="/legals/notices" element={<LegalNotices />} />
     </Routes>
   );
 }
