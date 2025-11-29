@@ -21,6 +21,27 @@ export const register = async (username: string, email: string, password: string
   return res.json();
 };
 
+export const forgotPassword = async (email: string) => {
+  const res = await fetch(`${apiUrl}/api/v1/auth/forgot-pass`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+  });
+  return res;
+};
+
+export const resetPassword = async (token: string, email: string, password: string) => {
+  const res = await fetch(`${apiUrl}/api/v1/auth/reset-pass`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  return res;
+};
+
 // Recipes
 export const getAllRecipes = async () => {
   const res = await fetch(`${apiUrl}/api/v1/recipes`);

@@ -10,6 +10,7 @@ import ProfileInfos from "./pages/ProfileInfos";
 import ProfilePreferences from "./pages/ProfilePreferences";
 import Recipe from "./pages/Recipe";
 import Recipes from "./pages/Recipes";
+import ResetPass from "./pages/ResetPass";
 import Scanner from "./pages/Scanner";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Route path="/legals/gtu" element={<GeneralTermsOfUse />} />
       <Route path="/legals/privacy" element={<PrivacyPolicy />} />
       <Route path="/legals/gdpr" element={<GDPR />} />
+      <Route path="/reset-pass/:token" element={<ResetPass />} />
     </Routes>
   );
 }

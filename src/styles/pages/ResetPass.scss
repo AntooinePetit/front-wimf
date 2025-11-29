@@ -1,0 +1,48 @@
+// Import variables
+
+@import "../bases/variables";
+
+#reset-pass {
+  h1 {
+    padding: 20px 0;
+    background: $main;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: calc(100vh - (73px + 116px + 100px));
+    justify-content: center;
+    margin-bottom: calc(73px + 116px);
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+
+      .error {
+        color: red;
+        font-size: 14px;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        input {
+          padding: 10px 20px;
+          width: auto;
+          border-radius: 20px;
+          border: 3px solid $grey-border;
+
+          &:focus {
+            outline: none;
+            border-color: $main;
+          }
+        }
+      }
+    }
+  }
+}

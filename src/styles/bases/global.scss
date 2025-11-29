@@ -177,3 +177,13 @@ svg {
 main {
   margin-bottom: 93px;
 }
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .button {
+    width: auto;
+  }
+}

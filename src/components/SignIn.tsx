@@ -115,7 +115,7 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
           <div>
             <label htmlFor="email">Email</label>
             <input type="email" id="email" name="email" required />
-            {errorEmail && <p>Adresse mail invalide</p>}
+            {errorEmail && <p className="error">Adresse mail invalide</p>}
           </div>
           <div>
             <label htmlFor="password">Mot de passe</label>
@@ -142,7 +142,7 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
               required
             />
             {errorConfirmPassword && (
-              <p>Les deux mots de passe doivent être identiques</p>
+              <p className="error">Les deux mots de passe doivent être identiques</p>
             )}
           </div>
           <div className="check">
@@ -153,7 +153,7 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
               <Link to={"/profile/legals/rgpd"}>ici</Link>.
             </label>
             {errorRgpd && (
-              <p>Vous devez accepter la politique de confidentialité</p>
+              <p className="error">Vous devez accepter la politique de confidentialité</p>
             )}
           </div>
           <button type="submit" className="button">
