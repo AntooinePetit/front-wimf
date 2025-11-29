@@ -25,48 +25,53 @@ const Profile = () => {
   }, [token, navigate]);
 
   return (
-    <main id="profile">
-      {token ? (
-        <ProfileNavBar active="none" />
-      ) : (
-        <>
-          {showButtons && (
-            <div id="connection-buttons" className="container">
-              <button
-                className="button"
-                onClick={() => {
-                  setShowLogIn(true);
-                  setShowButtons(false);
-                }}
-              >
-                Se connecter
-              </button>
-              <button
-                className="button"
-                onClick={() => {
-                  setShowSignIn(true);
-                  setShowButtons(false);
-                }}
-              >
-                Créer un compte
-              </button>
-            </div>
-          )}
+    <>
+      <main id="profile">
+        {!token && (
+          <>
+            {showButtons && (
+              <div id="connection-buttons" className="container">
+                <button
+                  className="button"
+                  onClick={() => {
+                    setShowLogIn(true);
+                    setShowButtons(false);
+                  }}
+                >
+                  Se connecter
+                </button>
+                <button
+                  className="button"
+                  onClick={() => {
+                    setShowSignIn(true);
+                    setShowButtons(false);
+                  }}
+                >
+                  Créer un compte
+                </button>
+              </div>
+            )}
 
-          {showSignIn && (
-            <SignIn setShowLogIn={setShowLogIn} setShowSignIn={setShowSignIn} />
-          )}
+            {showSignIn && (
+              <SignIn
+                setShowLogIn={setShowLogIn}
+                setShowSignIn={setShowSignIn}
+              />
+            )}
 
-          {showLogIn && (
-            <LogIn setShowLogIn={setShowLogIn} setShowSignIn={setShowSignIn} />
-          )}
+            {showLogIn && (
+              <LogIn
+                setShowLogIn={setShowLogIn}
+                setShowSignIn={setShowSignIn}
+              />
+            )}
+          </>
+        )}
+      </main>
 
-          <ProfileNavBar active="none" />
-        </>
-      )}
-
+      <ProfileNavBar active="none" />
       <NavBar active="profile" />
-    </main>
+    </>
   );
 };
 

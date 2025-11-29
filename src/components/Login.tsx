@@ -93,6 +93,7 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
                 {errors.password}
               </p>
             )}
+            <span>Mot de passe oublié ?</span>
           </div>
           <div className="check">
             <input

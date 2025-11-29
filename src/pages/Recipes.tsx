@@ -28,6 +28,7 @@ const Recipes = () => {
 
         {search == null ? <AllRecipes /> : <SearchResult search={search} />}
       </main>
+      
       <NavBar active="recipes" />
     </>
   );

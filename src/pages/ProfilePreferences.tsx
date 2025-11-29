@@ -4,11 +4,14 @@ import ProfilePreferencesUpdates from "../components/ProfilePreferencesUpdates";
 
 const ProfilePreferences = () => {
   return (
-    <main>
-      <ProfilePreferencesUpdates />
+    <>
+      <main>
+        <ProfilePreferencesUpdates />
+      </main>
+
       <ProfileNavBar active="preferences" />
       <NavBar active="profile" />
-    </main>
+    </>
   );
 };
 

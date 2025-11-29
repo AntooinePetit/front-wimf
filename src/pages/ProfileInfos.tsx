@@ -5,7 +5,10 @@ import ProfileNavBar from "../components/ProfileNavBar";
 const ProfileInfos = () => {
   return (
     <>
-      <ProfileInfosUpdate />
+      <main>
+        <ProfileInfosUpdate />
+      </main>
+
       <ProfileNavBar active="my-infos" />
       <NavBar active="profile" />
     </>
