@@ -1,7 +1,11 @@
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getIngredientsByIds, searchRecipesByIngredients } from "../services/api";
+import {
+  generateRecipe,
+  getIngredientsByIds,
+  searchRecipesByIngredients,
+} from "../services/api";
 import "../styles/components/ScannerRecipes.scss";
 import ScannerRecipesIngredients from "./ScannerRecipesIngredients";
 import ScannerRecipesResults from "./ScannerRecipesResult";
@@ -19,6 +23,7 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [ingredients, setIngredients] = useState<any[]>([]);
@@ -48,6 +53,19 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
       setIsError(true);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleGenerateRecipe = async () => {
+    setIsGenerating(true);
+    try {
+      const recipe = await generateRecipe(search);
+      navigate("/recipes/recipe/generated", { state: { recipe } });
+    } catch (error) {
+      console.error(error);
+      setIsError(true);
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -84,7 +102,11 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
         <div className="container">
           <ScannerRecipesIngredients ingredients={ingredients} />
 
-          <ScannerRecipesResults recipes={recipes} />
+          <ScannerRecipesResults
+            recipes={recipes}
+            onGenerateRecipe={handleGenerateRecipe}
+            isGenerating={isGenerating}
+          />
         </div>
       )}
     </section>

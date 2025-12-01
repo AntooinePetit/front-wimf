@@ -12,7 +12,11 @@ export const login = async (email: string, password: string) => {
   return res.json();
 };
 
-export const register = async (username: string, email: string, password: string) => {
+export const register = async (
+  username: string,
+  email: string,
+  password: string
+) => {
   const res = await fetch(`${apiUrl}/api/v1/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -30,7 +34,11 @@ export const forgotPassword = async (email: string) => {
   return res;
 };
 
-export const resetPassword = async (token: string, email: string, password: string) => {
+export const resetPassword = async (
+  token: string,
+  email: string,
+  password: string
+) => {
   const res = await fetch(`${apiUrl}/api/v1/auth/reset-pass`, {
     method: "PUT",
     headers: {
@@ -64,7 +72,9 @@ export const searchRecipes = async (query: string) => {
 };
 
 export const searchRecipesByIngredients = async (ingredientIds: string) => {
-  const res = await fetch(`${apiUrl}/api/v1/recipes/search/ingredients/${ingredientIds}`);
+  const res = await fetch(
+    `${apiUrl}/api/v1/recipes/search/ingredients/${ingredientIds}`
+  );
   return res.json();
 };
 
@@ -94,6 +104,19 @@ export const scanImage = async (picture: string) => {
   return res.json();
 };
 
+export const generateRecipe = async (ingredientIds: string) => {
+  const formattedIds = ingredientIds.replace(/ /g, '+');
+  const ingredientsData = await getIngredientsByIds(formattedIds);
+  const ingredients = ingredientsData.map((ing: { name_ingredient: string }) => ing.name_ingredient);
+  
+  const res = await fetch(`${apiUrl}/api/v1/ai/generate-recipe`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ingredients }),
+  });
+  return await res.json();
+};
+
 // Users
 export const getUserById = async (userId: string, token: string) => {
   const res = await fetch(`${apiUrl}/api/v1/users/${userId}`, {
@@ -102,7 +125,11 @@ export const getUserById = async (userId: string, token: string) => {
   return res.json();
 };
 
-export const updateUser = async (userId: string, token: string, data: Record<string, unknown>) => {
+export const updateUser = async (
+  userId: string,
+  token: string,
+  data: Record<string, unknown>
+) => {
   const res = await fetch(`${apiUrl}/api/v1/users/${userId}`, {
     method: "PUT",
     headers: {

@@ -1,3 +1,4 @@
+import { Sparkles } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../config";
@@ -11,9 +12,15 @@ interface Recipe {
 
 interface ScannerRecipesResultsProps {
   recipes: Recipe[];
+  onGenerateRecipe: () => void;
+  isGenerating: boolean;
 }
 
-const ScannerRecipesResults = ({ recipes }: ScannerRecipesResultsProps) => {
+const ScannerRecipesResults = ({
+  recipes,
+  onGenerateRecipe,
+  isGenerating,
+}: ScannerRecipesResultsProps) => {
   const [recipesShown, setRecipesShown] = useState(8);
 
   return (
@@ -45,8 +52,15 @@ const ScannerRecipesResults = ({ recipes }: ScannerRecipesResultsProps) => {
         </button>
       )}
 
-      <button className="button" onClick={() => setRecipesShown(8)}>
-        Générer une recette à partir des ingrédients
+      <button
+        className="button generate-button"
+        onClick={onGenerateRecipe}
+        disabled={isGenerating}
+      >
+        <Sparkles size={20} />
+        {isGenerating
+          ? "Génération..."
+          : "Générer une recette à partir des ingrédients"}
       </button>
     </div>
   );

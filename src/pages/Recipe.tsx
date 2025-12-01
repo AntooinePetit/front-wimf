@@ -1,6 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import IngredientsRecipe from "../components/IngredientsRecipe";
 import NavBar from "../components/NavBar";
 import NutritionalValuesRecipe from "../components/NutritionalValuesRecipe";
@@ -15,12 +15,26 @@ const Recipe = () => {
   const [recipe, setRecipe] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
   const [reqError, setReqError] = useState<string | null>(null);
-  const [userPreferences, setUserPreferences] = useState<{ nutritional_values_user: boolean; calories_user: boolean } | null>(null);
+  const [userPreferences, setUserPreferences] = useState<{
+    nutritional_values_user: boolean;
+    calories_user: boolean;
+  } | null>(null);
   const { id } = useParams();
+  const location = useLocation();
   const token = useAuthStore((state) => state.token);
-
+  const isGenerated = id === "generated";
 
   const getRecipe = async () => {
+    if (isGenerated) {
+      if (location.state?.recipe) {
+        setRecipe(location.state.recipe);
+      } else {
+        setReqError("Aucune recette générée trouvée");
+      }
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const res = await getRecipeById(id!);
       if (res.message && res.message == "Recette introuvable") {
@@ -113,18 +127,28 @@ const Recipe = () => {
           rest={recipe.resting_time}
         />
 
-        <IngredientsRecipe
-          id={recipe.id_recipe}
-          servings={recipe.servings_recipe}
-        />
+        {!isGenerated && (
+          <IngredientsRecipe
+            id={recipe.id_recipe}
+            servings={recipe.servings_recipe}
+          />
+        )}
 
         <StepsRecipe steps={recipe.instructions.steps} />
 
-        {(!userPreferences || userPreferences.nutritional_values_user || userPreferences.calories_user) && (
+        {(!userPreferences ||
+          userPreferences.nutritional_values_user ||
+          userPreferences.calories_user) && (
           <NutritionalValuesRecipe
             nutritional={recipe.nutritional_values_recipe}
-            showCaloriesOnly={userPreferences?.calories_user && !userPreferences?.nutritional_values_user}
-            hideCalories={userPreferences?.nutritional_values_user && !userPreferences?.calories_user}
+            showCaloriesOnly={
+              userPreferences?.calories_user &&
+              !userPreferences?.nutritional_values_user
+            }
+            hideCalories={
+              userPreferences?.nutritional_values_user &&
+              !userPreferences?.calories_user
+            }
           />
         )}
       </main>

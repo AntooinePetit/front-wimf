@@ -3,7 +3,7 @@ import "../styles/components/RecipeHead.scss";
 
 interface RecipeHeadProps {
   name: string;
-  image: string;
+  image?: string;
 }
 
 const RecipeHead = ({ name, image }: RecipeHeadProps) => {
@@ -11,11 +11,13 @@ const RecipeHead = ({ name, image }: RecipeHeadProps) => {
 
   return (
     <section id="recipe-head">
-      <img
-        src={`${url}/uploads/recipes/${image}`}
-        alt={`Photo de ${name.toLowerCase()}`}
-      />
-      <h1>{name}</h1>
+      {image && (
+        <img
+          src={`${url}/uploads/recipes/${image}`}
+          alt={`Photo de ${name.toLowerCase()}`}
+        />
+      )}
+      <h1 style={image ? undefined : { marginTop: '100px' }}>{name}</h1>
     </section>
   );
 };
