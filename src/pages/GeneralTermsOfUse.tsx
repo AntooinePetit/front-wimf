@@ -2,6 +2,8 @@ import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 
 const GeneralTermsOfUse = () => {
+  document.title = "Conditions générales d'utilisation";
+
   return (
     <>
       <main className="legal-main">

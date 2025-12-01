@@ -5,6 +5,8 @@ import ProfileNavBar from "../components/ProfileNavBar";
 import "../styles/pages/Legals.scss";
 
 const Legals = () => {
+  document.title = "WIMF - Informations légales";
+
   return (
     <>
       <main>

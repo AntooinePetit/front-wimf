@@ -6,6 +6,8 @@ import ScannerDiscovery from "../components/ScannerDiscovery";
 import "../styles/pages/Home.scss";
 
 const Home = () => {
+  document.title = "Accueil - Trouve ta recette";
+
   return (
     <>
       <main id="home">

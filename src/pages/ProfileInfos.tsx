@@ -3,6 +3,8 @@ import ProfileInfosUpdate from "../components/ProfileInfosUpdate";
 import ProfileNavBar from "../components/ProfileNavBar";
 
 const ProfileInfos = () => {
+  document.title = "Mes informations";
+
   return (
     <>
       <main>

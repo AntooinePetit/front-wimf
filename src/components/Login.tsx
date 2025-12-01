@@ -19,6 +19,8 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
   const [notification, setNotification] = useState<string | null>(null);
   const [showForgotPass, setShowForgotPass] = useState(false);
 
+  document.title = "Se connecter";
+
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);

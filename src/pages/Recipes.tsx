@@ -6,6 +6,8 @@ import SearchRecipes from "../components/SearchRecipes";
 import SearchResult from "../components/SearchResult";
 
 const Recipes = () => {
+  document.title = "Recettes";
+
   const location = useLocation(); // change d’objet quand l’URL change
 
   const [search, setSearch] = useState<string | null>(null);

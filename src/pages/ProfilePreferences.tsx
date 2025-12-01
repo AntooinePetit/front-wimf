@@ -3,6 +3,8 @@ import ProfileNavBar from "../components/ProfileNavBar";
 import ProfilePreferencesUpdates from "../components/ProfilePreferencesUpdates";
 
 const ProfilePreferences = () => {
+  document.title = "Mes préférences";
+
   return (
     <>
       <main>

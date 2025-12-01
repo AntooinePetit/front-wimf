@@ -2,6 +2,8 @@ import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 
 const LegalNotices = () => {
+  document.title = "Mentions légales";
+
   return (
     <>
       <main className="legal-main">

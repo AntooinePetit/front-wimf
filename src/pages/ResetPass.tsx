@@ -13,6 +13,8 @@ const ResetPass = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  document.title = "Réinitialisation du mot de passe";
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorPassword(false);

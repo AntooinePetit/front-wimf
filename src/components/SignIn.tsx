@@ -19,6 +19,8 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
   const [isError, setIsError] = useState<boolean>(false);
   const [isRegistered, setIsRegistered] = useState<boolean | null>(null);
 
+  document.title = "Créer un compte";
+
   const sendForm = async () => {
     setIsError(false);
     setErrorUsername(false);

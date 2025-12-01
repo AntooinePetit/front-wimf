@@ -2,6 +2,8 @@ import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 
 const PrivacyPolicy = () => {
+  document.title = "Politique de confidentialité";
+
   return (
     <>
       <main className="legal-main">

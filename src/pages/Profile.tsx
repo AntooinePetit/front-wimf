@@ -14,6 +14,8 @@ const Profile = () => {
   const [showButtons, setShowButtons] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  document.title = "Mon compte";
+
   useEffect(() => {
     if (token) {
       navigate("/profile/infos");

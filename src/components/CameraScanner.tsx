@@ -29,6 +29,8 @@ const CameraScanner = ({
   const webcamRef = useRef<any>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
 
+  document.title = "Scanner";
+
   const takePhoto = useCallback(() => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();

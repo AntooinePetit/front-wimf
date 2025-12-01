@@ -2,6 +2,8 @@ import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 
 const GDPR = () => {
+  document.title = "Consentement RGPD";
+
   return (
     <>
       <main className="legal-main">

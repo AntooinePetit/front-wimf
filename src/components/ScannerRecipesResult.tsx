@@ -44,6 +44,10 @@ const ScannerRecipesResults = ({ recipes }: ScannerRecipesResultsProps) => {
           Afficher plus de résultats
         </button>
       )}
+
+      <button className="button" onClick={() => setRecipesShown(8)}>
+        Générer une recette à partir des ingrédients
+      </button>
     </div>
   );
 };

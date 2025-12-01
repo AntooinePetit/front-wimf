@@ -19,6 +19,8 @@ const ScannerIngredients = ({
   scanError,
   setShowIngredients,
 }: ScannerIngredientsProps) => {
+  document.title = "Scanner d'ingrédients";
+
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
