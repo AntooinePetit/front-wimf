@@ -1,0 +1,52 @@
+// Import variables
+
+@import "../bases/variables";
+
+header {
+  background: $main;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+
+    > div {
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+
+      width: 30%;
+
+      padding: 10px;
+
+      background: $white;
+      border-radius: 30px;
+
+      label {
+        font-size: 0;
+
+        svg {
+          color: $grey-text;
+        }
+      }
+
+      input {
+        border: none;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          text-align: center;
+        }
+      }
+
+      &:focus-within {
+        border-color: $main;
+      }
+    }
+  }
+}

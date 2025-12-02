@@ -1,3 +1,5 @@
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import Hero from "../components/Hero";
 import HomeSearch from "../components/HomeSearch";
 import NavBar from "../components/NavBar";
@@ -10,6 +12,8 @@ const Home = () => {
 
   return (
     <>
+      {window.innerWidth > 1025 && <Header />}
+
       <main id="home">
         <div className={window.innerWidth < 1025 ? "mobile-bg" : "desktop-bg"}>
           <img src="/assets/Fraise.svg" className="bg-icon fraise" alt="" />
@@ -27,7 +31,9 @@ const Home = () => {
         </div>
       </main>
 
-      <NavBar active="home" />
+      {window.innerWidth < 1025 && <NavBar active="home" />}
+
+      {window.innerWidth > 1025 && <Footer />}
     </>
   );
 };

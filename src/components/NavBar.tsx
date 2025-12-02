@@ -12,7 +12,7 @@ const NavBar = ({ active }: NavBarProps) => {
       <ul>
         <li>
           <Link to={"/"} className={active == "home" ? "is-active" : ""}>
-            <Home height={25} />
+            {window.innerWidth < 1025 && <Home height={25} />}
             Accueil
           </Link>
         </li>
@@ -21,7 +21,7 @@ const NavBar = ({ active }: NavBarProps) => {
             to={"/recipes"}
             className={active == "recipes" ? "is-active" : ""}
           >
-            <Utensils height={25} />
+            {window.innerWidth < 1025 && <Utensils height={25} />}
             Recettes
           </Link>
         </li>
@@ -30,14 +30,17 @@ const NavBar = ({ active }: NavBarProps) => {
             to={"/scanner"}
             className={active == "scanner" ? "is-active" : ""}
           >
-            <Camera height={25} />
+            {window.innerWidth < 1025 && <Camera height={25} />}
             Scanner
           </Link>
         </li>
         <li>
-          <Link to={"/profile"} className={active == "profile" ? "is-active" : ""}>
+          <Link
+            to={"/profile"}
+            className={active == "profile" ? "is-active" : ""}
+          >
             <User height={25} />
-            Profil
+            {window.innerWidth < 1025 && "Profil"}
           </Link>
         </li>
       </ul>

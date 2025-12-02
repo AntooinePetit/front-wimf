@@ -1,0 +1,32 @@
+// Import variables
+
+@import "../bases/variables";
+
+footer {
+  background: $main;
+  padding: 40px 0;
+  margin-top: 250px;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    div {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid $dark-text;
+
+      a:nth-child(2),
+      a:nth-child(4) {
+        text-align: right;
+      }
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}
