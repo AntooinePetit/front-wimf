@@ -124,6 +124,25 @@ const Recipe = () => {
 
         <RecipeHead name={recipe.name_recipe} image={recipe.image_recipe} />
 
+        {isGenerated && (
+          <div style={{
+            backgroundColor: '#fff3cd',
+            border: '1px solid #ffc107',
+            borderRadius: '8px',
+            padding: '12px 16px',
+            margin: '16px 20px',
+            fontSize: '14px',
+            lineHeight: '1.5'
+          }}>
+            <strong>⚠️ Recette générée par IA</strong>
+            <p style={{ margin: '8px 0 0 0' }}>
+              Cette recette a été créée automatiquement. Vérifiez toujours les ingrédients, 
+              les quantités et les temps de cuisson. En cas d'allergies ou de régime spécifique, 
+              consultez un professionnel de santé.
+            </p>
+          </div>
+        )}
+
         <TimeRecipe
           prep={recipe.preparation_time}
           cook={recipe.cooking_time}
