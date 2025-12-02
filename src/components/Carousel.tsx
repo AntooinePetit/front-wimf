@@ -55,7 +55,12 @@ const Carousel = ({ recipes }: CarouselProps) => {
       <Swiper
         modules={[Scrollbar]}
         spaceBetween={20}
-        slidesPerView={1.8}
+        slidesPerView={1.2}
+        breakpoints={{
+          401: { slidesPerView: 1.8 },
+          768: { slidesPerView: 2.8 },
+          1025: { slidesPerView: 3.8 },
+        }}
         scrollbar={{
           draggable: true,
           dragClass: "swiper-scrollbar-drag",

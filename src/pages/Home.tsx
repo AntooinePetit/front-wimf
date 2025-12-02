@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       <main id="home">
-        <div className={window.innerWidth < 768 ? "mobile-bg" : "desktop-bg"}>
+        <div className={window.innerWidth < 1025 ? "mobile-bg" : "desktop-bg"}>
           <img src="/assets/Fraise.svg" className="bg-icon fraise" alt="" />
           <img src="/assets/Banane.svg" className="bg-icon banane" alt="" />
           <img

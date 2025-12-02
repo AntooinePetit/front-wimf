@@ -11,9 +11,28 @@
     margin-bottom: 30px;
   }
 
-  article {
-    display: flex;
-    flex-direction: column;
+  div {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: 30px;
+
+    align-items: center;
+
+    article {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  }
+
+}
+
+// Responsive
+
+@media screen and (min-width:768px) {
+  #scanner-discovery {
+    div {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
