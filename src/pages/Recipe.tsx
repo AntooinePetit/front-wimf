@@ -27,7 +27,10 @@ const Recipe = () => {
   const getRecipe = async () => {
     if (isGenerated) {
       if (location.state?.recipe) {
-        setRecipe(location.state.recipe);
+        setRecipe({
+          ...location.state.recipe,
+          ingredients: location.state.ingredients
+        });
       } else {
         setReqError("Aucune recette générée trouvée");
       }
@@ -127,12 +130,11 @@ const Recipe = () => {
           rest={recipe.resting_time}
         />
 
-        {!isGenerated && (
-          <IngredientsRecipe
-            id={recipe.id_recipe}
-            servings={recipe.servings_recipe}
-          />
-        )}
+        <IngredientsRecipe
+          id={recipe.id_recipe}
+          servings={recipe.servings_recipe}
+          ingredients={isGenerated ? recipe.ingredients : undefined}
+        />
 
         <StepsRecipe steps={recipe.instructions.steps} />
 

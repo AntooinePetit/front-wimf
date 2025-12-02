@@ -4,8 +4,13 @@ import { getIngredientsByRecipeId } from "../services/api";
 import "../styles/components/IngredientsRecipe.scss";
 
 interface IngredientsRecipeProps {
-  id: number;
+  id?: number;
   servings: number;
+  ingredients?: {
+    name_ingredient: string;
+    quantity: number;
+    measurements: string;
+  }[];
 }
 
 /*
@@ -15,18 +20,24 @@ name_ingredient: "Chapelure"
 quantity: 60
 */
 
-const IngredientsRecipe = ({ id, servings }: IngredientsRecipeProps) => {
+const IngredientsRecipe = ({ id, servings, ingredients: providedIngredients }: IngredientsRecipeProps) => {
   const [ingredients, setIngredients] = useState<
     {
-      id_ingredient: number;
+      id_ingredient?: number;
       name_ingredient: string;
-      mesurements: string;
+      mesurements?: string;
+      measurements?: string;
       quantity: number;
     }[]
   >([]);
   const [wantedServings, setWantedServings] = useState(servings);
 
   const getIngredients = async () => {
+    if (providedIngredients) {
+      setIngredients(providedIngredients);
+      return;
+    }
+    if (!id) return;
     try {
       const res = await getIngredientsByRecipeId(id);
       setIngredients(res);
@@ -67,7 +78,7 @@ const IngredientsRecipe = ({ id, servings }: IngredientsRecipeProps) => {
               {Number(
                 ((ingredient.quantity / servings) * wantedServings).toFixed(1)
               )}{" "}
-              {ingredient.mesurements}
+              {ingredient.measurements || ingredient.mesurements}
             </p>
           </div>
         ))}

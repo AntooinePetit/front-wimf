@@ -59,8 +59,13 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
   const handleGenerateRecipe = async () => {
     setIsGenerating(true);
     try {
-      const recipe = await generateRecipe(search);
-      navigate("/recipes/recipe/generated", { state: { recipe } });
+      const data = await generateRecipe(search);
+      navigate("/recipes/recipe/generated", { 
+        state: { 
+          recipe: data.recipe,
+          ingredients: data.ingredients 
+        } 
+      });
     } catch (error) {
       console.error(error);
       setIsError(true);
