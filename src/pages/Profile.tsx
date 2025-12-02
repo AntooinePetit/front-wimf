@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import LogIn from "../components/Login";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
@@ -28,6 +30,8 @@ const Profile = () => {
 
   return (
     <>
+      {window.innerWidth >= 1025 && <Header />}
+
       <main id="profile">
         {!token && (
           <>
@@ -69,10 +73,12 @@ const Profile = () => {
             )}
           </>
         )}
+        <ProfileNavBar active="none" />
       </main>
 
-      <ProfileNavBar active="none" />
-      <NavBar active="profile" />
+      {window.innerWidth < 1025 && <NavBar active="profile" />}
+
+      {window.innerWidth >= 1025 && <Footer />}
     </>
   );
 };

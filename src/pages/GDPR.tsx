@@ -1,3 +1,5 @@
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 
@@ -6,6 +8,8 @@ const GDPR = () => {
 
   return (
     <>
+      {window.innerWidth >= 1025 && <Header />}
+
       <main className="legal-main">
         <h1>Consentement RGPD</h1>
 
@@ -100,9 +104,12 @@ const GDPR = () => {
             </p>
           </article>
         </section>
+        <ProfileNavBar active="legals" />
       </main>
-      <ProfileNavBar active="legals" />
-      <NavBar active="Profile" />
+
+      {window.innerWidth < 1025 && <NavBar active="profile" />}
+
+      {window.innerWidth >= 1025 && <Footer />}
     </>
   );
 };

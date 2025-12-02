@@ -1,6 +1,8 @@
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import IngredientsRecipe from "../components/IngredientsRecipe";
 import NavBar from "../components/NavBar";
 import NutritionalValuesRecipe from "../components/NutritionalValuesRecipe";
@@ -85,6 +87,8 @@ const Recipe = () => {
   if (isLoading)
     return (
       <>
+        {window.innerWidth >= 1025 && <Header />}
+
         <main className="loading-screen">
           <button className="orange-return-button" onClick={goBack}>
             <ChevronLeft size={100} />
@@ -92,7 +96,9 @@ const Recipe = () => {
           <span className="loader" />
         </main>
 
-        <NavBar active={"recipes"} />
+        {window.innerWidth < 1025 && <NavBar active={"recipes"} />}
+
+        {window.innerWidth >= 1025 && <Footer />}
       </>
     );
 
@@ -100,6 +106,8 @@ const Recipe = () => {
     document.title = "Erreur";
     return (
       <>
+        {window.innerWidth >= 1025 && <Header />}
+
         <main className="error-screen">
           <button className="orange-return-button" onClick={goBack}>
             <ChevronLeft size={100} />
@@ -108,7 +116,9 @@ const Recipe = () => {
           <h1 className="error">{reqError}</h1>
         </main>
 
-        <NavBar active={"recipes"} />
+        {window.innerWidth < 1025 && <NavBar active={"recipes"} />}
+
+        {window.innerWidth >= 1025 && <Footer />}
       </>
     );
   }
@@ -117,6 +127,8 @@ const Recipe = () => {
 
   return (
     <>
+      {window.innerWidth >= 1025 && <Header />}
+
       <main>
         <button className="orange-return-button return-button" onClick={goBack}>
           <ChevronLeft size={100} />
@@ -174,7 +186,9 @@ const Recipe = () => {
         )}
       </main>
 
-      <NavBar active={"recipes"} />
+      {window.innerWidth < 1025 && <NavBar active={"recipes"} />}
+
+      {window.innerWidth >= 1025 && <Footer />}
     </>
   );
 };

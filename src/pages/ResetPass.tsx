@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 import { resetPassword } from "../services/api";
@@ -31,7 +33,8 @@ const ResetPass = () => {
       return;
     }
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!passwordRegex.test(password)) {
       setErrorPassword(true);
@@ -64,6 +67,8 @@ const ResetPass = () => {
   };
   return (
     <>
+      {window.innerWidth >= 1025 && <Header />}
+
       <main id="reset-pass">
         <h1>Réinitialisation du mot de passe</h1>
 
@@ -71,55 +76,61 @@ const ResetPass = () => {
           {success ? (
             <div className="success-message">
               <p>Mot de passe réinitialisé avec succès !</p>
-              <Link to="/profile" className="button">Retour au profil</Link>
+              <Link to="/profile" className="button">
+                Retour au profil
+              </Link>
             </div>
           ) : (
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email">Adresse e-mail</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-            <div>
-              <label htmlFor="password">Nouveau mot de passe</label>
-              <input type="password" id="password" name="password" required />
-              {errorPassword && (
-                <>
-                  <p>Le mot de passe doit :</p>
-                  <ul>
-                    <li>Faire au moins 8 caractères</li>
-                    <li>Contenir au moins une lettre majuscule</li>
-                    <li>Contenir au moins une lettre minuscule</li>
-                    <li>Contenir au moins un chiffre</li>
-                    <li>Contenir au moins un caractère spécial (@$!%*?&)</li>
-                  </ul>
-                </>
-              )}
-            </div>
-            <div>
-              <label htmlFor="confirm-password">
-                Confirmer le mot de passe
-              </label>
-              <input
-                type="password"
-                id="confirm-password"
-                name="confirm-password"
-                required
-              />
-              {errorConfirmPassword && (
-                <p className="error">Les deux mots de passe doivent être identiques</p>
-              )}
-            </div>
-            {errorMessage && <p className="error">{errorMessage}</p>}
-            <button type="submit" className="button" disabled={loading}>
-              {loading ? "Mise à jour..." : "Mettre à jour le mot de passe"}
-            </button>
-          </form>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="email">Adresse e-mail</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div>
+                <label htmlFor="password">Nouveau mot de passe</label>
+                <input type="password" id="password" name="password" required />
+                {errorPassword && (
+                  <>
+                    <p>Le mot de passe doit :</p>
+                    <ul>
+                      <li>Faire au moins 8 caractères</li>
+                      <li>Contenir au moins une lettre majuscule</li>
+                      <li>Contenir au moins une lettre minuscule</li>
+                      <li>Contenir au moins un chiffre</li>
+                      <li>Contenir au moins un caractère spécial (@$!%*?&)</li>
+                    </ul>
+                  </>
+                )}
+              </div>
+              <div>
+                <label htmlFor="confirm-password">
+                  Confirmer le mot de passe
+                </label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  required
+                />
+                {errorConfirmPassword && (
+                  <p className="error">
+                    Les deux mots de passe doivent être identiques
+                  </p>
+                )}
+              </div>
+              {errorMessage && <p className="error">{errorMessage}</p>}
+              <button type="submit" className="button" disabled={loading}>
+                {loading ? "Mise à jour..." : "Mettre à jour le mot de passe"}
+              </button>
+            </form>
           )}
         </section>
+        <ProfileNavBar active="none" />
       </main>
 
-      <ProfileNavBar active="none" />
-      <NavBar active="profile" />
+      {window.innerWidth < 1025 && <NavBar active="profile" />}
+
+      {window.innerWidth >= 1025 && <Footer />}
     </>
   );
 };

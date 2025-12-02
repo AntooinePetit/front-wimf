@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import CameraScanner from "../components/CameraScanner";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import ScannerDefault from "../components/ScannerDefault";
 import ScannerIngredients from "../components/ScannerIngredients";
@@ -29,6 +31,8 @@ const Scanner = () => {
 
   return (
     <>
+      {window.innerWidth >= 1025 && <Header />}
+
       <main id="scanner">
         {!search && (
           <>
@@ -63,7 +67,9 @@ const Scanner = () => {
         {search && <ScannerRecipes search={search} />}
       </main>
 
-      <NavBar active="scanner" />
+      {window.innerWidth < 1025 && <NavBar active="scanner" />}
+
+      {window.innerWidth >= 1025 && <Footer />}
     </>
   );
 };

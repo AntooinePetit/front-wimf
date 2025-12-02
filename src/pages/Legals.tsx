@@ -1,5 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 import "../styles/pages/Legals.scss";
@@ -9,6 +11,8 @@ const Legals = () => {
 
   return (
     <>
+      {window.innerWidth >= 1025 && <Header />}
+
       <main>
         <section id="legals">
           <h1>Informations légales</h1>
@@ -40,10 +44,12 @@ const Legals = () => {
             </li>
           </ul>
         </section>
+        <ProfileNavBar active="legals" />
       </main>
 
-      <ProfileNavBar active="legals" />
-      <NavBar active="profile" />
+      {window.innerWidth < 1025 && <NavBar active="profile" />}
+
+      {window.innerWidth >= 1025 && <Footer />}
     </>
   );
 };

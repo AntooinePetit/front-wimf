@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      {window.innerWidth > 1025 && <Header />}
+      {window.innerWidth >= 1025 && <Header />}
 
       <main id="home">
         <div className={window.innerWidth < 1025 ? "mobile-bg" : "desktop-bg"}>
@@ -33,7 +33,7 @@ const Home = () => {
 
       {window.innerWidth < 1025 && <NavBar active="home" />}
 
-      {window.innerWidth > 1025 && <Footer />}
+      {window.innerWidth >= 1025 && <Footer />}
     </>
   );
 };
