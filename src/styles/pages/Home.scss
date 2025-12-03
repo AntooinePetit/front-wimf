@@ -52,3 +52,74 @@
     transform: rotate(18deg);
   }
 }
+
+.desktop-bg {
+  position: relative;
+  overflow: hidden;
+
+  .bg-icon {
+    position: absolute;
+    z-index: -1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .fraise {
+    top: 35vh;
+    left: -40px;
+    width: 15%;
+    transform: rotate(10deg) scaleX(-1);
+  }
+
+  .banane {
+    top: 60vh;
+    right: 240px;
+    width: 12%;
+    transform: rotate(-45deg);
+  }
+
+  .raisin {
+    top: 80vh;
+    left: 25%;
+    width: 15%;
+    transform: rotate(-10deg) scaleX(-1);
+  }
+
+  .pasteque {
+    top: calc(100vh + 700px);
+    left: 19%;
+    width: 14%;
+    transform: rotate(25deg);
+  }
+
+  .orange {
+    top: calc(100vh + 850px);
+    right: 15%;
+    width: 7%;
+    transform: rotate(39deg);
+  }
+
+  .avocat {
+    top: calc(100vh + 1000px);
+    right: 30%;
+    width: 10%;
+    transform: rotate(30deg);
+  }
+
+  .prune {
+    top: calc(100vh + 1750px);
+    right: 35%;
+    width: 10%;
+    transform: rotate(20deg);
+  }
+}
+
+// Responsive
+
+@media screen and (min-width: 1025px) {
+  #home {
+    h2 {
+      text-align: center;
+    }
+  }
+}

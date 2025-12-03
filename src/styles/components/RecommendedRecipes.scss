@@ -7,3 +7,11 @@
     margin-bottom: 30px;
   }
 }
+
+// Responsive 
+
+@media screen and (min-width: 1025px) {
+  #recommended-recipes {
+    margin-bottom: 250px;
+  }
+}

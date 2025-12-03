@@ -11,6 +11,8 @@ header {
 
     align-items: center;
 
+    position: relative;
+
     > div {
       display: flex;
       align-items: center;
@@ -23,6 +25,9 @@ header {
 
       background: $white;
       border-radius: 30px;
+
+      position: absolute;
+      justify-self: anchor-center;
 
       label {
         font-size: 0;
