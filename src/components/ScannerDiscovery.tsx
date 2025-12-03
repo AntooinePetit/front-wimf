@@ -45,7 +45,7 @@ const ScannerDiscovery = () => {
       </div>
 
       <Link to={"/scanner"} className="button">
-        Scanne ton frigo
+          {window.innerWidth >= 1025 ? "Réalise une recherche par ingrédient" : "Scanne ton frigo"}
       </Link>
     </section>
   );

@@ -46,3 +46,12 @@
     }
   }
 }
+
+// Responsive 
+
+@media (min-width: 768px) {
+  #home-search {
+    max-width: 900px;
+    width: 100%;
+  }
+}
