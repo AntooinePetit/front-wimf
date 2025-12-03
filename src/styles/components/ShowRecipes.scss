@@ -26,9 +26,9 @@
   }
 }
 
-// Responsive 
+// Responsive
 
-@media screen and (min-width:400px) {
+@media screen and (min-width: 400px) {
   #result {
     > div {
       grid-template-columns: repeat(2, 1fr);
@@ -40,6 +40,14 @@
   #result {
     > div {
       grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  #result {
+    > div {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 }

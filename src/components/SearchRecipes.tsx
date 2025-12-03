@@ -8,7 +8,7 @@ interface SearchRecipesProps {
 const SearchRecipes = ({ search }: SearchRecipesProps) => {
   return (
     <section id="head-recipes">
-      <div>
+      <div className={window.innerWidth >= 1025 ? "container" : ""}>
         <h1>Rechercher une recette</h1>
         <form method="get">
           <div>
