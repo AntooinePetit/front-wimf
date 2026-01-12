@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
@@ -14,6 +15,7 @@ const ResetPass = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const isMobile = useIsMobile();
 
   document.title = "Réinitialisation du mot de passe";
 
@@ -67,7 +69,7 @@ const ResetPass = () => {
   };
   return (
     <>
-      {window.innerWidth >= 1025 && <Header />}
+      {!isMobile && <Header />}
 
       <main id="reset-pass">
         <h1>Réinitialisation du mot de passe</h1>
@@ -128,9 +130,9 @@ const ResetPass = () => {
         <ProfileNavBar active="none" />
       </main>
 
-      {window.innerWidth < 1025 && <NavBar active="profile" />}
+      {isMobile && <NavBar active="profile" />}
 
-      {window.innerWidth >= 1025 && <Footer />}
+      {!isMobile && <Footer />}
     </>
   );
 };

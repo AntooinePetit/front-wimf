@@ -1,16 +1,9 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import "../styles/components/ScannerDiscovery.scss";
 
 const ScannerDiscovery = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 1024);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useIsMobile();
 
   return (
     <section id="scanner-discovery" className="container">
@@ -45,7 +38,7 @@ const ScannerDiscovery = () => {
       </div>
 
       <Link to={"/scanner"} className="button">
-          {window.innerWidth >= 1025 ? "Réalise une recherche par ingrédient" : "Scanne ton frigo"}
+          {!isMobile ? "Réalise une recherche par ingrédient" : "Scanne ton frigo"}
       </Link>
     </section>
   );

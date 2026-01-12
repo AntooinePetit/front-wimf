@@ -1,5 +1,6 @@
 import { Camera, Home, User, Utensils } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import "../styles/components/NavBar.scss";
 
 export interface NavBarProps {
@@ -7,12 +8,14 @@ export interface NavBarProps {
 }
 
 const NavBar = ({ active }: NavBarProps) => {
+  const isMobile = useIsMobile();
+
   return (
     <nav>
       <ul>
         <li>
           <Link to={"/"} className={active == "home" ? "is-active" : ""}>
-            {window.innerWidth < 1025 && <Home height={25} />}
+            {isMobile && <Home height={25} />}
             Accueil
           </Link>
         </li>
@@ -21,7 +24,7 @@ const NavBar = ({ active }: NavBarProps) => {
             to={"/recipes"}
             className={active == "recipes" ? "is-active" : ""}
           >
-            {window.innerWidth < 1025 && <Utensils height={25} />}
+            {isMobile && <Utensils height={25} />}
             Recettes
           </Link>
         </li>
@@ -30,7 +33,7 @@ const NavBar = ({ active }: NavBarProps) => {
             to={"/scanner"}
             className={active == "scanner" ? "is-active" : ""}
           >
-            {window.innerWidth < 1025 && <Camera height={25} />}
+            {isMobile && <Camera height={25} />}
             Scanner
           </Link>
         </li>
@@ -40,7 +43,7 @@ const NavBar = ({ active }: NavBarProps) => {
             className={active == "profile" ? "is-active" : ""}
           >
             <User height={25} />
-            {window.innerWidth < 1025 && "Profil"}
+            {isMobile && "Profil"}
           </Link>
         </li>
       </ul>

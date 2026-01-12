@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
@@ -9,9 +10,11 @@ import "../styles/pages/Legals.scss";
 const Legals = () => {
   document.title = "WIMF - Informations légales";
 
+  const isMobile = useIsMobile();
+
   return (
     <>
-      {window.innerWidth >= 1025 && <Header />}
+      {!isMobile && <Header />}
 
       <main>
         <section id="legals">
@@ -47,9 +50,9 @@ const Legals = () => {
         <ProfileNavBar active="legals" />
       </main>
 
-      {window.innerWidth < 1025 && <NavBar active="profile" />}
+      {isMobile && <NavBar active="profile" />}
 
-      {window.innerWidth >= 1025 && <Footer />}
+      {!isMobile && <Footer />}
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
@@ -7,18 +8,20 @@ import ProfilePreferencesUpdates from "../components/ProfilePreferencesUpdates";
 const ProfilePreferences = () => {
   document.title = "Mes préférences";
 
+  const isMobile = useIsMobile();
+
   return (
     <>
-      {window.innerWidth >= 1025 && <Header />}
+      {!isMobile && <Header />}
 
       <main>
         <ProfilePreferencesUpdates />
         <ProfileNavBar active="preferences" />
       </main>
 
-      {window.innerWidth < 1025 && <NavBar active="profile" />}
+      {isMobile && <NavBar active="profile" />}
 
-      {window.innerWidth >= 1025 && <Footer />}
+      {!isMobile && <Footer />}
     </>
   );
 };

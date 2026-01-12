@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LogIn from "../components/Login";
@@ -15,6 +16,7 @@ const Profile = () => {
   const [showLogIn, setShowLogIn] = useState<boolean>(false);
   const [showButtons, setShowButtons] = useState<boolean>(false);
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   document.title = "Mon compte";
 
@@ -30,7 +32,7 @@ const Profile = () => {
 
   return (
     <>
-      {window.innerWidth >= 1025 && <Header />}
+      {!isMobile && <Header />}
 
       <main id="profile">
         {!token && (
@@ -76,9 +78,9 @@ const Profile = () => {
         <ProfileNavBar active="none" />
       </main>
 
-      {window.innerWidth < 1025 && <NavBar active="profile" />}
+      {isMobile && <NavBar active="profile" />}
 
-      {window.innerWidth >= 1025 && <Footer />}
+      {!isMobile && <Footer />}
     </>
   );
 };

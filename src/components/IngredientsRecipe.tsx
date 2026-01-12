@@ -73,7 +73,7 @@ const IngredientsRecipe = ({ id, servings, ingredients: providedIngredients }: I
             key={ingredient.id_ingredient ?? ingredient.name_ingredient}
             className="ingredient"
           >
-            <p>{ingredient.name_ingredient}</p>
+            <p>{ingredient.name_ingredient.charAt(0).toUpperCase() + ingredient.name_ingredient.slice(1)}</p>
             <p className="ingredient-quantity">
               {Number(
                 ((ingredient.quantity / servings) * wantedServings).toFixed(1)

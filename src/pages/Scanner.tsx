@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import CameraScanner from "../components/CameraScanner";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -15,6 +16,7 @@ const Scanner = () => {
   const [ingredients, setIngredients] = useState([]);
   const [scanError, setScanError] = useState(false);
   const [search, setSearch] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const location = useLocation();
 
@@ -31,7 +33,7 @@ const Scanner = () => {
 
   return (
     <>
-      {window.innerWidth >= 1025 && <Header />}
+      {!isMobile && <Header />}
 
       <main id="scanner">
         {!search && (
@@ -67,9 +69,9 @@ const Scanner = () => {
         {search && <ScannerRecipes search={search} />}
       </main>
 
-      {window.innerWidth < 1025 && <NavBar active="scanner" />}
+      {isMobile && <NavBar active="scanner" />}
 
-      {window.innerWidth >= 1025 && <Footer />}
+      {!isMobile && <Footer />}
     </>
   );
 };

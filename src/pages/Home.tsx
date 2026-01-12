@@ -1,3 +1,4 @@
+import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -10,12 +11,14 @@ import "../styles/pages/Home.scss";
 const Home = () => {
   document.title = "Accueil - Trouve ta recette";
 
+  const isMobile = useIsMobile();
+
   return (
     <>
-      {window.innerWidth >= 1025 && <Header />}
+      {!isMobile && <Header />}
 
       <main id="home">
-        <div className={window.innerWidth < 1025 ? "mobile-bg" : "desktop-bg"}>
+        <div className={isMobile ? "mobile-bg" : "desktop-bg"}>
           <img
             src="/assets/Fraise.svg"
             className="bg-icon fraise"
@@ -26,7 +29,7 @@ const Home = () => {
             className="bg-icon banane"
             alt="Image de fond représentant une banane"
           />
-          {window.innerWidth >= 1025 && (
+          {!isMobile && (
             <>
               <img
                 src="/assets/Raisin.svg"
@@ -62,9 +65,9 @@ const Home = () => {
         </div>
       </main>
 
-      {window.innerWidth < 1025 && <NavBar active="home" />}
+      {isMobile && <NavBar active="home" />}
 
-      {window.innerWidth >= 1025 && <Footer />}
+      {!isMobile && <Footer />}
     </>
   );
 };

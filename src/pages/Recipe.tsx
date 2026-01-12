@@ -1,6 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import IngredientsRecipe from "../components/IngredientsRecipe";
@@ -11,6 +12,7 @@ import StepsRecipe from "../components/StepsRecipe";
 import TimeRecipe from "../components/TimeRecipe";
 import { getRecipeById, getUserById } from "../services/api";
 import { useAuthStore } from "../store/authStore";
+import "../styles/pages/Recipe.scss";
 
 const Recipe = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,13 +27,14 @@ const Recipe = () => {
   const location = useLocation();
   const token = useAuthStore((state) => state.token);
   const isGenerated = id === "generated";
+  const isMobile = useIsMobile();
 
   const getRecipe = async () => {
     if (isGenerated) {
       if (location.state?.recipe) {
         setRecipe({
           ...location.state.recipe,
-          ingredients: location.state.ingredients
+          ingredients: location.state.ingredients,
         });
       } else {
         setReqError("Aucune recette générée trouvée");
@@ -84,10 +87,12 @@ const Recipe = () => {
     navigate(-1);
   };
 
+  // TODO: Responsive desktop
+
   if (isLoading)
     return (
       <>
-        {window.innerWidth >= 1025 && <Header />}
+        {!isMobile && <Header />}
 
         <main className="loading-screen">
           <button className="orange-return-button" onClick={goBack}>
@@ -96,9 +101,9 @@ const Recipe = () => {
           <span className="loader" />
         </main>
 
-        {window.innerWidth < 1025 && <NavBar active={"recipes"} />}
+        {isMobile && <NavBar active={"recipes"} />}
 
-        {window.innerWidth >= 1025 && <Footer />}
+        {!isMobile && <Footer />}
       </>
     );
 
@@ -106,7 +111,7 @@ const Recipe = () => {
     document.title = "Erreur";
     return (
       <>
-        {window.innerWidth >= 1025 && <Header />}
+        {!isMobile && <Header />}
 
         <main className="error-screen">
           <button className="orange-return-button" onClick={goBack}>
@@ -116,9 +121,9 @@ const Recipe = () => {
           <h1 className="error">{reqError}</h1>
         </main>
 
-        {window.innerWidth < 1025 && <NavBar active={"recipes"} />}
+        {isMobile && <NavBar active={"recipes"} />}
 
-        {window.innerWidth >= 1025 && <Footer />}
+        {!isMobile && <Footer />}
       </>
     );
   }
@@ -127,30 +132,28 @@ const Recipe = () => {
 
   return (
     <>
-      {window.innerWidth >= 1025 && <Header />}
+      {!isMobile && <Header />}
 
       <main>
-        <button className="orange-return-button return-button" onClick={goBack}>
-          <ChevronLeft size={100} />
-        </button>
+        {isMobile && (
+          <button
+            className="orange-return-button return-button"
+            onClick={goBack}
+          >
+            <ChevronLeft size={100} />
+          </button>
+        )}
 
         <RecipeHead name={recipe.name_recipe} image={recipe.image_recipe} />
 
         {isGenerated && (
-          <div style={{
-            backgroundColor: '#fff3cd',
-            border: '1px solid #ffc107',
-            borderRadius: '8px',
-            padding: '12px 16px',
-            margin: '16px 20px',
-            fontSize: '14px',
-            lineHeight: '1.5'
-          }}>
+          <div id="is-ia">
             <strong>⚠️ Recette générée par IA</strong>
-            <p style={{ margin: '8px 0 0 0' }}>
-              Cette recette a été créée automatiquement. Vérifiez toujours les ingrédients, 
-              les quantités et les temps de cuisson. En cas d'allergies ou de régime spécifique, 
-              consultez un professionnel de santé.
+            <p>
+              Cette recette a été créée automatiquement. Vérifiez toujours les
+              ingrédients, les quantités et les temps de cuisson. En cas
+              d'allergies ou de régime spécifique, consultez un professionnel de
+              santé.
             </p>
           </div>
         )}
@@ -186,9 +189,9 @@ const Recipe = () => {
         )}
       </main>
 
-      {window.innerWidth < 1025 && <NavBar active={"recipes"} />}
+      {isMobile && <NavBar active={"recipes"} />}
 
-      {window.innerWidth >= 1025 && <Footer />}
+      {!isMobile && <Footer />}
     </>
   );
 };

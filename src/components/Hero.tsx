@@ -1,9 +1,12 @@
+import { useIsMobile } from "../hooks/useIsMobile";
 import "../styles/components/Hero.scss";
 
 const Hero = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section id="hero" className="container">
-      {window.innerWidth < 1025 && (
+      {isMobile && (
         <img src="/logo.webp" alt="Logo du site WIMF" className="logo" />
       )}
 

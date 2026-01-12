@@ -6,10 +6,12 @@ import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import SearchRecipes from "../components/SearchRecipes";
 import SearchResult from "../components/SearchResult";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const Recipes = () => {
   document.title = "Recettes";
 
+  const isMobile = useIsMobile();
   const location = useLocation(); // change d’objet quand l’URL change
 
   const [search, setSearch] = useState<string | null>(null);
@@ -27,7 +29,7 @@ const Recipes = () => {
 
   return (
     <>
-      {window.innerWidth >= 1025 && <Header />}
+      {!isMobile && <Header />}
 
       <main id="recipes">
         <SearchRecipes search={search} />
@@ -35,9 +37,9 @@ const Recipes = () => {
         {search == null ? <AllRecipes /> : <SearchResult search={search} />}
       </main>
 
-      {window.innerWidth < 1025 && <NavBar active="recipes" />}
+      {isMobile && <NavBar active="recipes" />}
 
-      {window.innerWidth >= 1025 && <Footer />}
+      {!isMobile && <Footer />}
     </>
   );
 };

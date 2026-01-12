@@ -1,12 +1,14 @@
 import { Search } from "lucide-react";
 import "../styles/components/Header.scss";
 import NavBar from "./NavBar";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header>
       <div className="container">
-        <img src="/logo.webp" alt="Logo" className="logo" />
+        <Link to={"/"}><img src="/logo.webp" alt="Logo" className="logo" /></Link>
+        
 
         <div>
           <label htmlFor="search-header">
