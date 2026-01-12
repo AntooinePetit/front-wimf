@@ -24,6 +24,10 @@
       &.active .icon {
         transform: rotate(180deg);
       }
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .hidden {

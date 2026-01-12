@@ -1,4 +1,5 @@
 import { ChefHat, CookingPot, Hourglass } from "lucide-react";
+import { useIsMobile } from "../hooks/useIsMobile";
 import "../styles/components/TimeRecipe.scss";
 
 interface timeRecipeProps {
@@ -22,9 +23,14 @@ const TimeRecipe = ({ prep, cook, rest }: timeRecipeProps) => {
     rest > 60
       ? `${(rest - (rest % 60)) / 60} h ${rest % 60} min`
       : `${rest} min`;
+
+  const isMobile = useIsMobile();
+
   return (
     <section id="time-recipe">
-      <div>
+      {!isMobile && <h2>Temps de préparation</h2>}
+
+      <div className={!isMobile ? "container" : ""}>
         {prep != null && prep > 0 ? (
           <div>
             <div className="time-svg">

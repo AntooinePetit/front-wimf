@@ -21,6 +21,10 @@
         border: none;
         padding: 15px;
         border-radius: 9999999999999px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

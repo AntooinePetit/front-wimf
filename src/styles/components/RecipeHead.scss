@@ -12,3 +12,28 @@
     padding: 50px 30px;
   }
 }
+
+// Responsive design
+
+@media screen and (min-width:1025px) {
+  #recipe-head {
+    margin-top: 150px;
+    margin-bottom: 150px;
+
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 50px;
+    align-items: center;
+
+    img {
+      border-radius: 30px;
+      max-width: 1000px;
+      height: 600px;
+
+    }
+
+    h1 {
+      padding: 0;
+    }
+  }
+}
