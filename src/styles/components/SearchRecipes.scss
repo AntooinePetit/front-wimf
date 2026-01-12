@@ -57,3 +57,18 @@
     }
   }
 }
+
+// Responsive design
+
+@media screen and (min-width:1025px) {
+  #head-recipes {
+    > div {
+      form {
+        div {
+          width: 900px;
+          align-self: center;
+        }
+      }
+    }
+  }
+}
