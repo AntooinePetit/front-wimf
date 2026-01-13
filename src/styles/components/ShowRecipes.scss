@@ -22,6 +22,7 @@
     img {
       height: 150px;
       object-fit: cover;
+      border-radius: 30px;
     }
   }
 }
@@ -40,6 +41,10 @@
   #result {
     > div {
       grid-template-columns: repeat(3, 1fr);
+
+      img {
+        height: 200px;
+      }
     }
   }
 }
