@@ -17,3 +17,13 @@
     justify-content: center;
   }
 }
+
+// Responsive design
+
+@media screen and (min-width:1025px) {
+  #scanner-default {
+    div {
+      min-height: 50vh;
+    }
+  }
+}

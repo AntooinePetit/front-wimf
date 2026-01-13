@@ -13,17 +13,31 @@
 
   button {
     margin-bottom: 20px;
-    
+
     &.generate-button {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      
+
       &:disabled {
         opacity: 0.7;
         cursor: not-allowed;
       }
+    }
+  }
+}
+
+// Responsive design
+
+@media screen and (min-width: 1025px) {
+  #scanner-recipes-result {
+    > div {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    button {
+      justify-self: center;
     }
   }
 }

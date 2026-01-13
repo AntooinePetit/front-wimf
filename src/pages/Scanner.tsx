@@ -21,6 +21,12 @@ const Scanner = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (!isMobile) {
+      setShowIngredients(true);
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
     const urlSearch = new URLSearchParams(location.search);
     const searchParam = urlSearch.get("search");
 

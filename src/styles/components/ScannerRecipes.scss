@@ -21,3 +21,13 @@
 
 
 }
+
+// Responsive design
+
+@media screen and (min-width:1025px) {
+  #scanner-recipes {
+    #section-scanner-recipes-head {
+      position: relative;
+    }
+  }
+}

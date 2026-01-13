@@ -1,3 +1,4 @@
+import { useIsMobile } from "../hooks/useIsMobile";
 import "../styles/components/ScannerDefault.scss";
 
 interface ScannerDefaultProps {
@@ -9,14 +10,18 @@ const ScannerDefault = ({
   setShowCamera,
   setShowIngredients,
 }: ScannerDefaultProps) => {
+  const isMobile = useIsMobile();
+
   return (
     <section id="scanner-default">
       <h1>Scanner</h1>
 
       <div className="container">
-        <button className="button" onClick={() => setShowCamera(true)}>
-          Scanner mon frigo
-        </button>
+        {isMobile && (
+          <button className="button" onClick={() => setShowCamera(true)}>
+            Scanner mon frigo
+          </button>
+        )}
 
         <button className="button" onClick={() => setShowIngredients(true)}>
           Entrer mes ingrédients manuellement

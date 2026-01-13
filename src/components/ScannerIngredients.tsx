@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { searchIngredients } from "../services/api";
 import "../styles/components/ScannerIngredients.scss";
 import ScannerIngredientSearch from "./ScannerIngredientSearch";
@@ -25,6 +26,8 @@ const ScannerIngredients = ({
   const [isError, setIsError] = useState(false);
 
   const [ingredientsIds, setIngredientsIds] = useState<any[]>([]);
+
+  const isMobile = useIsMobile();
 
   const getIngredientsIds = async () => {
     try {
@@ -53,12 +56,15 @@ const ScannerIngredients = ({
   return (
     <section id="scanner-ingredients">
       <div id="section-ingredients-head">
-        <button
-          className="white-return-button return-button"
-          onClick={() => setShowIngredients(false)}
-        >
-          <ChevronLeft size={75} />
-        </button>
+        {isMobile && (
+          <button
+            className="white-return-button return-button"
+            onClick={() => setShowIngredients(false)}
+          >
+            <ChevronLeft size={75} />
+          </button>
+        )}
+
         <h1>{isScanned ? "Résultats du scan" : "Liste d'ingrédients"}</h1>
       </div>
 

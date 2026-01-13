@@ -48,7 +48,7 @@ const ScannerIngredientsList = ({
 
   return (
     <div id="ingredient-list" className="container">
-      {ingredientList.length === 0 && <p>Aucun ingrédient pour l'instant</p>}
+      {ingredientList.length === 0 && <p><strong>Aucun ingrédient pour l'instant</strong></p>}
 
       {ingredientList.length > 0 && (
         <>
