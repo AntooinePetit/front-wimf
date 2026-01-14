@@ -65,20 +65,28 @@ const ScannerIngredients = ({
           </button>
         )}
 
-        <h1>{isScanned ? "Résultats du scan" : "Liste d'ingrédients"}</h1>
+        <h1>
+          {isMobile
+            ? isScanned
+              ? "Résultats du scan"
+              : "Liste d'ingrédients"
+            : "Trouve des recettes avec ce que tu as au frigo"}
+        </h1>
       </div>
 
       {scanError ? (
         <p className="error">Une erreur est survenue lors du scan</p>
       ) : (
         <>
-          <ScannerIngredientsList
-            ingredientList={ingredientsIds}
-            isLoading={isLoading}
-            isError={isError}
-            isScanned={isScanned}
-            setIngredientList={(value: any[]) => setIngredientsIds(value)}
-          />
+          {isMobile && (
+            <ScannerIngredientsList
+              ingredientList={ingredientsIds}
+              isLoading={isLoading}
+              isError={isError}
+              isScanned={isScanned}
+              setIngredientList={(value: any[]) => setIngredientsIds(value)}
+            />
+          )}
 
           {!isLoading && (
             <ScannerIngredientSearch

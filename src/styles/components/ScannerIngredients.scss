@@ -32,3 +32,18 @@
     }
   }
 }
+
+// Responsive desktop 
+
+@media screen and (min-width:1025px) {
+  #scanner-ingredients {
+    form {
+      gap: 20px;
+
+      #ingredient-search {
+        width: 900px;
+        margin: auto;
+      }
+    }
+  }
+}

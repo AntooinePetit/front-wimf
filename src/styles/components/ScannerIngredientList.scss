@@ -29,3 +29,12 @@
     }
   }
 }
+
+// Responsive desktop
+
+@media screen and (min-width:1025px) {
+  #ingredient-list {
+    margin: 0;
+    padding: 0;
+  }
+}

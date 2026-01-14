@@ -1,6 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import {
   generateRecipe,
   getIngredientsByIds,
@@ -31,6 +32,8 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [recipes, setRecipes] = useState<any[]>([]);
 
+  const isMobile = useIsMobile();
+
   const fetchData = async () => {
     try {
       const searchQuery = search.replaceAll(" ", "+");
@@ -60,11 +63,11 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
     setIsGenerating(true);
     try {
       const data = await generateRecipe(search);
-      navigate("/recipes/recipe/generated", { 
-        state: { 
+      navigate("/recipes/recipe/generated", {
+        state: {
           recipe: data.recipe,
-          ingredients: data.ingredients 
-        } 
+          ingredients: data.ingredients,
+        },
       });
     } catch (error) {
       console.error(error);
@@ -82,12 +85,15 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
   return (
     <section id="scanner-recipes">
       <div id="section-scanner-recipes-head">
-        <button
-          className="white-return-button return-button"
-          onClick={() => goBack()}
-        >
-          <ChevronLeft size={75} />
-        </button>
+        {isMobile && (
+          <button
+            className="white-return-button return-button"
+            onClick={() => goBack()}
+          >
+            <ChevronLeft size={75} />
+          </button>
+        )}
+
         <h1>Résultats</h1>
       </div>
 

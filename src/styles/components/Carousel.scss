@@ -34,6 +34,18 @@
 
 // Responsive
 
+@media screen and (min-width: 768px) {
+  #container-swiper {
+    .swiper {
+      .swiper-slide {
+        img {
+          height: 200px;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 1025px) {
   #container-swiper {
     .swiper-wrapper {

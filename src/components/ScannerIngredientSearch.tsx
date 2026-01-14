@@ -1,8 +1,10 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { searchIngredients } from "../services/api";
 import "../styles/components/ScannerIngredientSearch.scss";
+import ScannerIngredientsList from "./ScannerIngredientsList";
 
 interface Ingredient {
   id_ingredient: number;
@@ -24,6 +26,8 @@ const ScannerIngredientSearch = ({
   const [search, setSearch] = useState("");
 
   const [notification, setNotification] = useState<string | null>(null);
+
+  const isMobile = useIsMobile();
 
   const getSearchResults = async () => {
     try {
@@ -65,7 +69,10 @@ const ScannerIngredientSearch = ({
           getSearchResults();
         }}
       >
-        <label htmlFor="ingredient-search">Ajouter un ingrédient</label>
+        {isMobile && (
+          <label htmlFor="ingredient-search">Ajouter un ingrédient</label>
+        )}
+
         <input
           type="text"
           name="ingredient-search"
@@ -95,6 +102,16 @@ const ScannerIngredientSearch = ({
 
       <hr />
       <hr />
+
+      {!isMobile && (
+        <ScannerIngredientsList
+          ingredientList={ingredientList}
+          setIngredientList={setIngredientList}
+          isLoading={false}
+          isError={false}
+          isScanned={false}
+        />
+      )}
 
       <Link
         to={`/scanner?search=${ingredientList.map((e) => e.id).join("+")}`}
