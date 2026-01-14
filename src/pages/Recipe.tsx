@@ -1,7 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import IngredientsRecipe from "../components/IngredientsRecipe";
@@ -10,6 +9,7 @@ import NutritionalValuesRecipe from "../components/NutritionalValuesRecipe";
 import RecipeHead from "../components/RecipeHead";
 import StepsRecipe from "../components/StepsRecipe";
 import TimeRecipe from "../components/TimeRecipe";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { getRecipeById, getUserById } from "../services/api";
 import { useAuthStore } from "../store/authStore";
 import "../styles/pages/Recipe.scss";
@@ -37,7 +37,7 @@ const Recipe = () => {
           ingredients: location.state.ingredients,
         });
       } else {
-        setReqError("Aucune recette générée trouvée");
+        setReqError("Une erreur est survenue lors de la génération de la recette, réessaie plus tard !");
       }
       setIsLoading(false);
       return;
@@ -87,17 +87,17 @@ const Recipe = () => {
     navigate(-1);
   };
 
-  // TODO: Responsive desktop
-
   if (isLoading)
     return (
       <>
         {!isMobile && <Header />}
 
         <main className="loading-screen">
-          <button className="orange-return-button" onClick={goBack}>
-            <ChevronLeft size={100} />
-          </button>
+          {isMobile && (
+            <button className="orange-return-button" onClick={goBack}>
+              <ChevronLeft size={100} />
+            </button>
+          )}
           <span className="loader" />
         </main>
 
@@ -114,9 +114,11 @@ const Recipe = () => {
         {!isMobile && <Header />}
 
         <main className="error-screen">
-          <button className="orange-return-button" onClick={goBack}>
-            <ChevronLeft size={100} />
-          </button>
+          {isMobile && (
+            <button className="orange-return-button" onClick={goBack}>
+              <ChevronLeft size={100} />
+            </button>
+          )}
 
           <h1 className="error">{reqError}</h1>
         </main>

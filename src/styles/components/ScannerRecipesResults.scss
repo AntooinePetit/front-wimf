@@ -49,6 +49,10 @@
 
     button {
       justify-self: center;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
