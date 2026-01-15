@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { getUserById, updateUser } from "../services/api";
 import { useAuthStore } from "../store/authStore";
 import "../styles/components/ProfileInfosUpdate.scss";
@@ -19,6 +20,7 @@ const ProfileInfosUpdate = () => {
     confirmPassword: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -116,6 +118,7 @@ const ProfileInfosUpdate = () => {
   };
 
   return (
+    
     <section id="profile-infos">
       <h1>Mes informations</h1>
 
@@ -196,13 +199,15 @@ const ProfileInfosUpdate = () => {
           <p className="notification-success">{successMessage}</p>
         )}
       </div>
-      <button
-        className="logout-button"
-        onClick={handleLogout}
-        style={{ marginTop: "2rem" }}
-      >
-        Déconnexion
-      </button>
+      {isMobile && (
+        <button
+          className="logout-button"
+          onClick={handleLogout}
+          style={{ marginTop: "2rem" }}
+        >
+          Déconnexion
+        </button>
+      )}
     </section>
   );
 };

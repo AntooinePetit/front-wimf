@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { useAuthStore } from "../store/authStore";
 import "../styles/components/ProfileNavBar.scss";
 
 interface ProfileNavBarProps {
@@ -8,6 +9,14 @@ interface ProfileNavBarProps {
 
 const ProfileNavBar = ({ active }: ProfileNavBarProps) => {
   const isMobile = useIsMobile();
+
+  const clearToken = useAuthStore((state) => state.clearToken);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    clearToken();
+    navigate("/profile");
+  };
   return (
     <div id="profile-nav-bar">
       <div>
@@ -30,6 +39,16 @@ const ProfileNavBar = ({ active }: ProfileNavBarProps) => {
             </Link>
           )}
         </div>
+        
+        {!isMobile && (
+          <button
+            className="logout-button"
+            onClick={handleLogout}
+            style={{ marginTop: "2rem" }}
+          >
+            Déconnexion
+          </button>
+        )}
       </div>
     </div>
   );

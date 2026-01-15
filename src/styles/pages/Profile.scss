@@ -102,5 +102,26 @@
         }
       }
     }
+
+    #login,
+    #sign-in {
+      h1 {
+        background: none;
+        margin-top: 150px;
+        margin-bottom: 50px;
+      }
+
+      .container {
+        max-width: 700px;
+        min-height: auto;
+
+        span,
+        .button {
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
 }
