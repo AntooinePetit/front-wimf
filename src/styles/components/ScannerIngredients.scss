@@ -37,6 +37,12 @@
 
 @media screen and (min-width:1025px) {
   #scanner-ingredients {
+    #section-ingredients-head {
+      background: none;
+      
+      margin-top: 150px;
+    }
+
     form {
       gap: 20px;
 

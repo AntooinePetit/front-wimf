@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LogIn from "../components/Login";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
 import SignIn from "../components/SignIn";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { useAuthStore } from "../store/authStore";
 import "../styles/pages/Profile.scss";
 
@@ -75,7 +75,7 @@ const Profile = () => {
             )}
           </>
         )}
-        <ProfileNavBar active="none" />
+        {token && <ProfileNavBar active="none" />}
       </main>
 
       {isMobile && <NavBar active="profile" />}

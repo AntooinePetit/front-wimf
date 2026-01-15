@@ -25,6 +25,8 @@ const ScannerRecipesResults = ({
 
   return (
     <div id="scanner-recipes-result">
+      {recipes.length === 0 && <p><strong>Aucun résultat</strong></p>}
+
       <div>
         {recipes.slice(0, recipesShown).map((recipe) => (
           <Link

@@ -62,11 +62,22 @@
 
 @media screen and (min-width:1025px) {
   #head-recipes {
+    background: none;
+    margin-top: 150px;
+
     > div {
       form {
         div {
           width: 900px;
           align-self: center;
+        }
+
+        button {
+          background: $main;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }

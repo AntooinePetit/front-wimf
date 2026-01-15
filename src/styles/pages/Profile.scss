@@ -86,3 +86,21 @@
     margin-bottom: 50px;
   }
 }
+
+// Responsive desktop
+
+@media screen and (min-width:1025px) {
+  #profile {
+    margin-bottom: 0;
+    #connection-buttons {
+      margin-bottom: 0;
+      min-height: calc(100vh - 300px);
+
+      .button {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

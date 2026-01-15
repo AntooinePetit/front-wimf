@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 import "../styles/components/ProfileNavBar.scss";
 
 interface ProfileNavBarProps {
@@ -6,6 +7,7 @@ interface ProfileNavBarProps {
 }
 
 const ProfileNavBar = ({ active }: ProfileNavBarProps) => {
+  const isMobile = useIsMobile();
   return (
     <div id="profile-nav-bar">
       <div>
@@ -22,12 +24,11 @@ const ProfileNavBar = ({ active }: ProfileNavBarProps) => {
           >
             Préférences
           </Link>
-          <Link
-            to={"/legals"}
-            className={active == "legals" ? "active" : ""}
-          >
-            Informations légales
-          </Link>
+          {isMobile && (
+            <Link to={"/legals"} className={active == "legals" ? "active" : ""}>
+              Informations légales
+            </Link>
+          )}
         </div>
       </div>
     </div>
