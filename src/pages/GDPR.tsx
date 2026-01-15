@@ -1,8 +1,8 @@
-import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const GDPR = () => {
   document.title = "Consentement RGPD";
@@ -15,7 +15,6 @@ const GDPR = () => {
 
       <main className="legal-main">
         <h1>Consentement RGPD</h1>
-
         <section>
           <article>
             <h2>1. Introduction</h2>
@@ -107,7 +106,7 @@ const GDPR = () => {
             </p>
           </article>
         </section>
-        <ProfileNavBar active="legals" />
+        {isMobile && <ProfileNavBar active="legals" />}
       </main>
 
       {isMobile && <NavBar active="profile" />}

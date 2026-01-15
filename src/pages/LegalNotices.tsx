@@ -1,8 +1,8 @@
-import { useIsMobile } from "../hooks/useIsMobile";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import ProfileNavBar from "../components/ProfileNavBar";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const LegalNotices = () => {
   document.title = "Mentions légales";
@@ -113,7 +113,7 @@ const LegalNotices = () => {
             </a>
           </p>
         </section>
-        <ProfileNavBar active="legals" />
+        {isMobile && <ProfileNavBar active="legals" />}
       </main>
 
       {isMobile && <NavBar active="profile" />}

@@ -307,4 +307,18 @@ main {
   main {
     margin-bottom: 150px;
   }
+
+  .legal-main {
+    margin-bottom: 150px;
+    margin-top: 150px;
+
+    h1 {
+      background: none;
+    }
+
+    section {
+      max-width: 1440px;
+      margin: auto;
+    }
+  }
 }
