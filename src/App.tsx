@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Error404 from "./pages/Error404";
 import GDPR from "./pages/GDPR";
 import GeneralTermsOfUse from "./pages/GeneralTermsOfUse";
 import Home from "./pages/Home";
@@ -29,6 +30,7 @@ function App() {
       <Route path="/legals/privacy" element={<PrivacyPolicy />} />
       <Route path="/legals/gdpr" element={<GDPR />} />
       <Route path="/reset-pass/:token" element={<ResetPass />} />
+      <Route path="*" element={<Error404 />} />
     </Routes>
   );
 }

@@ -98,6 +98,10 @@ svg {
   font-size: 24px;
   font-weight: bold;
   border: none;
+
+  &:hover {
+    transform: scale(1.05)
+  }
 }
 
 .orange-return-button {
