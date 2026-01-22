@@ -1,37 +1,43 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Error404 from "./pages/Error404";
-import GDPR from "./pages/GDPR";
-import GeneralTermsOfUse from "./pages/GeneralTermsOfUse";
-import Home from "./pages/Home";
-import LegalNotices from "./pages/LegalNotices";
-import Legals from "./pages/Legals";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Profile from "./pages/Profile";
-import ProfileInfos from "./pages/ProfileInfos";
-import ProfilePreferences from "./pages/ProfilePreferences";
-import Recipe from "./pages/Recipe";
-import Recipes from "./pages/Recipes";
-import ResetPass from "./pages/ResetPass";
-import Scanner from "./pages/Scanner";
+
+// Lazy loading : chaque page se charge uniquement quand on y accède
+const Home = lazy(() => import("./pages/Home"));
+const Recipe = lazy(() => import("./pages/Recipe"));
+const Recipes = lazy(() => import("./pages/Recipes"));
+const Scanner = lazy(() => import("./pages/Scanner"));
+const Profile = lazy(() => import("./pages/Profile"));
+const ProfileInfos = lazy(() => import("./pages/ProfileInfos"));
+const ProfilePreferences = lazy(() => import("./pages/ProfilePreferences"));
+const Legals = lazy(() => import("./pages/Legals"));
+const LegalNotices = lazy(() => import("./pages/LegalNotices"));
+const GeneralTermsOfUse = lazy(() => import("./pages/GeneralTermsOfUse"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const GDPR = lazy(() => import("./pages/GDPR"));
+const ResetPass = lazy(() => import("./pages/ResetPass"));
+const Error404 = lazy(() => import("./pages/Error404"));
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/recipes/recipe/:id" element={<Recipe />} />
-      <Route path="/recipes" element={<Recipes />} />
-      <Route path="/scanner" element={<Scanner />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/profile/infos" element={<ProfileInfos />} />
-      <Route path="/profile/preferences" element={<ProfilePreferences />} />
-      <Route path="/legals" element={<Legals />} />
-      <Route path="/legals/notices" element={<LegalNotices />} />
-      <Route path="/legals/gtu" element={<GeneralTermsOfUse />} />
-      <Route path="/legals/privacy" element={<PrivacyPolicy />} />
-      <Route path="/legals/gdpr" element={<GDPR />} />
-      <Route path="/reset-pass/:token" element={<ResetPass />} />
-      <Route path="*" element={<Error404 />} />
-    </Routes>
+    // Suspense affiche un fallback pendant le chargement de la page
+    <Suspense fallback={<div style={{ textAlign: "center", padding: "2rem" }}>Chargement...</div>}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/recipes/recipe/:id" element={<Recipe />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/scanner" element={<Scanner />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/infos" element={<ProfileInfos />} />
+        <Route path="/profile/preferences" element={<ProfilePreferences />} />
+        <Route path="/legals" element={<Legals />} />
+        <Route path="/legals/notices" element={<LegalNotices />} />
+        <Route path="/legals/gtu" element={<GeneralTermsOfUse />} />
+        <Route path="/legals/privacy" element={<PrivacyPolicy />} />
+        <Route path="/legals/gdpr" element={<GDPR />} />
+        <Route path="/reset-pass/:token" element={<ResetPass />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </Suspense>
   );
 }
 

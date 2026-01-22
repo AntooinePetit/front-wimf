@@ -128,7 +128,7 @@ const ProfileInfosUpdate = () => {
           <p>{email}</p>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} aria-label="Formulaire de mise à jour du profil">
           <div>
             <label htmlFor="username">Nom d'utilisateur</label>
             <input
@@ -138,9 +138,12 @@ const ProfileInfosUpdate = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder={username}
+              aria-required="true"
+              aria-invalid={!!errors.username}
+              aria-describedby={errors.username ? "username-error" : undefined}
             />
             {errors.username && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p style={{ color: "red", fontSize: "0.875rem" }} id="username-error" role="alert">
                 {errors.username}
               </p>
             )}
@@ -153,9 +156,12 @@ const ProfileInfosUpdate = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              aria-required="true"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
             />
             {errors.email && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p style={{ color: "red", fontSize: "0.875rem" }} id="email-error" role="alert">
                 {errors.email}
               </p>
             )}
@@ -168,9 +174,11 @@ const ProfileInfosUpdate = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              aria-invalid={!!errors.password}
+              aria-describedby={errors.password ? "password-error" : undefined}
             />
             {errors.password && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p style={{ color: "red", fontSize: "0.875rem" }} id="password-error" role="alert">
                 {errors.password}
               </p>
             )}
@@ -183,9 +191,11 @@ const ProfileInfosUpdate = () => {
               name="confirm-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              aria-invalid={!!errors.confirmPassword}
+              aria-describedby={errors.confirmPassword ? "confirm-password-error" : undefined}
             />
             {errors.confirmPassword && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p style={{ color: "red", fontSize: "0.875rem" }} id="confirm-password-error" role="alert">
                 {errors.confirmPassword}
               </p>
             )}
@@ -196,7 +206,7 @@ const ProfileInfosUpdate = () => {
         </form>
 
         {successMessage && (
-          <p className="notification-success">{successMessage}</p>
+          <p className="notification-success" role="alert" aria-live="polite">{successMessage}</p>
         )}
       </div>
       {isMobile && (
@@ -204,6 +214,7 @@ const ProfileInfosUpdate = () => {
           className="logout-button"
           onClick={handleLogout}
           style={{ marginTop: "2rem" }}
+          aria-label="Se déconnecter"
         >
           Déconnexion
         </button>

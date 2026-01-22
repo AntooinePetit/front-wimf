@@ -52,12 +52,12 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
           setToken(res, remainConnected);
           setShowLogIn(false);
           navigate("/profile/infos");
-        } else {
-          setNotification(res.message || "Erreur de connexion");
-          setTimeout(() => setNotification(null), 3000);
         }
       } catch (error) {
-        console.error(error);
+        // Affichage de l'erreur retournée par l'API
+        const errorMessage = error instanceof Error ? error.message : "Erreur de connexion";
+        setNotification(errorMessage);
+        setTimeout(() => setNotification(null), 3000);
       }
     }
   };
@@ -70,7 +70,7 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
 
       {!showForgotPass && (
         <div className="container">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} aria-label="Formulaire de connexion">
             <div>
               <label htmlFor="email">Adresse e-mail</label>
               <input
@@ -79,8 +79,15 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                aria-required="true"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
               />
-              {errors.email && <p className="error">{errors.email}</p>}
+              {errors.email && (
+                <p className="error" id="email-error" role="alert">
+                  {errors.email}
+                </p>
+              )}
             </div>
             <div>
               <label htmlFor="password">Mot de passe</label>
@@ -90,9 +97,21 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                aria-required="true"
+                aria-invalid={!!errors.password}
+                aria-describedby={errors.password ? "password-error" : undefined}
               />
-              {errors.password && <p className="error">{errors.password}</p>}
-              <span onClick={() => setShowForgotPass(true)}>
+              {errors.password && (
+                <p className="error" id="password-error" role="alert">
+                  {errors.password}
+                </p>
+              )}
+              <span
+                onClick={() => setShowForgotPass(true)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Enter" && setShowForgotPass(true)}
+              >
                 Mot de passe oublié ?
               </span>
             </div>
@@ -116,12 +135,22 @@ const LogIn = ({ setShowLogIn, setShowSignIn }: LogInProps) => {
                 setShowLogIn(false);
                 setShowSignIn(true);
               }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setShowLogIn(false);
+                  setShowSignIn(true);
+                }
+              }}
             >
               Crées-en un !
             </span>
           </p>
           {notification && (
-            <div className="notification-error">{notification}</div>
+            <div className="notification-error" role="alert" aria-live="polite">
+              {notification}
+            </div>
           )}
         </div>
       )}

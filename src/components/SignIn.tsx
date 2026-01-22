@@ -98,12 +98,13 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
             e.preventDefault();
             sendForm();
           }}
+          aria-label="Formulaire d'inscription"
         >
           <div>
             <label htmlFor="username">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" required />
+            <input type="text" id="username" name="username" required aria-required="true" aria-invalid={errorUsername} aria-describedby={errorUsername ? "username-error" : undefined} />
             {errorUsername && (
-              <>
+              <div id="username-error" role="alert">
                 <p>Le nom d'utilisateur doit :</p>
                 <ul>
                   <li>Faire entre 3 et 20 caractères</li>
@@ -111,19 +112,19 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
                     Ne contenir que des lettres, chiffres, underscores ou tirets
                   </li>
                 </ul>
-              </>
+              </div>
             )}
           </div>
           <div>
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
-            {errorEmail && <p className="error">Adresse mail invalide</p>}
+            <input type="email" id="email" name="email" required aria-required="true" aria-invalid={errorEmail} aria-describedby={errorEmail ? "email-error" : undefined} />
+            {errorEmail && <p className="error" id="email-error" role="alert">Adresse mail invalide</p>}
           </div>
           <div>
             <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required />
+            <input type="password" id="password" name="password" required aria-required="true" aria-invalid={errorPassword} aria-describedby={errorPassword ? "password-error" : undefined} />
             {errorPassword && (
-              <>
+              <div id="password-error" role="alert">
                 <p>Le mot de passe doit :</p>
                 <ul>
                   <li>Faire au moins 8 caractères</li>
@@ -132,7 +133,7 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
                   <li>Contenir au moins un chiffre</li>
                   <li>Contenir au moins un caractère spécial (@$!%*?&)</li>
                 </ul>
-              </>
+              </div>
             )}
           </div>
           <div>
@@ -142,20 +143,23 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
               id="confirm-password"
               name="confirm-password"
               required
+              aria-required="true"
+              aria-invalid={errorConfirmPassword}
+              aria-describedby={errorConfirmPassword ? "confirm-password-error" : undefined}
             />
             {errorConfirmPassword && (
-              <p className="error">Les deux mots de passe doivent être identiques</p>
+              <p className="error" id="confirm-password-error" role="alert">Les deux mots de passe doivent être identiques</p>
             )}
           </div>
           <div className="check">
-            <input type="checkbox" name="rgpd" id="rgpd" required />
+            <input type="checkbox" name="rgpd" id="rgpd" required aria-required="true" aria-invalid={errorRgpd} aria-describedby={errorRgpd ? "rgpd-error" : undefined} />
             <label htmlFor="rgpd">
               J’accepte le traitement de mes données personnelles conformément à
               la Politique de confidentialité et aux finalités indiquées{" "}
               <Link to={"/profile/legals/rgpd"}>ici</Link>.
             </label>
             {errorRgpd && (
-              <p className="error">Vous devez accepter la politique de confidentialité</p>
+              <p className="error" id="rgpd-error" role="alert">Vous devez accepter la politique de confidentialité</p>
             )}
           </div>
           <button type="submit" className="button">
@@ -168,6 +172,8 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
             className={`validation-message ${
               isRegistered == true ? "success" : "failed"
             }`}
+            role="alert"
+            aria-live="polite"
           >
             {isRegistered == true
               ? "Inscription réussie ! Bienvenue !"
@@ -181,6 +187,14 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
             onClick={() => {
               setShowLogIn(true);
               setShowSignIn(false);
+            }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setShowLogIn(true);
+                setShowSignIn(false);
+              }
             }}
           >
             Connecte toi !

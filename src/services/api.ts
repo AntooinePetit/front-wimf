@@ -2,6 +2,16 @@ import { config } from "../config";
 
 const apiUrl = config.apiUrl;
 
+// Fonction utilitaire pour gérer les erreurs HTTP
+const handleResponse = async (res: Response) => {
+  // Si la réponse n'est pas OK (status 200-299)
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({ message: "Erreur serveur" }));
+    throw new Error(errorData.message || `Erreur HTTP ${res.status}`);
+  }
+  return res.json();
+};
+
 // Auth
 export const login = async (email: string, password: string) => {
   const res = await fetch(`${apiUrl}/api/v1/auth/login`, {
@@ -9,7 +19,7 @@ export const login = async (email: string, password: string) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
-  return res.json();
+  return handleResponse(res);
 };
 
 export const register = async (
@@ -22,7 +32,7 @@ export const register = async (
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, email, password }),
   });
-  return res.json();
+  return handleResponse(res);
 };
 
 export const forgotPassword = async (email: string) => {
@@ -53,22 +63,22 @@ export const resetPassword = async (
 // Recipes
 export const getAllRecipes = async () => {
   const res = await fetch(`${apiUrl}/api/v1/recipes`);
-  return res.json();
+  return handleResponse(res);
 };
 
 export const getRandomRecipes = async () => {
   const res = await fetch(`${apiUrl}/api/v1/recipes/random`);
-  return res.json();
+  return handleResponse(res);
 };
 
 export const getRecipeById = async (id: string) => {
   const res = await fetch(`${apiUrl}/api/v1/recipes/${id}`);
-  return res.json();
+  return handleResponse(res);
 };
 
 export const searchRecipes = async (query: string) => {
   const res = await fetch(`${apiUrl}/api/v1/recipes/search/${query}`);
-  return res.json();
+  return handleResponse(res);
 };
 
 export const searchRecipesByIngredients = async (ingredientIds: string) => {

@@ -35,16 +35,16 @@ const ForgotPass = () => {
   return (
     <div id="forgot-pass" className="container">
       {success ? (
-        <div className="success-message">
+        <div className="success-message" role="alert" aria-live="polite">
           <p>Lien de réinitialisation envoyé !</p>
         </div>
       ) : (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} aria-label="Formulaire de réinitialisation de mot de passe">
         <div>
           <label htmlFor="email">Adresse e-mail</label>
-          <input type="email" id="email" name="email" required />
-          {errorEmail && <p className="error">Aucun compte avec cette adresse</p>}
-          {errorServer && <p className="error">Erreur serveur, réessayez plus tard</p>}
+          <input type="email" id="email" name="email" required aria-required="true" aria-invalid={errorEmail || errorServer} aria-describedby={(errorEmail || errorServer) ? "email-error" : undefined} />
+          {errorEmail && <p className="error" id="email-error" role="alert">Aucun compte avec cette adresse</p>}
+          {errorServer && <p className="error" id="email-error" role="alert">Erreur serveur, réessayez plus tard</p>}
         </div>
         <div>
           <button type="submit" className="button" disabled={loading}>
