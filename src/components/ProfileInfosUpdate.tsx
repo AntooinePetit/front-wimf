@@ -32,6 +32,8 @@ const ProfileInfosUpdate = () => {
         setEmail(res.email_user || "");
       } catch (error) {
         console.error(error);
+        clearToken();
+        navigate("/login");
       }
     };
 
@@ -104,10 +106,15 @@ const ProfileInfosUpdate = () => {
         setTimeout(() => setSuccessMessage(""), 3000);
       } catch (error) {
         console.error(error);
-        setErrors({
-          ...errors,
-          email: "Erreur de mise à jour",
-        });
+        if (error instanceof Error && error.message.includes('401')) {
+          clearToken();
+          navigate("/login");
+        } else {
+          setErrors({
+            ...newErrors,
+            email: "Erreur de mise à jour",
+          });
+        }
       }
     }
   };

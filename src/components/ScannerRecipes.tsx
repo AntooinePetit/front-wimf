@@ -71,7 +71,7 @@ const ScannerRecipes = ({ search }: ScannerRecipesProps) => {
       });
     } catch (error) {
       console.error(error);
-      setIsError(true);
+      alert("Erreur lors de la génération de la recette. Veuillez réessayer.");
     } finally {
       setIsGenerating(false);
     }

@@ -84,7 +84,12 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
       }
     } catch (error) {
       console.error(error);
-      setIsRegistered(false);
+      if (error instanceof Error && error.message.includes('409')) {
+        setErrorEmail(true);
+        setIsError(true);
+      } else {
+        setIsRegistered(false);
+      }
     }
   };
 
