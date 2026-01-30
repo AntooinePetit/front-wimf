@@ -29,7 +29,9 @@ header {
         border-radius: 30px;
 
         position: absolute;
-        justify-self: anchor-center;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
 
         label {
           font-size: 0;
