@@ -13,7 +13,7 @@ const Scanner = () => {
   const [showCamera, setShowCamera] = useState(false);
   const [showIngredients, setShowIngredients] = useState(false);
   const [isScanned, setIsScanned] = useState(false);
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState<string[]>([]);
   const [scanError, setScanError] = useState(false);
   const [search, setSearch] = useState<string | null>(null);
   const isMobile = useIsMobile();

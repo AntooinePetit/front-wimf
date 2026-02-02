@@ -12,7 +12,7 @@ const videoConstraints = {
 
 interface CameraScannerProps {
   setShowCamera: (value: boolean) => void;
-  setIngredients: (ingredients: []) => void;
+  setIngredients: (ingredients: string[]) => void;
   setIsScanned: (value: boolean) => void;
   setShowIngredients: (value: boolean) => void;
   setScanError: (value: boolean) => void;
