@@ -21,7 +21,7 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
 
   document.title = "Créer un compte";
 
-  const sendForm = async () => {
+  const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsError(false);
     setErrorUsername(false);
     setErrorEmail(false);
@@ -29,15 +29,11 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
     setErrorConfirmPassword(false);
     setErrorRgpd(false);
 
-    const form = document.querySelector("form") as HTMLFormElement;
-    const username = (form.elements.namedItem("username") as HTMLInputElement)
-      .value;
+    const form = e.currentTarget;
+    const username = (form.elements.namedItem("username") as HTMLInputElement).value;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-    const password = (form.elements.namedItem("password") as HTMLInputElement)
-      .value;
-    const confirmPassword = (
-      form.elements.namedItem("confirm-password") as HTMLInputElement
-    ).value;
+    const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+    const confirmPassword = (form.elements.namedItem("confirm-password") as HTMLInputElement).value;
     const rgpd = (form.elements.namedItem("rgpd") as HTMLInputElement).checked;
 
     // Regex
@@ -101,7 +97,7 @@ const SignIn = ({ setShowLogIn, setShowSignIn }: SignInProps) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            sendForm();
+            sendForm(e);
           }}
           aria-label="Formulaire d'inscription"
         >
