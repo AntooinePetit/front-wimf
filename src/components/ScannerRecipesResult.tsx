@@ -35,7 +35,7 @@ const ScannerRecipesResults = ({
           >
             <article>
               <img
-                src={`${config.apiUrl}/uploads/recipes/${recipe.image_recipe}`}
+                src={recipe.image_recipe ? `${config.apiUrl}/uploads/recipes/${recipe.image_recipe}` : "/placeholder.webp"}
                 alt={`Photo de ${recipe.name_recipe.toLowerCase()}`}
               />
               <h3>{recipe.name_recipe}</h3>

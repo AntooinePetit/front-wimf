@@ -14,13 +14,11 @@ const RecipeHead = ({ name, image }: RecipeHeadProps) => {
 
   return (
     <section id="recipe-head" className={!isMobile ? "container" : ""}>
-      {image && (
-        <img
-          src={`${url}/uploads/recipes/${image}`}
-          alt={`Photo de ${name.toLowerCase()}`}
-        />
-      )}
-      <h1 style={image ? undefined : { marginTop: "100px" }}>{name}</h1>
+      <img
+        src={image ? `${url}/uploads/recipes/${image}` : "/placeholder.webp"}
+        alt={`Photo de ${name.toLowerCase()}`}
+      />
+      <h1>{name}</h1>
     </section>
   );
 };

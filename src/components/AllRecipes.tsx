@@ -62,7 +62,7 @@ const AllRecipes = () => {
           >
             <article>
               <img
-                src={`${url}/uploads/recipes/${recipe.image_recipe}`}
+                src={recipe.image_recipe ? `${url}/uploads/recipes/${recipe.image_recipe}` : "/placeholder.webp"}
                 alt={`Photo de ${recipe.name_recipe.toLowerCase()}`}
               />
               <h3>{recipe.name_recipe}</h3>
