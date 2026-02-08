@@ -96,9 +96,6 @@ const GDPR = () => {
             </p>
             <ul>
               <li>Mesurer la fréquentation via Google Analytics</li>
-              <li>
-                Adapter l'affichage et les fonctionnalités selon vos préférences
-              </li>
             </ul>
             <p>
               Vous pouvez gérer ou refuser les cookies via votre navigateur ou
