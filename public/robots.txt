@@ -1,0 +1,7 @@
+# robots.txt pour WIMF
+User-agent: *
+Allow: /
+
+# Pages à ne pas indexer
+Disallow: /profile
+Disallow: /reset-password
