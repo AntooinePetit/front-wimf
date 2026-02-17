@@ -88,8 +88,7 @@ const IngredientsRecipe = ({
                       1,
                     ),
                   ) +
-                  " " +
-                  ingredient.mesurements
+                  (ingredient.mesurements ? " " + ingredient.mesurements : "")
                 : ""}
             </p>
           </div>
