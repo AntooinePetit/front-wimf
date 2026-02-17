@@ -51,6 +51,9 @@
 
 @media screen and (min-width: 1025px) {
   #result {
+    display: flex;
+    flex-direction: column;
+    
     > div {
       grid-template-columns: repeat(4, 1fr);
     }
