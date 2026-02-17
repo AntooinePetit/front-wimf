@@ -20,7 +20,11 @@ name_ingredient: "Chapelure"
 quantity: 60
 */
 
-const IngredientsRecipe = ({ id, servings, ingredients: providedIngredients }: IngredientsRecipeProps) => {
+const IngredientsRecipe = ({
+  id,
+  servings,
+  ingredients: providedIngredients,
+}: IngredientsRecipeProps) => {
   const [ingredients, setIngredients] = useState<
     {
       id_ingredient?: number;
@@ -73,12 +77,20 @@ const IngredientsRecipe = ({ id, servings, ingredients: providedIngredients }: I
             key={ingredient.id_ingredient ?? ingredient.name_ingredient}
             className="ingredient"
           >
-            <p>{ingredient.name_ingredient.charAt(0).toUpperCase() + ingredient.name_ingredient.slice(1)}</p>
+            <p>
+              {ingredient.name_ingredient.charAt(0).toUpperCase() +
+                ingredient.name_ingredient.slice(1)}
+            </p>
             <p className="ingredient-quantity">
-              {Number(
-                ((ingredient.quantity / servings) * wantedServings).toFixed(1)
-              )}{" "}
-              {ingredient.measurements || ingredient.mesurements}
+              {ingredient.quantity
+                ? Number(
+                    ((ingredient.quantity / servings) * wantedServings).toFixed(
+                      1,
+                    ),
+                  ) +
+                  " " +
+                  ingredient.mesurements
+                : ""}
             </p>
           </div>
         ))}
